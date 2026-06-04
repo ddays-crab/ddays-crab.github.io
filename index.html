@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>甲魚的求學大補帖 🌻 歡迎學弟妹敲門！</title>
+    <!-- 🌻 讓瀏覽器分頁的小圖示直接變向日葵 -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌻</text></svg>">
+    
     <style>
         /* 🌻 全域溫暖色調設定 */
         :root {
@@ -21,6 +24,8 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
         }
 
         /* 🌻 頂部 Header：改為左右排列 */
@@ -28,6 +33,7 @@
             background: linear-gradient(135deg, #FFE082, #FFD54F);
             border-bottom: 5px solid var(--primary-yellow);
             padding: 3rem 2rem;
+            position: relative;
         }
 
         .header-container {
@@ -38,6 +44,8 @@
             justify-content: space-between;
             flex-wrap: wrap; 
             gap: 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .header-text {
@@ -49,6 +57,7 @@
             margin: 0;
             font-size: 2.5rem;
             color: #5D4037;
+            text-shadow: 1px 1px 0px white;
         }
 
         header p {
@@ -57,14 +66,19 @@
             color: #795548;
         }
 
-        /* 📸 照片造型設定 */
+        /* 📸 照片造型設定（加了可愛的白色小邊框與柔和陰影） */
         .profile-pic {
             width: 180px;
             height: 180px;
             border-radius: 50%; /* 圓形頭像 */
-            border: 5px solid white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 6px solid white;
+            box-shadow: 0 6px 20px rgba(213, 142, 0, 0.3);
             object-fit: cover; /* 確保照片不會變形 */
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        /* 滑鼠移到甲魚照片上會悄悄扭動放大，超親切！ */
+        .profile-pic:hover {
+            transform: scale(1.08) rotate(6deg);
         }
 
         /* 🌻 網頁主容器 */
@@ -72,16 +86,18 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 2rem 1rem;
+            position: relative;
+            z-index: 2;
         }
 
         /* 關於我區塊 */
         .about-section {
             background: white;
             padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.15);
             margin-bottom: 3rem;
-            border-left: 6px solid var(--primary-yellow);
+            border-left: 8px solid var(--primary-yellow);
         }
 
         .about-section h2 {
@@ -95,7 +111,7 @@
             color: var(--leaf-green);
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
-            position: relative;
+            text-shadow: 1px 1px 0px white;
         }
 
         .grid {
@@ -108,19 +124,20 @@
         /* 🌻 每一張向日葵經歷卡片 */
         .card {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 1.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-top: 4px solid var(--primary-yellow);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-top: 5px solid var(--primary-yellow);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
+        /* 卡片懸浮彈跳特效 */
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.25);
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 12px 24px rgba(255, 193, 7, 0.28);
         }
 
         .card h3 {
@@ -132,7 +149,7 @@
         .badge {
             background-color: #E8F5E9;
             color: var(--leaf-green);
-            padding: 0.2rem 0.6rem;
+            padding: 0.2rem 0.7rem;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: bold;
@@ -147,17 +164,17 @@
 
         .card li {
             margin-bottom: 0.4rem;
-            list-style-type: "🌻 "; 
+            list-style-type: "🌻 "; /* 項目符號換成向日葵 */
         }
 
         .tips {
             background-color: #FFFDE7;
-            border-radius: 6px;
+            border-radius: 8px;
             padding: 0.8rem;
             font-size: 0.9rem;
             color: #6D4C41;
             margin-top: 1rem;
-            border-left: 3px solid var(--dark-yellow);
+            border-left: 4px solid var(--dark-yellow);
         }
 
         /* 🌻 一鍵召喚學姐區塊 */
@@ -165,9 +182,10 @@
             text-align: center;
             background: linear-gradient(135deg, #A5D6A7, #81C784);
             padding: 3rem 2rem;
-            border-radius: 15px;
+            border-radius: 20px;
             color: white;
             margin-top: 4rem;
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.2);
         }
 
         .contact-section h2 {
@@ -181,12 +199,12 @@
         .contact-btn {
             background-color: var(--primary-yellow);
             color: #5D4037;
-            padding: 0.8rem 2rem;
+            padding: 0.9rem 2.2rem;
             text-decoration: none;
             font-weight: bold;
             border-radius: 30px;
             font-size: 1.1rem;
-            transition: background 0.2s;
+            transition: all 0.2s;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             display: inline-block;
             margin: 0.5rem;
@@ -195,6 +213,7 @@
         .contact-btn:hover {
             background-color: var(--dark-yellow);
             color: white;
+            transform: scale(1.05);
         }
 
         footer {
@@ -202,6 +221,25 @@
             padding: 2rem;
             color: #8D6E63;
             font-size: 0.9rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 🌸 背景特效：飄落向日葵與小星星 */
+        .flower {
+            position: fixed;
+            top: -20px;
+            font-size: 20px;
+            z-index: 1;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(360deg);
+            }
         }
     </style>
 </head>
@@ -213,6 +251,7 @@
                 <h1>甲魚的求學大補帖 🌻</h1>
                 <p>那些我走過的路、踩過的坑，全都留給你們！隨時歡迎學弟妹找我聊聊 💬</p>
             </div>
+            <!-- 📸 照片欄位：對應乾淨的 IMG_9100.jpg 檔案 -->
             <img src="IMG_9100.jpg" alt="甲魚學姐" class="profile-pic">
         </div>
     </header>
@@ -246,7 +285,7 @@
             <div class="card">
                 <div>
                     <span class="badge">資安培育</span>
-                    <h3>「台灣好厲駭」資安人才培育計畫 現改名AIS3好厲駭 </h3>
+                    <h3>「台灣好厲駭」資安人才培育計畫 <br><small style="font-size:0.8rem; opacity:0.8;">(現改名 AIS3好厲駭)</small></h3>
                     <p><b>經歷：</b> 第 8、9、10 屆 導師培訓成員</p>
                     <ul>
                         <li><b>學到什麼：</b> 系統防禦思維、治安實戰知識、連續三屆跟隨業界導師學習。</li>
@@ -274,7 +313,7 @@
             <div class="card">
                 <div>
                     <span class="badge">全國銅獎 🥉</span>
-                    <h3>2025教育大數據微學程計畫學生成果競賽 </h3>
+                    <h3>2025教育大數據微學程計畫學生成果競賽</h3>
                     <ul>
                         <li><b>收穫技能：</b> 大數據清洗與分析邏輯、團隊技術協作。</li>
                     </ul>
@@ -394,6 +433,7 @@
             <h2>🌻 遇到困難了嗎？大膽敲甲魚學姐吧！</h2>
             <p>不要害羞！不管你是想問某個比賽怎麼準備、交換怎麼申請，或者只是大學生活好迷茫，訊息看到我都會回！</p>
             <div class="btn-container">
+                <!-- 🔗 記得換成妳自己的 IG 帳號和 Email 哦 -->
                 <a href="https://instagram.com/妳的帳號" target="_blank" class="contact-btn">💬 私訊我的 Instagram</a>
                 <a href="mailto:妳的Email@gmail.com" class="contact-btn">✉️ 寄信給甲魚學姐</a>
             </div>
@@ -404,6 +444,34 @@
     <footer>
         <p>© 2026 甲魚的求學大補帖. Built with 🌻 and GitHub Pages.</p>
     </footer>
+
+    <!-- 🌸 控制向日葵與星星落下的可愛小腳本 -->
+    <script>
+        function createFlower() {
+            const flowerEmojis = ['🌻', '✨', '☀️', '🌸'];
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            
+            // 隨機選一個可愛小配飾
+            flower.innerText = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+            
+            // 隨機落下的左右位置、速度與透明度
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4 到 7 秒落完
+            flower.style.opacity = Math.random() * 0.4 + 0.2; // 淡淡的，完美襯托背景
+            flower.style.fontSize = Math.random() * 15 + 15 + 'px'; // 有大有小
+            
+            document.body.appendChild(flower);
+            
+            // 落地後自動清除
+            setTimeout(() => {
+                flower.remove();
+            }, 7000);
+        }
+
+        // 每 800 毫秒在背景落下一朵小驚喜
+        setInterval(createFlower, 800);
+    </script>
 
 </body>
 </html>
