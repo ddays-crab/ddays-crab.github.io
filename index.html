@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌻</text></svg>">
     
     <style>
-        /* 🌻 全域溫慢色調設定 */
+        /* 🌻 全域溫暖色調設定 */
         :root {
             --primary-yellow: #FFC107; 
             --light-yellow: #FFFDE7;   
@@ -145,21 +145,17 @@
             width: 100%;
             height: 100%;
             text-align: left;
-            /* 💡 核心改動：原本這裏有 transition 動畫，我把它拿掉，改由下方獨立控制！ */
             transform-style: preserve-3d;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border-radius: 20px;
+            /* 💡 預設歸位時：0秒直接切換，絕不播放旋轉動畫 */
+            transition: transform 0s; 
         }
 
-        /* ✨ 轉過去背面時：要優雅緩慢地轉動 (0.6秒) */
-        .flip-card:hover .flip-card-inner {
+        /* ✨ 核心修正：當卡片被點擊翻轉時，才優雅地轉過去（0.6秒） */
+        .flip-card.is-flipped .flip-card-inner {
             transform: rotateY(180deg);
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* ✨ 離開滑鼠歸位時：transition 設定為 none！直接一秒瞬間歸位，絕不再旋轉 */
-        .flip-card .flip-card-inner {
-            transition: transform 0s; 
         }
 
         .card-front, .card-back {
@@ -232,17 +228,18 @@
             list-style-type: "🌻 "; 
         }
 
+        /* 🔽 改造：改成「點我看故事 ⬇️」的動態跳動黃色大按鈕 */
         .story-arrow-btn {
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #5D4037;
             font-weight: bold;
             background-color: #FFF59D;
-            padding: 0.4rem;
+            padding: 0.5rem;
             border-radius: 30px;
             margin-top: 0.8rem;
-            border: 1px solid #FFE082;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 2px solid #FFE082;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -356,7 +353,7 @@
             <h2>👋 嗨！學弟妹看過來 🍯</h2>
             <p>
                 我是甲魚。在大學這幾年，我嘗試了資安與資訊社群、挑戰數據競賽、也跑去日本交換、做過校園大使。
-                下方所有的經歷都可以<b>翻面</b>喔！只要把滑鼠移到卡片上（手機用手指點一下），它就會翻到背面秀出我的<b>私房小故事與避坑心得</b>囉！滑開卡片會直接乾淨俐落歸位！
+                下方所有的經歷都可以<b>點擊翻面</b>喔！用手機或電腦直接點擊卡片最下方的「點我看故事」黃色小按鈕，它就會翻到背面秀出我的<b>私房小故事與避坑心得</b>囉！點選下一張卡片時，舊卡片會乾淨俐落直接秒回正面！
             </p>
         </section>
 
@@ -365,7 +362,7 @@
         <div class="grid">
             
             <!-- 1. PyCon TW -->
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -380,7 +377,7 @@
                                 <li><b>軟實力：</b> 跨團隊溝通、遠端協作。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <img src="pycon.jpg" alt="PyCon照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('pycon-ph').style.display='flex'">
@@ -394,7 +391,7 @@
             </div>
 
             <!-- 2. AIS3好厲駭 -->
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -408,7 +405,7 @@
                                 <li><b>學到什麼：</b> 系統防禦思維、治安實戰知識、連續三屆跟隨業界導師學習。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <img src="security.jpg" alt="資安照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('sec-ph').style.display='flex'">
@@ -422,7 +419,7 @@
             </div>
 
             <!-- 3. 資訊學院專題 -->
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -435,7 +432,7 @@
                                 <li><b>收穫技能：</b> 畢業專題架構演練、完整的系統開發邏輯、臨場應變力。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <img src="information.JPG" alt="專題照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('proj-ph').style.display='flex'">
@@ -455,7 +452,7 @@
         <div class="grid">
             
             <!-- 4. 教育大數據 -->
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -468,7 +465,7 @@
                                 <li><b>收穫技能：</b> 大數據清洗與分析邏輯、團隊技術協作。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <img src="bigdata.JPG" alt="大數據照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('ed-ph').style.display='flex'">
@@ -482,7 +479,7 @@
             </div>
 
             <!-- 5. 愛貓一生 -->
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -495,7 +492,7 @@
                                 <li><b>收穫技能：</b> 商業與實用性思維結合大數據分析、限定主題下的創意發想。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <img src="cat.JPG" alt="愛貓一生照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('cat-ph').style.display='flex'">
@@ -509,7 +506,7 @@
             </div>
 
             <!-- 6. 數位松 -->
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -523,7 +520,7 @@
                                 <li><b>專案成果：</b> 結合在地議題與數位科技，在 36HR 內生出簡報提案。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <img src="digi.jpg" alt="數位松照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('digi-ph').style.display='flex'">
@@ -537,7 +534,7 @@
             </div>
 
             <!-- 7. 教育松 -->
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -550,7 +547,7 @@
                                 <li><b>收穫：</b> 團隊高壓發想、教育相關數位議題探討。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <img src="edu_song.jpg" alt="教育松照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('edus-ph').style.display='flex'">
@@ -570,7 +567,7 @@
         <div class="grid">
             
             <!-- 8. TFT -->
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -584,7 +581,7 @@
                                 <li><b>核心能力：</b> 企劃撰寫、公眾表達、深度溝通與同理心。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <img src="tft.jpg" alt="TFT照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('tft-ph').style.display='flex'">
@@ -598,7 +595,7 @@
             </div>
 
             <!-- 9. 青澀芷蘭 -->
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -612,7 +609,7 @@
                                 <li><b>核心能力：</b> 從零到有生出大型年會、專案管理 (PM)、多工處理。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <img src="blue.jpg" alt="青澀芷蘭照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('blue-ph').style.display='flex'">
@@ -626,7 +623,7 @@
             </div>
 
             <!-- 10. LFT -->
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -639,7 +636,7 @@
                                 <li><b>收穫：</b> 認識不同背景的夥伴、跨領域思維激盪、自我心態引導。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <div class="back-text">
@@ -657,7 +654,7 @@
         <div class="grid">
             
             <!-- 11. 日本交換 -->
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -671,7 +668,7 @@
                                 <li><b>核心收穫：</b> 國際移動力、外語環境適應力、獨立生活能力。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <img src="Japan.JPG" alt="日本照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('jp-ph').style.display='flex'">
@@ -685,7 +682,7 @@
             </div>
 
             <!-- 12. 系學會 -->
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -699,7 +696,7 @@
                                 <li><b>核心能力：</b> 團隊領導力、行政文書處理、預算與進度時程掌控。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <div class="back-text">
@@ -715,7 +712,7 @@
         <!-- ================= 🍂 勇敢嘗試 corners ================= -->
         <h2 class="section-title">🍂 那些未完待續的勇敢嘗試 🪵</h2>
         <div class="grid">
-            <div class="flip-card">
+            <div class="flip-card" onclick="toggleCard(this)">
                 <div class="flip-card-inner">
                     <div class="card-front">
                         <div>
@@ -729,7 +726,7 @@
                                 <li><b>學到什麼：</b> 跨領域的法律創新思考、商業企劃書的完整撰寫結構。</li>
                             </ul>
                         </div>
-                        <div class="story-arrow-btn">移上來看故事 ➡️</div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
                         <div class="back-text">
@@ -758,27 +755,45 @@
         <p>© 2026 甲魚的求學大補帖. Built with 🌻 and GitHub Pages.</p>
     </footer>
 
-    <!-- 🌸 控制向日葵與星星落下的腳本 -->
+    <!-- 🌸 核心 JavaScript 控制邏輯 -->
     <script>
+        // 🛠️ 終極解法：用最厲害的 JS 精準控制點擊翻面與秒速歸位
+        function toggleCard(clickedCard) {
+            // 1. 檢查這張卡片現在是不是已經翻過去了
+            const isFlipped = clickedCard.classList.contains('is-flipped');
+            
+            // 2. 把畫面上「所有」卡片都一瞬間啪地閃回正面 (transition 設為 0s)
+            const allCards = document.querySelectorAll('.flip-card');
+            allCards.forEach(card => {
+                const inner = card.querySelector('.flip-card-inner');
+                inner.style.transition = 'transform 0s'; // 閃回！不播放旋轉動畫
+                card.classList.remove('is-flipped');
+            });
+
+            // 3. 如果剛剛點的那張本來是正面，現在就單獨讓它「有動畫地轉到背面」
+            if (!isFlipped) {
+                // 這裡要稍微延遲一丁點時間，讓瀏覽器反應過來要單獨給它加動畫
+                setTimeout(() => {
+                    const inner = clickedCard.querySelector('.flip-card-inner');
+                    inner.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)'; // 給予轉動動畫
+                    clickedCard.classList.add('is-flipped');
+                }, 20);
+            }
+        }
+
+        // 🌻 背景向日葵飄落特效
         function createFlower() {
             const flowerEmojis = ['🌻', '✨', '☀️', '🌸', '🎈'];
             const flower = document.createElement('div');
             flower.classList.add('flower');
-            
             flower.innerText = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
-            
             flower.style.left = Math.random() * 100 + 'vw';
             flower.style.animationDuration = Math.random() * 3 + 4 + 's'; 
             flower.style.opacity = Math.random() * 0.3 + 0.2; 
             flower.style.fontSize = Math.random() * 15 + 15 + 'px'; 
-            
             document.body.appendChild(flower);
-            
-            setTimeout(() => {
-                flower.remove();
-            }, 7000);
+            setTimeout(() => { flower.remove(); }, 7000);
         }
-
         setInterval(createFlower, 800);
     </script>
 
