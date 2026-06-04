@@ -145,15 +145,21 @@
             width: 100%;
             height: 100%;
             text-align: left;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            /* 💡 核心改動：原本這裏有 transition 動畫，我把它拿掉，改由下方獨立控制！ */
             transform-style: preserve-3d;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border-radius: 20px;
         }
 
-        /* ✨ 核心修正：滑鼠移上去 (hover) 直接翻轉，100% 成功不卡死 */
+        /* ✨ 轉過去背面時：要優雅緩慢地轉動 (0.6秒) */
         .flip-card:hover .flip-card-inner {
             transform: rotateY(180deg);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ✨ 離開滑鼠歸位時：transition 設定為 none！直接一秒瞬間歸位，絕不再旋轉 */
+        .flip-card .flip-card-inner {
+            transition: transform 0s; 
         }
 
         .card-front, .card-back {
@@ -350,7 +356,7 @@
             <h2>👋 嗨！學弟妹看過來 🍯</h2>
             <p>
                 我是甲魚。在大學這幾年，我嘗試了資安與資訊社群、挑戰數據競賽、也跑去日本交換、做過校園大使。
-                下方所有的經歷都可以<b>翻面</b>喔！只要把滑鼠移到卡片上（手機用手指點一下），它就會翻到背面秀出我的<b>私房小故事與避坑心得</b>囉！
+                下方所有的經歷都可以<b>翻面</b>喔！只要把滑鼠移到卡片上（手機用手指點一下），它就會翻到背面秀出我的<b>私房小故事與避坑心得</b>囉！滑開卡片會直接乾淨俐落歸位！
             </p>
         </section>
 
