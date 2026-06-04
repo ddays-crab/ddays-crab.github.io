@@ -4,46 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>甲魚的求學大補帖 🌻 歡迎學弟妹敲門！</title>
-    <!-- 🌻 讓瀏覽器分頁的小圖示直接變向日葵 -->
+    <!-- 🌻 瀏覽器分頁小圖示變向日葵 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌻</text></svg>">
     
     <style>
         /* 🌻 全域溫暖色調設定 */
         :root {
-            --primary-yellow: #FFC107; /* 太陽花正黃 */
-            --light-yellow: #FFFDE7;   /* 溫和背景奶油白 */
-            --dark-yellow: #FFA000;    /* 點選與強調橘黃 */
-            --leaf-green: #4CAF50;     /* 溫暖葉綠 */
-            --text-color: #3E2723;     /* 深色木質調文字 */
+            --primary-yellow: #FFC107; 
+            --light-yellow: #FFFDE7;   
+            --dark-yellow: #FFA000;    
+            --leaf-green: #4CAF50;     
+            --text-color: #3E2723;     
         }
 
         body {
             font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            background-color: var(--light-yellow);
             color: var(--text-color);
             margin: 0;
             padding: 0;
             line-height: 1.6;
             position: relative;
             overflow-x: hidden;
+
+            /* 🌼 改造：加入超可愛的向日葵幾何小花底紋，告別單調膚色 */
+            background-color: var(--light-yellow);
+            background-image: radial-gradient(#fff9c4 20%, transparent 20%),
+                              radial-gradient(#fff9c4 20%, transparent 20%);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
         }
 
-        /* 🌻 頂部 Header：改為左右排列 */
+        /* 🌻 頂部 Header：優化文字與照片的間距 */
         header {
             background: linear-gradient(135deg, #FFE082, #FFD54F);
             border-bottom: 5px solid var(--primary-yellow);
-            padding: 3rem 2rem;
+            padding: 2.5rem 2rem; /* 稍微縮小上下留白 */
             position: relative;
         }
 
         .header-container {
-            max-width: 1100px;
+            max-width: 950px; /* 縮減最大寬度，強迫標題與照片靠得更近 */
             margin: 0 auto;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center; /* 改為置中靠攏 */
             flex-wrap: wrap; 
-            gap: 2rem;
+            gap: 2.5rem; /* 控制標題和照片之間的親密距離 */
             position: relative;
             z-index: 2;
         }
@@ -51,34 +57,35 @@
         .header-text {
             flex: 1;
             min-width: 300px;
+            text-align: left;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 2.6rem;
             color: #5D4037;
-            text-shadow: 1px 1px 0px white;
+            text-shadow: 2px 2px 0px white;
         }
 
         header p {
-            font-size: 1.2rem;
-            margin: 1rem 0 0 0;
+            font-size: 1.15rem;
+            margin: 0.8rem 0 0 0;
             color: #795548;
         }
 
-        /* 📸 照片造型設定（加了可愛的白色小邊框與柔和陰影） */
+        /* 📸 照片造型改造：精緻圓角正長方形（拍立得風） */
         .profile-pic {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%; /* 圓形頭像 */
+            width: 160px;
+            height: 200px; /* 設定不同寬高，呈現完美長方形 */
+            border-radius: 16px; /* 萌萌的微圓角 */
             border: 6px solid white;
-            box-shadow: 0 6px 20px rgba(213, 142, 0, 0.3);
-            object-fit: cover; /* 確保照片不會變形 */
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 25px rgba(213, 142, 0, 0.35);
+            object-fit: cover; 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        /* 滑鼠移到甲魚照片上會悄悄扭動放大，超親切！ */
+        /* 滑鼠移上去會微微放大並轉正，超吸睛 */
         .profile-pic:hover {
-            transform: scale(1.08) rotate(6deg);
+            transform: scale(1.06) rotate(-3deg);
         }
 
         /* 🌻 網頁主容器 */
@@ -94,15 +101,19 @@
         .about-section {
             background: white;
             padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.15);
+            border-radius: 24px;
+            box-shadow: 0 6px 18px rgba(255, 193, 7, 0.12);
             margin-bottom: 3rem;
             border-left: 8px solid var(--primary-yellow);
+            border-right: 8px solid var(--primary-yellow); /* 兩側對稱黃邊，超可愛 */
         }
 
         .about-section h2 {
             margin-top: 0;
             color: var(--dark-yellow);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         /* 🌻 經歷卡片網格排版 */
@@ -112,6 +123,10 @@
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
             text-shadow: 1px 1px 0px white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
         }
 
         .grid {
@@ -124,24 +139,24 @@
         /* 🌻 每一張向日葵經歷卡片 */
         .card {
             background: white;
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 1.5rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-top: 5px solid var(--primary-yellow);
+            border-top: 6px solid var(--primary-yellow);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
         }
 
-        /* 卡片懸浮彈跳特效 */
         .card:hover {
             transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 12px 24px rgba(255, 193, 7, 0.28);
+            box-shadow: 0 12px 26px rgba(255, 193, 7, 0.25);
         }
 
         .card h3 {
-            margin-top: 0;
+            margin: 0 0 0.5rem 0;
             color: #5D4037;
             font-size: 1.3rem;
         }
@@ -149,7 +164,7 @@
         .badge {
             background-color: #E8F5E9;
             color: var(--leaf-green);
-            padding: 0.2rem 0.7rem;
+            padding: 0.25rem 0.8rem;
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: bold;
@@ -164,12 +179,12 @@
 
         .card li {
             margin-bottom: 0.4rem;
-            list-style-type: "🌻 "; /* 項目符號換成向日葵 */
+            list-style-type: "🌻 "; 
         }
 
         .tips {
             background-color: #FFFDE7;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 0.8rem;
             font-size: 0.9rem;
             color: #6D4C41;
@@ -182,10 +197,10 @@
             text-align: center;
             background: linear-gradient(135deg, #A5D6A7, #81C784);
             padding: 3rem 2rem;
-            border-radius: 20px;
+            border-radius: 24px;
             color: white;
             margin-top: 4rem;
-            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.2);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.25);
         }
 
         .contact-section h2 {
@@ -245,21 +260,22 @@
 </head>
 <body>
 
+    <!-- 🌻 頂部 Header 與長方形拍立得大頭貼 -->
     <header>
         <div class="header-container">
             <div class="header-text">
                 <h1>甲魚的求學大補帖 🌻</h1>
                 <p>那些我走過的路、踩過的坑，全都留給你們！隨時歡迎學弟妹找我聊聊 💬</p>
             </div>
-            <!-- 📸 照片欄位：對應乾淨的 IMG_9100.jpg 檔案 -->
             <img src="IMG_9100.jpg" alt="甲魚學姐" class="profile-pic">
         </div>
     </header>
 
     <div class="container">
 
+        <!-- 🌻 關於我 -->
         <section class="about-section">
-            <h2>嗨！學弟妹看過來 👋</h2>
+            <h2>👋 嗨！學弟妹看過來 🍯</h2>
             <p>
                 我是甲魚。在大學這幾年，我嘗試了資安與資訊社群、挑戰數據競賽、也跑去日本交換、做過校園大使。
                 建立這個網站不是為了擺放一張死板的履歷，而是想要把這些活動的<b>報名管道、我學到的軟硬實力、以及當初卡關的心得</b>整理出來。
@@ -267,11 +283,12 @@
             </p>
         </section>
 
-        <h2 class="section-title">🌿 資訊與資安相關經歷</h2>
+        <!-- 🌻 第一區塊：資訊與資安相關 -->
+        <h2 class="section-title">💻 資訊與資安相關經歷 🌿</h2>
         <div class="grid">
             <div class="card">
                 <div>
-                    <span class="badge">技術社群</span>
+                    <span class="badge">🐍 技術社群</span>
                     <h3>PyCon TW 台灣 Python 年會</h3>
                     <p><b>角色：</b> 開發組成員 (Development Team)</p>
                     <ul>
@@ -284,7 +301,7 @@
 
             <div class="card">
                 <div>
-                    <span class="badge">資安培育</span>
+                    <span class="badge">🛡️ 資安培育</span>
                     <h3>「台灣好厲駭」資安人才培育計畫 <br><small style="font-size:0.8rem; opacity:0.8;">(現改名 AIS3好厲駭)</small></h3>
                     <p><b>經歷：</b> 第 8、9、10 屆 導師培訓成員</p>
                     <ul>
@@ -297,7 +314,7 @@
 
             <div class="card">
                 <div>
-                    <span class="badge">專題佳作 🏅</span>
+                    <span class="badge">🎖️ 專題佳作</span>
                     <h3>2025年資訊學院專題競賽</h3>
                     <ul>
                         <li><b>收穫技能：</b> 畢業專題架構演練、完整的系統開發邏輯、面對教授提問的臨場應變力。</li>
@@ -308,11 +325,12 @@
         </div>
 
 
-        <h2 class="section-title">📊 數據競賽類成果</h2>
+        <!-- 🌻 第二區塊：數據競賽類 -->
+        <h2 class="section-title">📊 數據競賽類成果 ✨</h2>
         <div class="grid">
             <div class="card">
                 <div>
-                    <span class="badge">全國銅獎 🥉</span>
+                    <span class="badge">📈 全國銅獎</span>
                     <h3>2025教育大數據微學程計畫學生成果競賽</h3>
                     <ul>
                         <li><b>收穫技能：</b> 大數據清洗與分析邏輯、團隊技術協作。</li>
@@ -323,7 +341,7 @@
 
             <div class="card">
                 <div>
-                    <span class="badge">佳作 🏅</span>
+                    <span class="badge">🐱 佳作 🏅</span>
                     <h3>愛貓一生大數據競賽</h3>
                     <ul>
                         <li><b>收穫技能：</b> 商業與實用性思維結合大數據分析、限定主題下的創意發想。</li>
@@ -334,8 +352,8 @@
 
             <div class="card">
                 <div>
-                    <span class="badge">梭哈青春 ALL IN！2025屏東青年社會創新競賽 🥉</span>
-                    <h3>屏東縣政府數位松 & 教育松</h3>
+                    <span class="badge">🔥 社會創新獎 🥉</span>
+                    <h3>屏東縣政府數位松 & 教育松 <br><small style="font-size:0.8rem; opacity:0.8;">(梭哈青春 ALL IN！2025屏東青年社會創新競賽)</small></h3>
                     <ul>
                         <li><b>專案成果：</b> 結合在地議題與數位科技，在 36HR 內生出簡報提案。</li>
                         <li><b>收穫技能：</b> 簡報提案、在地問題洞察與痛點分析。</li>
@@ -346,11 +364,12 @@
         </div>
 
 
-        <h2 class="section-title">🤝 教育創新與社會參與</h2>
+        <!-- 🌻 第三區塊：教育創新與社會參與 -->
+        <h2 class="section-title">🤝 教育創新與社會參與 🧸</h2>
         <div class="grid">
             <div class="card">
                 <div>
-                    <span class="badge">校園大使</span>
+                    <span class="badge">🎒 校園大使</span>
                     <h3>TFT (Teach For Taiwan)</h3>
                     <p><b>經歷：</b> 兩學期校園大使 & 2025年夏季明日學校暑期營隊志工</p>
                     <ul>
@@ -363,7 +382,7 @@
 
             <div class="card">
                 <div>
-                    <span class="badge">公益與活動</span>
+                    <span class="badge">🕊️ 公益與活動</span>
                     <h3>青澀芷蘭協會</h3>
                     <p><b>經歷：</b> 年會籌辦與活動組組員</p>
                     <ul>
@@ -375,7 +394,7 @@
 
             <div class="card">
                 <div>
-                    <span class="badge">營隊</span>
+                    <span class="badge">⛺ 🌟 營隊</span>
                     <h3>LFT 營隊參與</h3>
                     <ul>
                         <li><b>收穫：</b> 認識不同背景的夥伴、跨領域思維激盪、自我心態引導。</li>
@@ -385,11 +404,12 @@
         </div>
 
 
-        <h2 class="section-title">✈️ 國際移動與校園領導</h2>
+        <!-- 🌻 第四區塊：國際移動與校園領導 -->
+        <h2 class="section-title">✈️ 國際移動與校園領導 🗺️</h2>
         <div class="grid">
             <div class="card">
                 <div>
-                    <span class="badge">交換學生</span>
+                    <span class="badge">❄️ 交換學生</span>
                     <h3>日本北海道室蘭工業大學</h3>
                     <p><b>經歷：</b> 交換兩個學期</p>
                     <ul>
@@ -401,7 +421,7 @@
 
             <div class="card">
                 <div>
-                    <span class="badge">校園核心</span>
+                    <span class="badge">📢 校園核心</span>
                     <h3>系學會 - 文書長</h3>
                     <p><b>經歷：</b> 辦理為期三天的暑期營隊</p>
                     <ul>
@@ -413,11 +433,12 @@
         </div>
 
 
-        <h2 class="section-title">🍂 那些未完待續的勇敢嘗試</h2>
+        <!-- 🌻 第五區塊：勇敢嘗試 corners -->
+        <h2 class="section-title">🍂 那些未完待續的勇敢嘗試 🪵</h2>
         <div class="grid">
             <div class="card">
                 <div>
-                    <span class="badge">企劃提案</span>
+                    <span class="badge">💡 企劃提案</span>
                     <h3>2025 法治教育競賽 & 法蘭瓷計畫</h3>
                     <p><b>心得：</b> 雖然這兩項嘗試沒有得獎，但對我來說卻非常珍貴。</p>
                     <ul>
@@ -429,11 +450,11 @@
         </div>
 
 
+        <!-- 🌻 聯絡區塊 -->
         <section class="contact-section">
             <h2>🌻 遇到困難了嗎？大膽敲甲魚學姐吧！</h2>
             <p>不要害羞！不管你是想問某個比賽怎麼準備、交換怎麼申請，或者只是大學生活好迷茫，訊息看到我都會回！</p>
             <div class="btn-container">
-                <!-- 🔗 記得換成妳自己的 IG 帳號和 Email 哦 -->
                 <a href="https://instagram.com/妳的帳號" target="_blank" class="contact-btn">💬 私訊我的 Instagram</a>
                 <a href="mailto:妳的Email@gmail.com" class="contact-btn">✉️ 寄信給甲魚學姐</a>
             </div>
@@ -445,31 +466,27 @@
         <p>© 2026 甲魚的求學大補帖. Built with 🌻 and GitHub Pages.</p>
     </footer>
 
-    <!-- 🌸 控制向日葵與星星落下的可愛小腳本 -->
+    <!-- 🌸 控制向日葵與星星落下的可愛腳本 -->
     <script>
         function createFlower() {
-            const flowerEmojis = ['🌻', '✨', '☀️', '🌸'];
+            const flowerEmojis = ['🌻', '✨', '☀️', '🌸', '🎈'];
             const flower = document.createElement('div');
             flower.classList.add('flower');
             
-            // 隨機選一個可愛小配飾
             flower.innerText = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
             
-            // 隨機落下的左右位置、速度與透明度
             flower.style.left = Math.random() * 100 + 'vw';
-            flower.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4 到 7 秒落完
-            flower.style.opacity = Math.random() * 0.4 + 0.2; // 淡淡的，完美襯托背景
-            flower.style.fontSize = Math.random() * 15 + 15 + 'px'; // 有大有小
+            flower.style.animationDuration = Math.random() * 3 + 4 + 's'; 
+            flower.style.opacity = Math.random() * 0.3 + 0.2; /* 讓它淡淡的作為背景點綴 */
+            flower.style.fontSize = Math.random() * 15 + 15 + 'px'; 
             
             document.body.appendChild(flower);
             
-            // 落地後自動清除
             setTimeout(() => {
                 flower.remove();
             }, 7000);
         }
 
-        // 每 800 毫秒在背景落下一朵小驚喜
         setInterval(createFlower, 800);
     </script>
 
