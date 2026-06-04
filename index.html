@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>甲魚的求學大補帖 🌻 歡迎來敲門！</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --sunflower-yellow: #FFC107;
+            --sunflower-dark: #F57C00;
+            --cream-white: #FFFDE7;
+            --bg-light: #FAF8F5;
+            --leaf-green: #66BB6A;
+            --text-dark: #424242;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* 頂部溫暖橫幅 */
+        header {
+            background: linear-gradient(135deg, #FFE082 0%, #FFD54F 100%);
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: "🌻";
+            position: absolute;
+            bottom: -10px;
+            right: 10%;
+            font-size: 5rem;
+            opacity: 0.3;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            background-color: #E0E0E0;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            color: #3E2723;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: #5D4037;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 主區塊排版 */
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        h2 {
+            color: #3E2723;
+            border-bottom: 3px solid var(--sunflower-yellow);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        /* 經歷膠囊卡片設計 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--sunflower-yellow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(255, 193, 7, 0.2);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            color: #3E2723;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tag-group {
+            margin: 0.5rem 0 1rem 0;
+        }
+
+        .tag {
+            background-color: var(--cream-white);
+            color: #5D4037;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 0.4rem;
+            border: 1px solid #FFE082;
+            display: inline-block;
+        }
+
+        .card-section {
+            margin-top: 0.8rem;
+        }
+
+        .card-section strong {
+            color: var(--sunflower-dark);
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .card-section ul {
+            list-style-type: none;
+            padding-left: 0.5rem;
+        }
+
+        .card-section li {
+            position: relative;
+            padding-left: 1.2rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-section li::before {
+            content: "🌻";
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        .tips {
+            background-color: #FAFAFA;
+            border-left: 3px dashed var(--leaf-green);
+            padding: 0.5rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #555;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* 聯絡召喚區塊 */
+        .contact-section {
+            text-align: center;
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+            border: 2px solid var(--cream-white);
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--sunflower-yellow);
+            color: #3E2723;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4);
+            transition: all 0.2s;
+        }
+
+        .contact-btn:hover {
+            background-color: var(--sunflower-dark);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #9E9E9E;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div style="font-size: 4.5rem; margin-bottom: 0.5rem;">🌻</div>
+        <h1>甲魚的求學大補帖</h1>
+        <p>嗨！這個小天地用來記錄我的活動與比賽經歷，希望能給正在探索的學弟妹一點方向。只要看到你有興趣的，千萬別客氣，大膽敲我提問吧！</p>
+    </header>
+
+    <div class="container">
+        
+        <h2>🌟 大學經歷</h2>
+        
+        <div class="grid">
+            
+            <div class="card">
+                <div class="card-title">
+                    <i class="fa-solid fa-users" style="color: var(--sunflower-dark);"></i>
+                    大型資訊社群參與 & 籌備
+                </div>
+                <div class="tag-group">
+                    <span class="tag">SITCON 學生計算機年會</span>
+                    <span class="tag">PyCon TW</span>
+                    <span class="tag">WiDS Taipei</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #666;">深入台灣各大指標性資訊社群，參與主題發展、年會籌備志工，並擔任 PyCon TW 核心主持人，與全台的資訊頂尖人才交流。</p>
+                
+                <div class="card-section">
+                    <strong>💡 你能學到的軟硬實力：</strong>
+                    <ul>
+                        <li>**硬實力：** 了解大型技術論壇的議題架構、前端技術與社群專案協作。</li>
+                        <li>**軟實力：** 超強的跨領域溝通、大型舞台主持控場、以及在時程壓力下的危機處理。</li>
+                    </ul>
+                </div>
+                <div class="tips">
+                    💬 **學姐悄悄話：** 想知道怎麼加入這些神級社群當志工、甚至站上舞台當主持人嗎？報名密技和心態準備都可以來問我！
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <i class="fa-solid fa-code" style="color: var(--sunflower-dark);"></i>
+                    資安與演算法精進
+                </div>
+                <div class="tag-group">
+                    <span class="tag">SCIST 南臺灣學生資訊社群</span>
+                    <span class="tag">AIS3 新世代資安人才培育</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #666;">參與高強度的演算法與資訊安全培訓，挑戰 Codeforces、Kattis 等競爭性程式設計平台，鍛鍊核心邏輯與資安實戰思維。</p>
+                
+                <div class="card-section">
+                    <strong>💡 你能學到的軟硬實力：</strong>
+                    <ul>
+                        <li>**硬實力：** 資訊安全攻防思維（CTF）、複雜演算法邏輯、資料結構實作。</li>
+                        <li>**軟實力：** 面對挫折的耐力（刷題卡關是日常）、獨立解題與邏輯思維。</li>
+                    </ul>
+                </div>
+                <div class="tips">
+                    💬 **學姐悄悄話：** 刷題刷到懷疑人生？資安門檻看起來很高？別怕，來問我怎麼規劃自學路徑，帶你一步步跨過去！
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">
+                    <i class="fa-solid fa-graduation-cap" style="color: var(--sunflower-dark);"></i>
+                    EMI 助教與學術教學
+                </div>
+                <div class="tag-group">
+                    <span class="tag">EMI TA</span>
+                    <span class="tag">理數英私人家教</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #666;">長期指導國高中數學、物理、化學及英文，將複雜的知識轉化為好懂的觀念。</p>
+                
+                <div class="card-section">
+                    <strong>💡 你能學到的軟硬實力：</strong>
+                    <ul>
+                        <li>**硬實力：** 數理化核心知識傳授、流利的全英語雙語溝通。</li>
+                        <li>**軟實力：** 耐心與同理心（站在學弟妹視角思考問題）、因材施教的表達技巧。</li>
+                    </ul>
+                </div>
+                <div class="tips">
+                    💬 **學姐悄悄話：** 想兼職當家教賺零用錢，卻不知道怎麼安排課程進度或面對家長？來跟我聊聊，我把我的教學私房菜單分享給你！
+                </div>
+            </div>
+
+        </div>
+
+        <div class="contact-section">
+            <h2>🌻 遇到困難了嗎？別客氣，學姐在！</h2>
+            <p style="margin-top: 0.5rem; color: #555;">不管是想問上面活動的報名方式、怎麼兼顧課業與社群，還是單純對未來方向很迷茫...</p>
+            <p><strong>隨時點擊下方，大膽來找我聊聊吧！</strong></p>
+            
+            <a href="https://www.instagram.com/" target="_blank" class="contact-btn">
+                <i class="fa-brands fa-instagram"></i> 私訊甲魚
+            </a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 甲魚 (Crab). Made with 🌻 and warmth for juniors.</p>
+    </footer>
+
+</body>
+</html>
