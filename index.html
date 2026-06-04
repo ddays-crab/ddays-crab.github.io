@@ -23,12 +23,26 @@
             line-height: 1.6;
         }
 
-        /* 🌻 頂部超暖心 Banner */
+        /* 🌻 頂部 Header：改為左右排列 */
         header {
             background: linear-gradient(135deg, #FFE082, #FFD54F);
-            text-align: center;
-            padding: 4rem 2rem;
             border-bottom: 5px solid var(--primary-yellow);
+            padding: 3rem 2rem;
+        }
+
+        .header-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap; 
+            gap: 2rem;
+        }
+
+        .header-text {
+            flex: 1;
+            min-width: 300px;
         }
 
         header h1 {
@@ -41,6 +55,16 @@
             font-size: 1.2rem;
             margin: 1rem 0 0 0;
             color: #795548;
+        }
+
+        /* 📸 照片造型設定 */
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%; /* 圓形頭像 */
+            border: 5px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            object-fit: cover; /* 確保照片不會變形 */
         }
 
         /* 🌻 網頁主容器 */
@@ -123,7 +147,7 @@
 
         .card li {
             margin-bottom: 0.4rem;
-            list-style-type: "🌻 "; /* 項目符號換成向日葵 */
+            list-style-type: "🌻 "; 
         }
 
         .tips {
@@ -136,7 +160,7 @@
             border-left: 3px solid var(--dark-yellow);
         }
 
-        / 🌻 一鍵召喚學姐區塊 /
+        /* 🌻 一鍵召喚學姐區塊 */
         .contact-section {
             text-align: center;
             background: linear-gradient(135deg, #A5D6A7, #81C784);
@@ -183,26 +207,28 @@
 </head>
 <body>
 
-    <!-- 🌻 頂部 Header -->
     <header>
-        <h1>甲魚的求學大補帖 🌻</h1>
-        <p>那些我走過的路、踩過的坑，全都留給你們！隨時歡迎學弟妹找我聊聊 💬</p>
+        <div class="header-container">
+            <div class="header-text">
+                <h1>甲魚的求學大補帖 🌻</h1>
+                <p>那些我走過的路、踩過的坑，全都留給你們！隨時歡迎學弟妹找我聊聊 💬</p>
+            </div>
+            <img src="IMG_9100.jpg" alt="甲魚學姐" class="profile-pic">
+        </div>
     </header>
 
     <div class="container">
 
-        <!-- 🌻 關於我 -->
         <section class="about-section">
             <h2>嗨！學弟妹看過來 👋</h2>
             <p>
-                我是甲魚。在大學這幾年，我嘗試了資安、數據競賽、開源社群、也跑去日本交換、做過校園大使。
+                我是甲魚。在大學這幾年，我嘗試了資安與資訊社群、挑戰數據競賽、也跑去日本交換、做過校園大使。
                 建立這個網站不是為了擺放一張死板的履歷，而是想要把這些活動的<b>報名管道、我學到的軟硬實力、以及當初卡關的心得</b>整理出來。
                 如果你們對下面的任何一項經歷感興趣，或者對於大學生活規劃感到迷茫，<b>不用害羞，直接拉到最下方敲我私訊</b>，我超級樂意分享！
             </p>
         </section>
 
-        <!-- 🌻 第一區塊：資訊治安與開源社群 -->
-        <h2 class="section-title">🌿 資訊治安與開源社群</h2>
+        <h2 class="section-title">🌿 資訊與資安相關經歷</h2>
         <div class="grid">
             <div class="card">
                 <div>
@@ -210,8 +236,8 @@
                     <h3>PyCon TW 台灣 Python 年會</h3>
                     <p><b>角色：</b> 開發組成員 (Development Team)</p>
                     <ul>
-                        <li><b>硬實力：</b> Git/GitHub 團隊大規模協作、實戰開源專案開發、Python 技術應用。</li>
-                        <li><b>軟實力：</b> 與全台頂尖的 Python 工程師跨團隊溝通、遠端協作。</li>
+                        <li><b>硬實力：</b> Git/GitHub 團隊協作、實戰開源專案開發、Python 技術應用。</li>
+                        <li><b>軟實力：</b> 與Python 工程師跨團隊溝通、遠端協作。</li>
                     </ul>
                 </div>
                 <div class="tips">💡 想知道怎麼加入全台最大的 Python 年會籌備團隊嗎？歡迎問我開發組都在玩什麼！</div>
@@ -220,39 +246,37 @@
             <div class="card">
                 <div>
                     <span class="badge">資安培育</span>
-                    <h3>「台灣好厲害」資安人才培育</h3>
+                    <h3>「台灣好厲駭」資安人才培育計畫 現改名AIS3好厲駭 </h3>
                     <p><b>經歷：</b> 第 8、9、10 屆 導師培訓成員</p>
                     <ul>
-                        <li><b>學到什麼：</b> 系統防禦思維、治安實戰知識、連續三屆跟隨業界導師深度學習。</li>
-                        <li><b>核心收穫：</b> 建立了非常珍貴的資安業界專家與同儕人脈。</li>
+                        <li><b>學到什麼：</b> 系統防禦思維、治安實戰知識、連續三屆跟隨業界導師學習。</li>
+                        <li><b>核心收穫：</b> 建立珍貴的資安業界專家與同儕人脈。</li>
                     </ul>
                 </div>
                 <div class="tips">💡 這計畫怎麼申請？面試看重什麼？想踏入資安的學弟妹，這題問我準沒錯！</div>
             </div>
+
+            <div class="card">
+                <div>
+                    <span class="badge">專題佳作 🏅</span>
+                    <h3>2025年資訊學院專題競賽</h3>
+                    <ul>
+                        <li><b>收穫技能：</b> 畢業專題架構演練、完整的系統開發邏輯、面對教授提問的臨場應變力。</li>
+                    </ul>
+                </div>
+                <div class="tips">💡 專題做到快崩潰？不知道怎麼在學院競賽中脫穎而出？讓我來幫你打氣！</div>
+            </div>
         </div>
 
 
-        <!-- 🌻 第二區塊：數據與科技大賽 -->
-        <h2 class="section-title">🏆 數據與科技大賽（黑客松實戰）</h2>
+        <h2 class="section-title">📊 數據競賽類成果</h2>
         <div class="grid">
             <div class="card">
                 <div>
-                    <span class="badge">銅獎 🥉</span>
-                    <h3>屏東縣政府數位松 & 教育松</h3>
+                    <span class="badge">全國銅獎 🥉</span>
+                    <h3>2025教育大數據微學程計畫學生成果競賽 </h3>
                     <ul>
-                        <li><b>專案成果：</b> 結合在地議題與數位科技，在高壓的黑客松時程內生出產品原型。</li>
-                        <li><b>收穫技能：</b> 產品原型設計、簡報提案、在地問題洞察與痛點分析。</li>
-                    </ul>
-                </div>
-                <div class="tips">💡 黑客松要在短時間內不睡覺生出東西？想知道組隊跟得獎密技來找我！</div>
-            </div>
-
-            <div class="card">
-                <div>
-                    <span class="badge">銅獎 🥉</span>
-                    <h3>教育部教育大數據 全國專題競賽</h3>
-                    <ul>
-                        <li><b>收穫技能：</b> 大數據清洗與分析邏輯、團隊技術協作、如何把冰冷的數據包裝成有溫度的故事。</li>
+                        <li><b>收穫技能：</b> 大數據清洗與分析邏輯、團隊技術協作。</li>
                     </ul>
                 </div>
                 <div class="tips">💡 數據比賽的切入點怎麼找？評審想聽什麼？學姐把當時的簡報密技傳授給你。</div>
@@ -271,40 +295,40 @@
 
             <div class="card">
                 <div>
-                    <span class="badge">佳作 🏅</span>
-                    <h3>資訊學院專題競賽</h3>
+                    <span class="badge">梭哈青春 ALL IN！2025屏東青年社會創新競賽 🥉</span>
+                    <h3>屏東縣政府數位松 & 教育松</h3>
                     <ul>
-                        <li><b>收穫技能：</b> 畢業專題架構演練、完整的系統開發邏輯、面對教授提問的臨場應變力。</li>
+                        <li><b>專案成果：</b> 結合在地議題與數位科技，在 36HR 內生出簡報提案。</li>
+                        <li><b>收穫技能：</b> 簡報提案、在地問題洞察與痛點分析。</li>
                     </ul>
                 </div>
-                <div class="tips">💡 專題做到快崩潰？不知道怎麼在學院競賽中脫穎而出？讓我來幫你打氣！</div>
+                <div class="tips">💡 要在短時間內不睡覺生出東西？想知道組隊跟得獎密技來找我！</div>
             </div>
         </div>
 
 
-        <!-- 🌻 第三區塊：教育創新與社會參與 -->
         <h2 class="section-title">🤝 教育創新與社會參與</h2>
         <div class="grid">
             <div class="card">
                 <div>
                     <span class="badge">校園大使</span>
                     <h3>TFT (Teach For Taiwan)</h3>
-                    <p><b>經歷：</b> 兩學期校園大使 & 2025暑期營隊志工</p>
+                    <p><b>經歷：</b> 兩學期校園大使 & 2025年夏季明日學校暑期營隊志工</p>
                     <ul>
                         <li><b>學到什麼：</b> 非營利組織（NGO）的運作思維、偏鄉教育議題倡議。</li>
                         <li><b>核心能力：</b> 企劃撰寫、公眾表達、深度溝通與同理心。</li>
                     </ul>
                 </div>
-                <div class="tips">💡 這裡面通常大約在特定月份招募。想知道怎麼寫出讓人感動的加入企劃嗎？</div>
+                <div class="tips">💡 這裡面通常在固定月份招募。想知道怎麼寫出讓人感動的加入企劃嗎？</div>
             </div>
 
             <div class="card">
                 <div>
                     <span class="badge">公益與活動</span>
                     <h3>青澀芷蘭協會</h3>
-                    <p><b>經歷：</b> 年會籌辦與活動辦理人員</p>
+                    <p><b>經歷：</b> 年會籌辦與活動組組員</p>
                     <ul>
-                        <li><b>核心能力：</b> 從零到有生出大型年會、專案管理 (PM)、公關外聯、多工處理與危機應變。</li>
+                        <li><b>核心能力：</b> 從零到有生出大型年會、專案管理 (PM)、多工處理與危機應變。</li>
                     </ul>
                 </div>
                 <div class="tips">💡 對於大型活動、年會籌備有憧憬的人，歡迎來問我怎麼拉時程跟跨部門溝通。</div>
@@ -322,19 +346,18 @@
         </div>
 
 
-        <!-- 🌻 第四區塊：國際移動與校園領導 -->
         <h2 class="section-title">✈️ 國際移動與校園領導</h2>
         <div class="grid">
             <div class="card">
                 <div>
                     <span class="badge">交換學生</span>
                     <h3>日本北海道室蘭工業大學</h3>
-                    <p><b>經歷：</b> 前往雪國交換兩個學期</p>
+                    <p><b>經歷：</b> 交換兩個學期</p>
                     <ul>
-                        <li><b>核心收穫：</b> 國際移動力、全外語環境適應力、跨文化溝通與極強的獨立生活能力。</li>
+                        <li><b>核心收穫：</b> 國際移動力、外語環境適應力、跨文化溝通與獨立生活能力。</li>
                     </ul>
                 </div>
-                <div class="tips">💡 怎麼申請室蘭工大？雪國生活好玩嗎？歡迎來問交換學生的心理準備！</div>
+                <div class="tips">💡 怎麼申請室蘭工大？歡迎來問交換學生的心理準備！</div>
             </div>
 
             <div class="card">
@@ -351,7 +374,6 @@
         </div>
 
 
-        <!-- 🌻 第五區塊：勇敢嘗試角落 -->
         <h2 class="section-title">🍂 那些未完待續的勇敢嘗試</h2>
         <div class="grid">
             <div class="card">
@@ -368,12 +390,10 @@
         </div>
 
 
-        <!-- 🌻 一鍵召喚學姐區塊 -->
         <section class="contact-section">
             <h2>🌻 遇到困難了嗎？大膽敲甲魚學姐吧！</h2>
             <p>不要害羞！不管你是想問某個比賽怎麼準備、交換怎麼申請，或者只是大學生活好迷茫，訊息看到我都會回！</p>
             <div class="btn-container">
-                <!-- 🔗 請在這裡換上妳的聯絡管道網址（例如 IG 或是 Email） -->
                 <a href="https://instagram.com/妳的帳號" target="_blank" class="contact-btn">💬 私訊我的 Instagram</a>
                 <a href="mailto:妳的Email@gmail.com" class="contact-btn">✉️ 寄信給甲魚學姐</a>
             </div>
