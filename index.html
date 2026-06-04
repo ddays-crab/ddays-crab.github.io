@@ -73,7 +73,7 @@
             color: #795548;
         }
 
-        /* 🎓 新增：個人介紹小膠囊標籤容器 */
+        /* 🎓 個人介紹小膠囊標籤容器 */
         .info-tags {
             display: flex;
             flex-wrap: wrap;
@@ -158,7 +158,7 @@
         /* 🃏 翻牌外殼容器 */
         .flip-card {
             background-color: transparent;
-            height: 460px; 
+            height: 480px; /* 稍微微調高度讓照片放得更舒服 */
             perspective: 1000px; 
         }
 
@@ -173,7 +173,7 @@
             transition: transform 0s; 
         }
 
-        /* 当卡片被点击翻转时，优雅地转过去（0.6秒） */
+        /* 當卡片被點擊翻轉時，優雅地轉過去（0.6秒） */
         .flip-card.is-flipped .flip-card-inner {
             transform: rotateY(180deg);
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -183,7 +183,7 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden; 
+            -webkit-backface-visibility: hidden; /* ✨ 核心修正：這行能確保翻轉後正面圖層徹底隱藏不穿透！ */
             backface-visibility: hidden;
             border-radius: 20px;
             box-sizing: border-box;
@@ -198,6 +198,7 @@
             background-color: white;
             color: var(--text-color);
             border-top: 6px solid var(--primary-yellow);
+            z-index: 2;
         }
 
         .card-back {
@@ -205,6 +206,7 @@
             color: #5D4037;
             transform: rotateY(180deg); 
             border: 3px dashed var(--dark-yellow);
+            z-index: 1;
         }
 
         .badge-container {
@@ -249,7 +251,7 @@
             list-style-type: "🌻 "; 
         }
 
-        /* 「點我看故事 ⬇️」的動態跳動黃色大按鈕 */
+        /* 🔽 黃色「點我看故事」動態跳動按鈕（收納在正面，翻面時會跟著正面完美消失） */
         .story-arrow-btn {
             text-align: center;
             font-size: 0.95rem;
@@ -274,16 +276,16 @@
             60% { transform: translateY(-3px); }
         }
 
-        /* 📸 背面活動照片造型 */
+        /* 📸 升級：背面活動照片造型調整，拉正拉好看、絕對不壓扁！ */
         .back-pic {
             width: 100%;
-            height: 150px;
-            object-fit: cover;
+            height: 180px; /* 加高比例，放照片更大器 */
+            object-fit: contain; /* ✨ 核心修正：強制維持照片原本端正的比例，絕不硬塞壓扁！ */
             border-radius: 12px;
             border: 3px solid white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             margin-bottom: 0.8rem;
-            background-color: #FFE082; 
+            background-color: rgba(255, 245, 157, 0.5); /* 沒相片時或寬幅不夠時的軟萌襯底底色 */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -363,7 +365,6 @@
                 <h1>甲魚的求學大補帖 🌻</h1>
                 <p>不用怕迷茫、不用怕踩坑，甲魚在這裡！歡迎大膽敲門找我聊聊 💬</p>
                 
-                <!-- 🎓 這裡幫妳注入了超強個人背景與超可愛的 ENFP 小膠囊標籤！ -->
                 <div class="info-tags">
                     <span class="info-tag">🏫 國立屏東大學</span>
                     <span class="info-tag">💻 電腦科學與人工智慧學系</span>
@@ -545,7 +546,7 @@
                             <h3>屏東縣政府數位松黑客松</h3>
                             <p><small style="opacity:0.8;">(2025屏東青年社會創新競賽)</small></p>
                             <ul>
-                                <li><b>專案成果：</b> 結合在地議題與數位科技，在 36HR 內生出簡報提案。</li>
+                                <li><b>專案成果：</b> 結合在地議題與數位科技，在 36HR 內生出簡報提案.</li>
                             </ul>
                         </div>
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
@@ -657,7 +658,7 @@
                         <div>
                             <div class="badge-container">
                                 <span class="badge">⛺ 🌟 營隊</span>
-                                <span class="ability-badge">🧠 跨領域思維</span>
+                                <span class="ability-badge">🧠 跨領域思延</span>
                             </div>
                             <h3>LFT 營隊參與</h3>
                             <ul>
@@ -693,7 +694,7 @@
                             <h3>日本北海道室蘭工業大學</h3>
                             <p><b>經歷：</b> 交換兩個學期</p>
                             <ul>
-                                <li><b>核心收穫：</b> 國際移動力、外語環境適應力.. 獨立生活能力。</li>
+                                <li><b>核心收穫：</b> 國際移動力、外語環境適應力、獨立生活能力。</li>
                             </ul>
                         </div>
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
