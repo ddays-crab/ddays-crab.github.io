@@ -73,6 +73,28 @@
             color: #795548;
         }
 
+        /* 🎓 新增：個人介紹小膠囊標籤容器 */
+        .info-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .info-tag {
+            background-color: rgba(255, 255, 255, 0.6);
+            color: #5D4037;
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
         .profile-pic {
             width: 160px;
             height: 200px; 
@@ -148,11 +170,10 @@
             transform-style: preserve-3d;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border-radius: 20px;
-            /* 💡 預設歸位時：0秒直接切換，絕不播放旋轉動畫 */
             transition: transform 0s; 
         }
 
-        /* ✨ 核心修正：當卡片被點擊翻轉時，才優雅地轉過去（0.6秒） */
+        /* 当卡片被点击翻转时，优雅地转过去（0.6秒） */
         .flip-card.is-flipped .flip-card-inner {
             transform: rotateY(180deg);
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -228,7 +249,7 @@
             list-style-type: "🌻 "; 
         }
 
-        /* 🔽 改造：改成「點我看故事 ⬇️」的動態跳動黃色大按鈕 */
+        /* 「點我看故事 ⬇️」的動態跳動黃色大按鈕 */
         .story-arrow-btn {
             text-align: center;
             font-size: 0.95rem;
@@ -340,7 +361,14 @@
         <div class="header-container">
             <div class="header-text">
                 <h1>甲魚的求學大補帖 🌻</h1>
-                <p>那些我走過的路、踩過的坑，全留給你們！隨時歡迎學弟妹找我聊聊 💬</p>
+                <p>不用怕迷茫、不用怕踩坑，甲魚在這裡！歡迎大膽敲門找我聊聊 💬</p>
+                
+                <!-- 🎓 這裡幫妳注入了超強個人背景與超可愛的 ENFP 小膠囊標籤！ -->
+                <div class="info-tags">
+                    <span class="info-tag">🏫 國立屏東大學</span>
+                    <span class="info-tag">💻 電腦科學與人工智慧學系</span>
+                    <span class="info-tag">🤸 ENFP 快樂小太陽</span>
+                </div>
             </div>
             <img src="IMG_9100.jpg" alt="甲魚學姐" class="profile-pic">
         </div>
@@ -665,7 +693,7 @@
                             <h3>日本北海道室蘭工業大學</h3>
                             <p><b>經歷：</b> 交換兩個學期</p>
                             <ul>
-                                <li><b>核心收穫：</b> 國際移動力、外語環境適應力、獨立生活能力。</li>
+                                <li><b>核心收穫：</b> 國際移動力、外語環境適應力.. 獨立生活能力。</li>
                             </ul>
                         </div>
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
@@ -755,33 +783,25 @@
         <p>© 2026 甲魚的求學大補帖. Built with 🌻 and GitHub Pages.</p>
     </footer>
 
-    <!-- 🌸 核心 JavaScript 控制邏輯 -->
+    <!-- 🌸 控制翻牌與飄落特效的腳本 -->
     <script>
-        // 🛠️ 終極解法：用最厲害的 JS 精準控制點擊翻面與秒速歸位
         function toggleCard(clickedCard) {
-            // 1. 檢查這張卡片現在是不是已經翻過去了
             const isFlipped = clickedCard.classList.contains('is-flipped');
-            
-            // 2. 把畫面上「所有」卡片都一瞬間啪地閃回正面 (transition 設為 0s)
             const allCards = document.querySelectorAll('.flip-card');
             allCards.forEach(card => {
                 const inner = card.querySelector('.flip-card-inner');
-                inner.style.transition = 'transform 0s'; // 閃回！不播放旋轉動畫
+                inner.style.transition = 'transform 0s'; 
                 card.classList.remove('is-flipped');
             });
-
-            // 3. 如果剛剛點的那張本來是正面，現在就單獨讓它「有動畫地轉到背面」
             if (!isFlipped) {
-                // 這裡要稍微延遲一丁點時間，讓瀏覽器反應過來要單獨給它加動畫
                 setTimeout(() => {
                     const inner = clickedCard.querySelector('.flip-card-inner');
-                    inner.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)'; // 給予轉動動畫
+                    inner.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)'; 
                     clickedCard.classList.add('is-flipped');
                 }, 20);
             }
         }
 
-        // 🌻 背景向日葵飄落特效
         function createFlower() {
             const flowerEmojis = ['🌻', '✨', '☀️', '🌸', '🎈'];
             const flower = document.createElement('div');
