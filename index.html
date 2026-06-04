@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>甲魚的求學大補帖 🌻 歡迎學弟妹敲門！</title>
-    <!-- 🌻 瀏覽器分頁小圖示變向日葵 -->
+    <!-- 🌻 瀏覽器分頁小圖示 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌻</text></svg>">
     
     <style>
@@ -26,7 +26,7 @@
             position: relative;
             overflow-x: hidden;
 
-            /* 🌼 改造：加入超可愛的向日葵幾何小花底紋，告別單調膚色 */
+            /* 🌼 向日葵幾何小花底紋 */
             background-color: var(--light-yellow);
             background-image: radial-gradient(#fff9c4 20%, transparent 20%),
                               radial-gradient(#fff9c4 20%, transparent 20%);
@@ -34,22 +34,22 @@
             background-position: 0 0, 15px 15px;
         }
 
-        /* 🌻 頂部 Header：優化文字與照片的間距 */
+        /* 🌻 頂部 Header */
         header {
             background: linear-gradient(135deg, #FFE082, #FFD54F);
             border-bottom: 5px solid var(--primary-yellow);
-            padding: 2.5rem 2rem; /* 稍微縮小上下留白 */
+            padding: 2.5rem 2rem; 
             position: relative;
         }
 
         .header-container {
-            max-width: 950px; /* 縮減最大寬度，強迫標題與照片靠得更近 */
+            max-width: 950px; 
             margin: 0 auto;
             display: flex;
             align-items: center;
-            justify-content: center; /* 改為置中靠攏 */
+            justify-content: center; 
             flex-wrap: wrap; 
-            gap: 2.5rem; /* 控制標題和照片之間的親密距離 */
+            gap: 2.5rem; 
             position: relative;
             z-index: 2;
         }
@@ -73,22 +73,19 @@
             color: #795548;
         }
 
-        /* 📸 照片造型改造：精緻圓角正長方形（拍立得風） */
         .profile-pic {
             width: 160px;
-            height: 200px; /* 設定不同寬高，呈現完美長方形 */
-            border-radius: 16px; /* 萌萌的微圓角 */
+            height: 200px; 
+            border-radius: 16px; 
             border: 6px solid white;
             box-shadow: 0 8px 25px rgba(213, 142, 0, 0.35);
             object-fit: cover; 
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        /* 滑鼠移上去會微微放大並轉正，超吸睛 */
         .profile-pic:hover {
             transform: scale(1.06) rotate(-3deg);
         }
 
-        /* 🌻 網頁主容器 */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -97,7 +94,6 @@
             z-index: 2;
         }
 
-        /* 關於我區塊 */
         .about-section {
             background: white;
             padding: 2rem;
@@ -105,7 +101,7 @@
             box-shadow: 0 6px 18px rgba(255, 193, 7, 0.12);
             margin-bottom: 3rem;
             border-left: 8px solid var(--primary-yellow);
-            border-right: 8px solid var(--primary-yellow); /* 兩側對稱黃邊，超可愛 */
+            border-right: 8px solid var(--primary-yellow); 
         }
 
         .about-section h2 {
@@ -116,7 +112,6 @@
             gap: 0.5rem;
         }
 
-        /* 🌻 經歷卡片網格排版 */
         .section-title {
             text-align: center;
             color: var(--leaf-green);
@@ -127,38 +122,73 @@
             align-items: center;
             justify-content: center;
             gap: 0.6rem;
+            margin-top: 2.5rem;
         }
 
+        /* 3D 翻轉舞台設定 */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 2rem;
+            margin-bottom: 1.5rem;
         }
 
-        /* 🌻 每一張向日葵經歷卡片 */
-        .card {
-            background: white;
+        /* 🃏 翻牌外殼容器 */
+        .flip-card {
+            background-color: transparent;
+            height: 460px; 
+            perspective: 1000px; 
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border-radius: 20px;
+        }
+
+        .flip-card.is-flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; 
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-sizing: border-box;
             padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-top: 6px solid var(--primary-yellow);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative;
+            overflow-y: auto; 
         }
 
-        .card:hover {
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 12px 26px rgba(255, 193, 7, 0.25);
+        .card-front {
+            background-color: white;
+            color: var(--text-color);
+            border-top: 6px solid var(--primary-yellow);
         }
 
-        .card h3 {
-            margin: 0 0 0.5rem 0;
+        .card-back {
+            background: linear-gradient(135deg, #FFF9C4, #FFF59D);
             color: #5D4037;
-            font-size: 1.3rem;
+            transform: rotateY(180deg); 
+            border: 3px dashed var(--dark-yellow);
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         .badge {
@@ -168,31 +198,84 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: bold;
-            display: inline-block;
-            margin-bottom: 0.8rem;
         }
 
-        .card ul {
+        .ability-badge {
+            background-color: #FFF3E0;
+            color: #E65100;
+            padding: 0.25rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: 1px dashed #FFB74D;
+        }
+
+        .card-front h3, .card-back h3 {
+            margin: 0 0 0.5rem 0;
+            color: #5D4037;
+            font-size: 1.3rem;
+        }
+
+        .card-front ul {
             padding-left: 1.2rem;
             margin: 0.5rem 0;
         }
 
-        .card li {
+        .card-front li {
             margin-bottom: 0.4rem;
             list-style-type: "🌻 "; 
         }
 
-        .tips {
-            background-color: #FFFDE7;
-            border-radius: 10px;
-            padding: 0.8rem;
+        .story-arrow-btn {
+            text-align: center;
             font-size: 0.9rem;
-            color: #6D4C41;
-            margin-top: 1rem;
-            border-left: 4px solid var(--dark-yellow);
+            color: #5D4037;
+            font-weight: bold;
+            background-color: #FFF59D;
+            padding: 0.4rem;
+            border-radius: 30px;
+            margin-top: 0.8rem;
+            border: 1px solid #FFE082;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            animation: bounce 2s infinite; 
         }
 
-        /* 🌻 一鍵召喚學姐區塊 */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-6px); }
+            60% { transform: translateY(-3px); }
+        }
+
+        /* 📸 背面活動照片造型 */
+        .back-pic {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            margin-bottom: 0.8rem;
+            background-color: #FFE082; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem; 
+        }
+
+        .back-text {
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 0.8rem;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            border-left: 5px solid var(--leaf-green);
+            flex: 1;
+        }
+
+        /* 🌻 聯絡區塊 */
         .contact-section {
             text-align: center;
             background: linear-gradient(135deg, #A5D6A7, #81C784);
@@ -201,14 +284,6 @@
             color: white;
             margin-top: 4rem;
             box-shadow: 0 6px 20px rgba(76, 175, 80, 0.25);
-        }
-
-        .contact-section h2 {
-            margin-top: 0;
-        }
-
-        .btn-container {
-            margin-top: 1.5rem;
         }
 
         .contact-btn {
@@ -240,7 +315,6 @@
             z-index: 2;
         }
 
-        /* 🌸 背景特效：飄落向日葵與小星星 */
         .flower {
             position: fixed;
             top: -20px;
@@ -252,15 +326,13 @@
         }
 
         @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
-            }
+            to { transform: translateY(105vh) rotate(360deg); }
         }
     </style>
 </head>
 <body>
 
-    <!-- 🌻 頂部 Header 與長方形拍立得大頭貼 -->
+    <!-- 🌻 頂部 Header -->
     <header>
         <div class="header-container">
             <div class="header-text">
@@ -278,174 +350,392 @@
             <h2>👋 嗨！學弟妹看過來 🍯</h2>
             <p>
                 我是甲魚。在大學這幾年，我嘗試了資安與資訊社群、挑戰數據競賽、也跑去日本交換、做過校園大使。
-                建立這個網站不是為了擺放一張死板的履歷，而是想要把這些活動的<b>報名管道、我學到的軟硬實力、以及當初卡關的心得</b>整理出來。
-                如果你們對下面的任何一項經歷感興趣，或者對於大學生活規劃感到迷茫，<b>不用害羞，直接拉到最下方敲我私訊</b>，我超級樂意分享！
+                下方所有的經歷都可以<b>點擊卡片翻面</b>喔！看中哪張卡片，直接點擊最下方的「點我看故事」黃色小按鈕，它就會翻到背面秀出我的<b>私房小故事與避坑心得</b>囉！
             </p>
         </section>
 
-        <!-- 🌻 第一區塊：資訊與資安相關 -->
+        <!-- ================= 💻 資訊與資安相關經歷 ================= -->
         <h2 class="section-title">💻 資訊與資安相關經歷 🌿</h2>
         <div class="grid">
-            <div class="card">
-                <div>
-                    <span class="badge">🐍 技術社群</span>
-                    <h3>PyCon TW 台灣 Python 年會</h3>
-                    <p><b>角色：</b> 開發組成員 (Development Team)</p>
-                    <ul>
-                        <li><b>硬實力：</b> Git/GitHub 團隊協作、實戰開源專案開發、Python 技術應用。</li>
-                        <li><b>軟實力：</b> 與Python 工程師跨團隊溝通、遠端協作。</li>
-                    </ul>
+            
+            <!-- 1. PyCon TW -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">🐍 技術社群</span>
+                                <span class="ability-badge">💡 Python 開發</span>
+                            </div>
+                            <h3>PyCon TW 台灣 Python 年會</h3>
+                            <p><b>角色：</b> 開發組成員 (Development Team)</p>
+                            <ul>
+                                <li><b>硬實力：</b> Git/GitHub 團隊協作、實戰開源專案開發、Python 技術應用。</li>
+                                <li><b>軟實力：</b> 跨團隊溝通、遠端協作。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <img src="pycon.jpg" alt="PyCon照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('pycon-ph').style.display='flex'">
+                        <div id="pycon-ph" class="back-pic" style="display:none;">🐍</div>
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            這裡寫妳在 PyCon 開發組發生的故事、學到的事情，或是給學弟妹的小叮嚀喔！
+                        </div>
+                    </div>
                 </div>
-                <div class="tips">💡 想知道怎麼加入全台最大的 Python 年會籌備團隊嗎？歡迎問我開發組都在玩什麼！</div>
             </div>
 
-            <div class="card">
-                <div>
-                    <span class="badge">🛡️ 資安培育</span>
-                    <h3>「台灣好厲駭」資安人才培育計畫 <br><small style="font-size:0.8rem; opacity:0.8;">(現改名 AIS3好厲駭)</small></h3>
-                    <p><b>經歷：</b> 第 8、9、10 屆 導師培訓成員</p>
-                    <ul>
-                        <li><b>學到什麼：</b> 系統防禦思維、治安實戰知識、連續三屆跟隨業界導師學習。</li>
-                        <li><b>核心收穫：</b> 建立珍貴的資安業界專家與同儕人脈。</li>
-                    </ul>
+            <!-- 2. AIS3好厲駭 -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">🛡️ 資安培育</span>
+                                <span class="ability-badge">🔒 系統資安防禦</span>
+                            </div>
+                            <h3>AIS3 好厲駭資安人才培育</h3>
+                            <p><b>經歷：</b> 第 8、9、10 屆 導師培訓成員</p>
+                            <ul>
+                                <li><b>學到什麼：</b> 系統防禦思維、治安實戰知識、連續三屆跟隨業界導師學習。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <img src="security.jpg" alt="資安照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('sec-ph').style.display='flex'">
+                        <div id="sec-ph" class="back-pic" style="display:none;">🔒</div>
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            這裡填寫妳參加好厲駭三屆計畫的感想，或是怎麼跟導師互動的心得！
+                        </div>
+                    </div>
                 </div>
-                <div class="tips">💡 這計畫怎麼申請？面試看重什麼？想踏入資安的學弟妹，這題問我準沒錯！</div>
             </div>
 
-            <div class="card">
-                <div>
-                    <span class="badge">🎖️ 專題佳作</span>
-                    <h3>2025年資訊學院專題競賽</h3>
-                    <ul>
-                        <li><b>收穫技能：</b> 畢業專題架構演練、完整的系統開發邏輯、面對教授提問的臨場應變力。</li>
-                    </ul>
+            <!-- 3. 資訊學院專題 -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">🎖️ 專題佳作</span>
+                                <span class="ability-badge">🛠️ 系統整合開發</span>
+                            </div>
+                            <h3>2025年資訊學院專題競賽</h3>
+                            <ul>
+                                <li><b>收穫技能：</b> 畢業專題架構演練、完整的系統開發邏輯、臨場應變力。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <!-- 📸 已精準校對照片檔名為：information.JPG -->
+                        <img src="information.JPG" alt="專題照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('proj-ph').style.display='flex'">
+                        <div id="proj-ph" class="back-pic" style="display:none;">💻</div>
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            畢業專題準備的心酸血淚、拿佳作的心情，都可以記錄在這裡。
+                        </div>
+                    </div>
                 </div>
-                <div class="tips">💡 專題做到快崩潰？不知道怎麼在學院競賽中脫穎而出？讓我來幫你打氣！</div>
             </div>
         </div>
 
 
-        <!-- 🌻 第二區塊：數據競賽類 -->
+        <!-- ================= 📊 數據競賽類成果 ================= -->
         <h2 class="section-title">📊 數據競賽類成果 ✨</h2>
         <div class="grid">
-            <div class="card">
-                <div>
-                    <span class="badge">📈 全國銅獎</span>
-                    <h3>2025教育大數據微學程計畫學生成果競賽</h3>
-                    <ul>
-                        <li><b>收穫技能：</b> 大數據清洗與分析邏輯、團隊技術協作。</li>
-                    </ul>
+            
+            <!-- 4. 教育大數據 -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">📈 全國銅獎</span>
+                                <span class="ability-badge">📊 大數據分析</span>
+                            </div>
+                            <h3>2025教育大數據微學程競賽</h3>
+                            <ul>
+                                <li><b>收穫技能：</b> 大數據清洗與分析邏輯、團隊技術協作。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <!-- 📸 已精準校對照片檔名為：bigdata.JPG -->
+                        <img src="bigdata.JPG" alt="大數據照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('ed-ph').style.display='flex'">
+                        <div id="ed-ph" class="back-pic" style="display:none;">📊</div>
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            拿到全國銅獎的實戰紀錄，清洗資料有多痛苦、得獎有多快樂！
+                        </div>
+                    </div>
                 </div>
-                <div class="tips">💡 數據比賽的切入點怎麼找？評審想聽什麼？學姐把當時的簡報密技傳授給你。</div>
             </div>
 
-            <div class="card">
-                <div>
-                    <span class="badge">🐱 佳作 🏅</span>
-                    <h3>愛貓一生大數據競賽</h3>
-                    <ul>
-                        <li><b>收穫技能：</b> 商業與實用性思維結合大數據分析、限定主題下的創意發想。</li>
-                    </ul>
+            <!-- 5. 愛貓一生 -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">🐱 佳作 🏅</span>
+                                <span class="ability-badge">💡 商業數據思考</span>
+                            </div>
+                            <h3>愛貓一生大數據競賽</h3>
+                            <ul>
+                                <li><b>收穫技能：</b> 商業與實用性思維結合大數據分析、限定主題下的創意發想。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <!-- 📸 已精準校對照片檔名為：cat.JPG -->
+                        <img src="cat.JPG" alt="愛貓一生照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('cat-ph').style.display='flex'">
+                        <div id="cat-ph" class="back-pic" style="display:none;">🐱</div>
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            跟貓咪有關的大數據競賽！到底研究了什麼有趣的主題呢？快來分享。
+                        </div>
+                    </div>
                 </div>
-                <div class="tips">💡 這個比賽名字超可愛！想知道我們怎麼結合愛貓與數據分析嗎？</div>
             </div>
 
-            <div class="card">
-                <div>
-                    <span class="badge">🔥 社會創新獎 🥉</span>
-                    <h3>屏東縣政府數位松 & 教育松 <br><small style="font-size:0.8rem; opacity:0.8;">(梭哈青春 ALL IN！2025屏東青年社會創新競賽)</small></h3>
-                    <ul>
-                        <li><b>專案成果：</b> 結合在地議題與數位科技，在 36HR 內生出簡報提案。</li>
-                        <li><b>收穫技能：</b> 簡報提案、在地問題洞察與痛點分析。</li>
-                    </ul>
+            <!-- 6. 數位松 -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">🚀 社會創新 🥉</span>
+                                <span class="ability-badge">📱 數位原型提案</span>
+                            </div>
+                            <h3>屏東縣政府數位松黑客松</h3>
+                            <p><small style="opacity:0.8;">(2025屏東青年社會創新競賽)</small></p>
+                            <ul>
+                                <li><b>專案成果：</b> 結合在地議題與數位科技，在 36HR 內生出簡報提案。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <img src="digi.jpg" alt="數位松照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('digi-ph').style.display='flex'">
+                        <div id="digi-ph" class="back-pic" style="display:none;">📱</div>
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            數位松黑客松在 36 小時狂飆產出提案的故事，可以寫在這裡。
+                        </div>
+                    </div>
                 </div>
-                <div class="tips">💡 要在短時間內不睡覺生出東西？想知道組隊跟得獎密技來找我！</div>
+            </div>
+
+            <!-- 7. 教育松 -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">✏️ 社會創新</span>
+                                <span class="ability-badge">💡 教育科技發想</span>
+                            </div>
+                            <h3>屏東縣政府教育松競賽</h3>
+                            <ul>
+                                <li><b>收穫：</b> 團隊高壓發想、教育相關數位議題探討。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <img src="edu_song.jpg" alt="教育松照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('edus-ph').style.display='flex'">
+                        <div id="edus-ph" class="back-pic" style="display:none;">✏️</div>
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            雖然沒有拿大獎，但是在教育松學到了什麼寶貴的洞察？
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
 
-        <!-- 🌻 第三區塊：教育創新與社會參與 -->
+        <!-- ================= 🤝 教育創新與社會參與 ================= -->
         <h2 class="section-title">🤝 教育創新與社會參與 🧸</h2>
         <div class="grid">
-            <div class="card">
-                <div>
-                    <span class="badge">🎒 校園大使</span>
-                    <h3>TFT (Teach For Taiwan)</h3>
-                    <p><b>經歷：</b> 兩學期校園大使 & 2025年夏季明日學校暑期營隊志工</p>
-                    <ul>
-                        <li><b>學到什麼：</b> 非營利組織（NGO）的運作思維、偏鄉教育議題倡議。</li>
-                        <li><b>核心能力：</b> 企劃撰寫、公眾表達、深度溝通與同理心。</li>
-                    </ul>
+            
+            <!-- 8. TFT -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">🎒 校園大使</span>
+                                <span class="ability-badge">📣 專案倡議企劃</span>
+                            </div>
+                            <h3>TFT (Teach For Taiwan)</h3>
+                            <p><b>經歷：</b> 兩學期校園大使 & 明日學校暑期營隊志工</p>
+                            <ul>
+                                <li><b>核心能力：</b> 企劃撰寫、公眾表達、深度溝通與同理心。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <img src="tft.jpg" alt="TFT照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('tft-ph').style.display='flex'">
+                        <div id="tft-ph" class="back-pic" style="display:none;">🎒</div>
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            妳當大使與明日學校營隊志工時，跟孩子們或夥伴相處的感動故事。
+                        </div>
+                    </div>
                 </div>
-                <div class="tips">💡 這裡面通常在固定月份招募。想知道怎麼寫出讓人感動的加入企劃嗎？</div>
             </div>
 
-            <div class="card">
-                <div>
-                    <span class="badge">🕊️ 公益與活動</span>
-                    <h3>青澀芷蘭協會</h3>
-                    <p><b>經歷：</b> 年會籌辦與活動組組員</p>
-                    <ul>
-                        <li><b>核心能力：</b> 從零到有生出大型年會、專案管理 (PM)、多工處理與危機應變。</li>
-                    </ul>
+            <!-- 9. 青澀芷蘭 -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">🕊️ 公益志工</span>
+                                <span class="ability-badge">📅 跨部門專案管理</span>
+                            </div>
+                            <h3>青澀芷蘭協會</h3>
+                            <p><b>經歷：</b> 年會籌辦與活動組組員</p>
+                            <ul>
+                                <li><b>核心能力：</b> 從零到有生出大型年會、專案管理 (PM)、多工處理。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <img src="blue.jpg" alt="青澀芷蘭照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('blue-ph').style.display='flex'">
+                        <div id="blue-ph" class="back-pic" style="display:none;">🕊️</div>
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            當活動組組員籌辦年會的幕後花絮、注意的事情寫這裡！
+                        </div>
+                    </div>
                 </div>
-                <div class="tips">💡 對於大型活動、年會籌備有憧憬的人，歡迎來問我怎麼拉時程跟跨部門溝通。</div>
             </div>
 
-            <div class="card">
-                <div>
-                    <span class="badge">⛺ 🌟 營隊</span>
-                    <h3>LFT 營隊參與</h3>
-                    <ul>
-                        <li><b>收穫：</b> 認識不同背景的夥伴、跨領域思維激盪、自我心態引導。</li>
-                    </ul>
+            <!-- 10. LFT -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">⛺ 🌟 營隊</span>
+                                <span class="ability-badge">🧠 跨領域思維</span>
+                            </div>
+                            <h3>LFT 營隊參與</h3>
+                            <ul>
+                                <li><b>收穫：</b> 認識不同背景的夥伴、跨領域思維激盪、自我心態引導。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            在這裡探索自我、放鬆充電的故事。
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
 
-        <!-- 🌻 第四區塊：國際移動與校園領導 -->
+        <!-- ================= ✈️ 國際移動與校園領導 ================= -->
         <h2 class="section-title">✈️ 國際移動與校園領導 🗺️</h2>
         <div class="grid">
-            <div class="card">
-                <div>
-                    <span class="badge">❄️ 交換學生</span>
-                    <h3>日本北海道室蘭工業大學</h3>
-                    <p><b>經歷：</b> 交換兩個學期</p>
-                    <ul>
-                        <li><b>核心收穫：</b> 國際移動力、外語環境適應力、跨文化溝通與獨立生活能力。</li>
-                    </ul>
+            
+            <!-- 11. 日本交換 -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">❄️ 交換學生</span>
+                                <span class="ability-badge">🌍 國際跨文化溝通</span>
+                            </div>
+                            <h3>日本北海道室蘭工業大學</h3>
+                            <p><b>經歷：</b> 交換兩個學期</p>
+                            <ul>
+                                <li><b>核心收穫：</b> 國際移動力、外語環境適應力、獨立生活能力。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <!-- 📸 已精準校對照片檔名為：Japan.JPG -->
+                        <img src="Japan.JPG" alt="日本照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('jp-ph').style.display='flex'">
+                        <div id="jp-ph" class="back-pic" style="display:none;">🇯🇵</div>
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            兩個學期在北海道的雪國生活點滴、申請室蘭工大的小叮嚀！
+                        </div>
+                    </div>
                 </div>
-                <div class="tips">💡 怎麼申請室蘭工大？歡迎來問交換學生的心理準備！</div>
             </div>
 
-            <div class="card">
-                <div>
-                    <span class="badge">📢 校園核心</span>
-                    <h3>系學會 - 文書長</h3>
-                    <p><b>經歷：</b> 辦理為期三天的暑期營隊</p>
-                    <ul>
-                        <li><b>核心能力：</b> 團隊領導力、行政文書處理、預算與進度時程掌控。</li>
-                    </ul>
+            <!-- 12. 系學會 -->
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">📢 校園核心</span>
+                                <span class="ability-badge">👑 團隊領導力</span>
+                            </div>
+                            <h3>系學會 - 文書長</h3>
+                            <p><b>經歷：</b> 辦理為期三天的暑期營隊</p>
+                            <ul>
+                                <li><b>核心能力：</b> 團隊領導力、行政文書處理、預算與進度時程掌控。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            當文書長、辦三天大營隊最容易踩的坑和解決辦法！
+                        </div>
+                    </div>
                 </div>
-                <div class="tips">💡 怎麼兼顧課業與系上活動？辦營隊有哪些最容易踩的坑？學姐跟你說！</div>
             </div>
         </div>
 
 
-        <!-- 🌻 第五區塊：勇敢嘗試 corners -->
+        <!-- ================= 🍂 勇敢嘗試 corners ================= -->
         <h2 class="section-title">🍂 那些未完待續的勇敢嘗試 🪵</h2>
         <div class="grid">
-            <div class="card">
-                <div>
-                    <span class="badge">💡 企劃提案</span>
-                    <h3>2025 法治教育競賽 & 法蘭瓷計畫</h3>
-                    <p><b>心得：</b> 雖然這兩項嘗試沒有得獎，但對我來說卻非常珍貴。</p>
-                    <ul>
-                        <li><b>學到什麼：</b> 跨領域的法律創新思考、商業企劃書的完整撰寫結構、以及面對失敗時的心態調適。</li>
-                    </ul>
+            <div class="flip-card" onclick="flipCard(this)">
+                <div class="flip-card-inner">
+                    <div class="card-front">
+                        <div>
+                            <div class="badge-container">
+                                <span class="badge">💡 企劃提案</span>
+                                <span class="ability-badge">🔥 抗壓與心態調適</span>
+                            </div>
+                            <h3>2025 法治教育競賽 & 法蘭瓷計畫</h3>
+                            <p><b>心得：</b> 雖然這兩項嘗試沒有得獎，但對我來說卻非常珍貴。</p>
+                            <ul>
+                                <li><b>學到什麼：</b> 跨領域的法律創新思考、商業企劃書的完整撰寫結構。</li>
+                            </ul>
+                        </div>
+                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                    </div>
+                    <div class="card-back">
+                        <div class="back-text">
+                            <h3>📢 甲魚的小故事：</h3>
+                            沒得獎卻學到爆棚養分的心態調適課，學姐手把手開導。
+                        </div>
+                    </div>
                 </div>
-                <div class="tips">💡 沒得獎就不值得去嗎？完全不是！跨出舒適圈去投稿，本身就是超棒的養分。</div>
             </div>
         </div>
 
@@ -466,8 +756,12 @@
         <p>© 2026 甲魚的求學大補帖. Built with 🌻 and GitHub Pages.</p>
     </footer>
 
-    <!-- 🌸 控制向日葵與星星落下的可愛腳本 -->
+    <!-- 🌸 控制翻牌與飄落特效的腳本 -->
     <script>
+        function flipCard(card) {
+            card.classList.toggle('is-flipped');
+        }
+
         function createFlower() {
             const flowerEmojis = ['🌻', '✨', '☀️', '🌸', '🎈'];
             const flower = document.createElement('div');
@@ -477,7 +771,7 @@
             
             flower.style.left = Math.random() * 100 + 'vw';
             flower.style.animationDuration = Math.random() * 3 + 4 + 's'; 
-            flower.style.opacity = Math.random() * 0.3 + 0.2; /* 讓它淡淡的作為背景點綴 */
+            flower.style.opacity = Math.random() * 0.3 + 0.2; 
             flower.style.fontSize = Math.random() * 15 + 15 + 'px'; 
             
             document.body.appendChild(flower);
