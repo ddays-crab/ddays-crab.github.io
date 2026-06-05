@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌻</text></svg>">
     
     <style>
-        /* 🌻 全域溫暖色調設定 */
+        /* 🌻 全域溫慢色調設定 */
         :root {
             --primary-yellow: #FFC107; 
             --light-yellow: #FFFDE7;   
@@ -276,27 +276,102 @@
             60% { transform: translateY(-3px); }
         }
 
-        /* 背面活動照片造型調整，支援雙圖並排展示 */
-        .back-pic-container {
-            display: flex;
-            gap: 0.5rem;
+        /* 📸 新增：超級流暢的手機原生滑動相簿 (Carousel) 容器造型 */
+        .carousel-wrapper {
+            position: relative;
             width: 100%;
+            height: 180px;
             margin-bottom: 0.8rem;
-        }
-
-        .back-pic {
-            flex: 1;
-            width: 100%;
-            height: 180px; 
-            object-fit: contain; 
+            overflow: hidden;
             border-radius: 12px;
             border: 3px solid white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            background-color: rgba(255, 245, 157, 0.5); 
+        }
+
+        /* 滑動軌道：支援手機手勢滑動與流暢動畫 */
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* 讓手機原生支援觸控左右滑動 */
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none; /* 隱藏討厭的滾動條 */
+        }
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            scroll-snap-align: start;
+            position: relative;
+            background-color: rgba(255, 245, 157, 0.5);
+        }
+
+        .back-pic {
+            width: 100%;
+            height: 100%; 
+            object-fit: contain; 
+            display: block;
+        }
+
+        .back-placeholder {
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem; 
+            font-size: 2.5rem;
+            background-color: rgba(255, 245, 157, 0.5);
+        }
+
+        /* 相簿左右方向鍵控制鈕 (電腦版滑鼠移入時會更明顯) */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.7);
+            color: #5D4037;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .carousel-btn.prev { left: 8px; }
+        .carousel-btn.next { right: 8px; }
+
+        /* 相簿底部定位小圓點指示器 */
+        .carousel-dots {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 10;
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: background 0.3s;
+        }
+        .carousel-dot.active {
+            background: var(--primary-yellow);
+            box-shadow: 0 0 4px rgba(0,0,0,0.2);
         }
 
         .back-text {
@@ -389,7 +464,7 @@
             <h2>👋 嗨！學弟妹看過來 🍯</h2>
             <p>
                 我是甲魚。在大學這幾年，我嘗試了資安與資訊社群、挑戰數據競賽、也跑去日本交換、做過校園大使。
-                下方所有的經歷都可以<b>點擊翻面</b>喔！用手機或電腦直接點擊卡片最下方的「點我看故事」黃色小按鈕，它就會翻到背面秀出我的<b>私房小故事與避坑心得</b>囉！點選下一張卡片時，舊卡片會乾淨俐落直接秒回正面！
+                下方所有的經歷都可以<b>點擊翻面</b>喔！用手機或電腦直接點擊卡片最下方的「點我看故事」黃色小按鈕，它就會翻到背面秀出我的<b>私房小故事與避坑心得</b>囉！多圖經歷背面還支援「手機手勢左右滑動相簿」喔！
             </p>
         </section>
 
@@ -416,13 +491,24 @@
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
-                        <!-- 📸 雙圖連擊：完美放入小寫 pycon.png 和大寫 pyconhster.JPG -->
-                        <div class="back-pic-container">
-                            <img src="pycon.png" alt="PyCon照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('py1-ph').style.display='flex'">
-                            <div id="py1-ph" class="back-pic" style="display:none;">🐍</div>
-                            
-                            <img src="pyconhoster.JPG" alt="PyCon照片2" class="back-pic" onerror="this.style.display='none'; document.getElementById('py2-ph').style.display='flex'">
-                            <div id="py2-ph" class="back-pic" style="display:none;">🎤</div>
+                        <!-- 📸 升級：流暢左右滑動相簿 (完美收納雙照片) -->
+                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
+                            <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveCarousel(this, 1)">›</button>
+                            <div class="carousel-track" onscroll="handleCarouselScroll(this)">
+                                <div class="carousel-slide">
+                                    <img src="pycon.png" alt="PyCon照片1" class="back-pic" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                    <div class="back-placeholder" style="display:none;">🐍</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="pyconhoster.JPG" alt="PyCon照片2" class="back-pic" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                    <div class="back-placeholder" style="display:none;">🎤</div>
+                                </div>
+                            </div>
+                            <div class="carousel-dots">
+                                <span class="carousel-dot active"></span>
+                                <span class="carousel-dot"></span>
+                            </div>
                         </div>
                         <div class="back-text">
                             <h3>📢 甲魚的小故事：</h3>
@@ -450,10 +536,13 @@
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
-                        <!-- 📸 完美接入大寫 Taiwanholy.JPG 照片 -->
-                        <div class="back-pic-container">
-                            <img src="Taiwanholy.JPG" alt="資安照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('sec-ph').style.display='flex'">
-                            <div id="sec-ph" class="back-pic" style="display:none;">🔒</div>
+                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="Taiwanholy.JPG" alt="資安照片" class="back-pic" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                    <div class="back-placeholder" style="display:none;">🔒</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="back-text">
                             <h3>📢 甲魚的小故事：</h3>
@@ -480,9 +569,13 @@
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
-                        <div class="back-pic-container">
-                            <img src="information.JPG" alt="專題照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('proj-ph').style.display='flex'">
-                            <div id="proj-ph" class="back-pic" style="display:none;">💻</div>
+                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="information.JPG" alt="專題照片" class="back-pic" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                    <div class="back-placeholder" style="display:none;">💻</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="back-text">
                             <h3>📢 甲魚的小故事：</h3>
@@ -515,9 +608,13 @@
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
-                        <div class="back-pic-container">
-                            <img src="bigdata.JPG" alt="大數據照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('ed-ph').style.display='flex'">
-                            <div id="ed-ph" class="back-pic" style="display:none;">📊</div>
+                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="bigdata.JPG" alt="大數據照片" class="back-pic" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                    <div class="back-placeholder" style="display:none;">📊</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="back-text">
                             <h3>📢 甲魚的小故事：</h3>
@@ -544,9 +641,13 @@
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
-                        <div class="back-pic-container">
-                            <img src="cat.JPG" alt="愛貓一生照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('cat-ph').style.display='flex'">
-                            <div id="cat-ph" class="back-pic" style="display:none;">🐱</div>
+                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="cat.JPG" alt="愛貓一生照片" class="back-pic" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                    <div class="back-placeholder" style="display:none;">🐱</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="back-text">
                             <h3>📢 甲魚的小故事：</h3>
@@ -574,9 +675,13 @@
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
-                        <div class="back-pic-container">
-                            <img src="digi.jpg" alt="數位松照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('digi-ph').style.display='flex'">
-                            <div id="digi-ph" class="back-pic" style="display:none;">📱</div>
+                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="digi.jpg" alt="數位松照片" class="back-pic" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                    <div class="back-placeholder" style="display:none;">📱</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="back-text">
                             <h3>📢 甲魚的小故事：</h3>
@@ -603,9 +708,13 @@
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
-                        <div class="back-pic-container">
-                            <img src="edu_song.jpg" alt="教育松照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('edus-ph').style.display='flex'">
-                            <div id="edus-ph" class="back-pic" style="display:none;">✏️</div>
+                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="edu_song.jpg" alt="教育松照片" class="back-pic" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                    <div class="back-placeholder" style="display:none;">✏️</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="back-text">
                             <h3>📢 甲魚的小故事：</h3>
@@ -639,13 +748,24 @@
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
-                        <!-- 📸 雙圖連擊：完美放入 TFT.JPG 和 TFT2607.JPG -->
-                        <div class="back-pic-container">
-                            <img src="TFT.JPG" alt="TFT照片1" class="back-pic" onerror="this.style.display='none'; document.getElementById('tft1-ph').style.display='flex'">
-                            <div id="tft1-ph" class="back-pic" style="display:none;">🎒</div>
-                            
-                            <img src="TFT2607.JPG" alt="TFT照片2" class="back-pic" onerror="this.style.display='none'; document.getElementById('tft2-ph').style.display='flex'">
-                            <div id="tft2-ph" class="back-pic" style="display:none;">🏫</div>
+                        <!-- 📸 升級：完美支援手機原生左右滑動與定位點 -->
+                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
+                            <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">‹</button>
+                            <button class="carousel-btn next" onclick="moveCarousel(this, 1)">›</button>
+                            <div class="carousel-track" onscroll="handleCarouselScroll(this)">
+                                <div class="carousel-slide">
+                                    <img src="TFT.JPG" alt="TFT照片1" class="back-pic" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                    <div class="back-placeholder" style="display:none;">🎒</div>
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="TFT2607.JPG" alt="TFT照片2" class="back-pic" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                    <div class="back-placeholder" style="display:none;">🏫</div>
+                                </div>
+                            </div>
+                            <div class="carousel-dots">
+                                <span class="carousel-dot active"></span>
+                                <span class="carousel-dot"></span>
+                            </div>
                         </div>
                         <div class="back-text">
                             <h3>📢 甲魚的小故事：</h3>
@@ -673,9 +793,13 @@
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
-                        <div class="back-pic-container">
-                            <img src="blue.jpg" alt="青澀芷蘭照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('blue-ph').style.display='flex'">
-                            <div id="blue-ph" class="back-pic" style="display:none;">🕊️</div>
+                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="blue.jpg" alt="青澀芷蘭照片" class="back-pic" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                    <div class="back-placeholder" style="display:none;">🕊️</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="back-text">
                             <h3>📢 甲魚的小故事：</h3>
@@ -696,7 +820,7 @@
                             </div>
                             <h3>LFT 營隊參與</h3>
                             <ul>
-                                <li><b>收穫：</b> 認識不同背景的夥伴、跨領域思維激盪、自我心態引引導。</li>
+                                <li><b>收穫：</b> 認識不同背景的夥伴、跨領域思維激盪、自我心態引導。</li>
                             </ul>
                         </div>
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
@@ -734,9 +858,13 @@
                         <div class="story-arrow-btn">點我看故事 ⬇️</div>
                     </div>
                     <div class="card-back">
-                        <div class="back-pic-container">
-                            <img src="Japan.JPG" alt="日本照片" class="back-pic" onerror="this.style.display='none'; document.getElementById('jp-ph').style.display='flex'">
-                            <div id="jp-ph" class="back-pic" style="display:none;">🇯🇵</div>
+                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
+                            <div class="carousel-track">
+                                <div class="carousel-slide">
+                                    <img src="Japan.JPG" alt="日本照片" class="back-pic" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                                    <div class="back-placeholder" style="display:none;">🇯🇵</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="back-text">
                             <h3>📢 甲魚的小故事：</h3>
@@ -807,7 +935,7 @@
         <!-- 🌻 聯絡區塊 -->
         <section class="contact-section">
             <h2>🌻 遇到困難了嗎？大膽敲甲魚學姐吧！</h2>
-            <p>不要害羞！不管你是想問某個比賽怎麼準備、交換怎麼申請，或者只是大學生活好迷茫，訊息看到我都會回！</p>
+            <p>不要害羞！不管你是想問某個比賽怎麼準備、交換怎麼申請，或者裝是大學生活好迷茫，訊息看到我都會回！</p>
             <div class="btn-container">
                 <a href="https://instagram.com/妳的帳號" target="_blank" class="contact-btn">💬 私訊我的 Instagram</a>
                 <a href="mailto:妳的Email@gmail.com" class="contact-btn">✉️ 寄信給甲魚學姐</a>
@@ -820,8 +948,9 @@
         <p>© 2026 甲魚的求學大補帖. Built with 🌻 and GitHub Pages.</p>
     </footer>
 
-    <!-- 🌸 控制翻牌與飄落特效的腳本 -->
+    <!-- 🌸 控制翻牌、滑動相簿與飄落特效的核心 JavaScript -->
     <script>
+        // 🃏 控制卡片翻轉
         function toggleCard(clickedCard) {
             const isFlipped = clickedCard.classList.contains('is-flipped');
             const allCards = document.querySelectorAll('.flip-card');
@@ -839,6 +968,46 @@
             }
         }
 
+        // 📸 1. 電腦版按鈕點擊切換相簿
+        function moveCarousel(button, direction) {
+            const wrapper = button.parentElement;
+            const track = wrapper.querySelector('.carousel-track');
+            const slides = track.querySelectorAll('.carousel-slide');
+            const slideWidth = track.clientWidth;
+            
+            // 計算目前滾動到第幾張
+            let currentIndex = Math.round(track.scrollLeft / slideWidth);
+            let nextIndex = currentIndex + direction;
+            
+            // 循環邊界保護
+            if (nextIndex < 0) nextIndex = slides.length - 1;
+            if (nextIndex >= slides.length) nextIndex = 0;
+            
+            track.scrollTo({
+                left: nextIndex * slideWidth,
+                behavior: 'smooth'
+            });
+        }
+
+        // 📸 2. 手機版手指原生滑動時，自動同步更新底部的小圓點
+        function handleCarouselScroll(track) {
+            const wrapper = track.parentElement;
+            const dots = wrapper.querySelectorAll('.carousel-dot');
+            const slideWidth = track.clientWidth;
+            if (slideWidth === 0) return;
+            
+            const currentIndex = Math.round(track.scrollLeft / slideWidth);
+            
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // 🌻 背景向日葵飄落
         function createFlower() {
             const flowerEmojis = ['🌻', '✨', '☀️', '🌸', '🎈'];
             const flower = document.createElement('div');
