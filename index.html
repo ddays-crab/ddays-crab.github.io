@@ -1,1063 +1,195 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>甲魚的求學大補帖 🌻 歡迎來敲門！</title>
-    <!-- 🌻 瀏覽器分頁小圖示 -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌻</text></svg>">
-    
-    <style>
-        /* 🌻 全域溫暖色調設定 */
-        :root {
-            --primary-yellow: #FFC107; 
-            --light-yellow: #FFFDE7;   
-            --dark-yellow: #FFA000;    
-            --leaf-green: #4CAF50;     
-            --text-color: #3E2723;     
-        }
-
-        body {
-            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            position: relative;
-            overflow-x: hidden;
-
-            /* 🌼 向日葵幾何小花底紋 */
-            background-color: var(--light-yellow);
-            background-image: radial-gradient(#fff9c4 20%, transparent 20%),
-                              radial-gradient(#fff9c4 20%, transparent 20%);
-            background-size: 30px 30px;
-            background-position: 0 0, 15px 15px;
-        }
-
-        /* 🌻 頂部 Header */
-        header {
-            background: linear-gradient(135deg, #FFE082, #FFD54F);
-            border-bottom: 5px solid var(--primary-yellow);
-            padding: 2.5rem 2rem; 
-            position: relative;
-        }
-
-        .header-container {
-            max-width: 950px; 
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center; 
-            flex-wrap: wrap; 
-            gap: 2.5rem; 
-            position: relative;
-            z-index: 2;
-        }
-
-        .header-text {
-            flex: 1;
-            min-width: 300px;
-            text-align: left;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.6rem;
-            color: #5D4037;
-            text-shadow: 2px 2px 0px white;
-        }
-
-        header p {
-            font-size: 1.15rem;
-            margin: 0.8rem 0 0 0;
-            color: #795548;
-        }
-
-        /* 🎓 個人介紹小膠囊標籤容器 */
-        .info-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 1rem;
-        }
-
-        .info-tag {
-            background-color: rgba(255, 255, 255, 0.6);
-            color: #5D4037;
-            padding: 0.3rem 0.9rem;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            font-weight: bold;
-            border: 1px solid rgba(255, 255, 255, 0.8);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .profile-pic {
-            width: 160px;
-            height: 200px; 
-            border-radius: 16px; 
-            border: 6px solid white;
-            box-shadow: 0 8px 25px rgba(213, 142, 0, 0.35);
-            object-fit: cover; 
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .profile-pic:hover {
-            transform: scale(1.06) rotate(-3deg);
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .about-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 24px;
-            box-shadow: 0 6px 18px rgba(255, 193, 7, 0.12);
-            margin-bottom: 3rem;
-            border-left: 8px solid var(--primary-yellow);
-            border-right: 8px solid var(--primary-yellow); 
-        }
-
-        .about-section h2 {
-            margin-top: 0;
-            color: var(--dark-yellow);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .section-title {
-            text-align: center;
-            color: var(--leaf-green);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 1px 1px 0px white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.6rem;
-            margin-top: 2.5rem;
-        }
-
-        /* 3D 翻轉舞台設定 */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            align-items: start;
-        }
-
-        /* 🃏 翻牌外殼容器（將高度提高到 450px 確保舒適留白） */
-        .flip-card {
-            background-color: transparent;
-            height: 450px; 
-            perspective: 1000px; 
-        }
-
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: left;
-            transform-style: preserve-3d;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border-radius: 20px;
-            transition: transform 0s; 
-        }
-
-        .flip-card.is-flipped .flip-card-inner {
-            transform: rotateY(180deg);
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* 確保前後面皆為 100% 高度且支援獨立滾動 */
-        .card-front, .card-back {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden; 
-            backface-visibility: hidden;
-            border-radius: 20px;
-            box-sizing: border-box;
-            padding: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow-y: auto; /* 開啟滾動軸，字多可向下滑動 */
-            -webkit-overflow-scrolling: touch; /* 讓 iOS 手機滑動更順暢 */
-        }
-
-        .card-front {
-            background-color: white;
-            color: var(--text-color);
-            border-top: 6px solid var(--primary-yellow);
-            z-index: 2;
-        }
-
-        .card-back {
-            background: linear-gradient(135deg, #FFF9C4, #FFF59D);
-            color: #5D4037;
-            transform: rotateY(180deg); 
-            border: 3px dashed var(--dark-yellow);
-            z-index: 1;
-            justify-content: flex-start; /* 讓內容由上而下自然排列 */
-            gap: 0.8rem;
-        }
-
-        .badge-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .badge {
-            background-color: #E8F5E9;
-            color: var(--leaf-green);
-            padding: 0.25rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-
-        .ability-badge {
-            background-color: #FFF3E0;
-            color: #E65100;
-            padding: 0.25rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            border: 1px dashed #FFB74D;
-        }
-
-        .card-front h3, .card-back h3 {
-            margin: 0 0 0.5rem 0;
-            color: #5D4037;
-            font-size: 1.3rem;
-        }
-
-        .card-front ul, .card-back ul {
-            padding-left: 1.2rem;
-            margin: 0.5rem 0;
-        }
-
-        .card-front li, .card-back li {
-            margin-bottom: 0.4rem;
-            list-style-type: "🌻 "; 
-        }
-
-        .story-arrow-btn {
-            text-align: center;
-            font-size: 0.95rem;
-            color: #5D4037;
-            font-weight: bold;
-            background-color: #FFF59D;
-            padding: 0.5rem;
-            border-radius: 30px;
-            margin-top: 0.8rem;
-            border: 2px solid #FFE082;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-            animation: bounce 2s infinite; 
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-6px); }
-            60% { transform: translateY(-3px); }
-        }
-
-        /* 📸 手機原生滑動相簿容器 */
-        .carousel-wrapper {
-            position: relative;
-            width: 100%;
-            height: 180px;
-            overflow: hidden;
-            border-radius: 12px;
-            border: 3px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            flex-shrink: 0;
-        }
-
-        .carousel-track {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-        }
-        .carousel-track::-webkit-scrollbar {
-            display: none;
-        }
-
-        .carousel-slide {
-            flex: 0 0 100%;
-            width: 100%;
-            height: 100%;
-            scroll-snap-align: start;
-            position: relative;
-            background-color: rgba(255, 245, 157, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* 🖼️ 第一張照片：橫向滿版填滿 */
-        .pic-cover {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* 🖼️ 第二張照片：留白置中 */
-        .pic-contain {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 8px;
-            box-sizing: border-box;
-            display: block;
-        }
-
-        .back-pic {
-            width: 100%;
-            height: 100%; 
-            object-fit: contain; 
-            display: block;
-        }
-
-        .back-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            background-color: rgba(255, 245, 157, 0.5);
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.7);
-            color: #5D4037;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .carousel-btn.prev { left: 8px; }
-        .carousel-btn.next { right: 8px; }
-
-        .carousel-dots {
-            position: absolute;
-            bottom: 8px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 6px;
-            z-index: 10;
-        }
-        .carousel-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transition: background 0.3s;
-        }
-        .carousel-dot.active {
-            background: var(--primary-yellow);
-            box-shadow: 0 0 4px rgba(0,0,0,0.2);
-        }
-
-        .back-text {
-            background-color: rgba(255, 255, 255, 0.85);
-            padding: 0.8rem;
-            border-radius: 12px;
-            font-size: 0.92rem;
-            border-left: 5px solid var(--leaf-green);
-        }
-
-        /* 🌻 聯絡區塊 */
-        .contact-section {
-            text-align: center;
-            background: linear-gradient(135deg, #A5D6A7, #81C784);
-            padding: 3rem 2rem;
-            border-radius: 24px;
-            color: white;
-            margin-top: 4rem;
-            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.25);
-        }
-
-        .contact-btn {
-            background-color: var(--primary-yellow);
-            color: #5D4037;
-            padding: 0.9rem 2.2rem;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            transition: all 0.2s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            display: inline-block;
-            margin: 0.5rem;
-        }
-
-        .contact-btn:hover {
-            background-color: var(--dark-yellow);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #8D6E63;
-            font-size: 0.9rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .flower {
-            position: fixed;
-            top: -20px;
-            font-size: 20px;
-            z-index: 1;
-            user-select: none;
-            pointer-events: none;
-            animation: fall linear forwards;
-        }
-
-        @keyframes fall {
-            to { transform: translateY(105vh) rotate(360deg); }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- 🌻 頂部 Header -->
-    <header>
-        <div class="header-container">
-            <div class="header-text">
-                <h1>甲魚的求學大補帖 🌻</h1>
-                <p>不用怕迷茫、不用怕踩坑，甲魚在這裡！歡迎大膽敲門找我聊聊 💬</p>
-                
-                <div class="info-tags">
-                    <span class="info-tag">🏫 國立屏東大學</span>
-                    <span class="info-tag">💻 電腦科學與人工智慧學系</span>
-                    <span class="info-tag">🤸 ENFP 快樂小太陽</span>
-                </div>
-            </div>
-            <!-- 📸 大頭貼 DSC05279.PNG -->
-            <img src="DSC05279.PNG" alt="甲魚學姐" class="profile-pic">
-        </div>
-    </header>
-
-    <div class="container">
-
-        <!-- 🌻 關於我 -->
-        <section class="about-section">
-            <h2>👋 嗨！學弟妹看過來 🍯</h2>
+<!-- 🌻 頂部 Header -->
+<header>
+    <div class="header-container">
+        <div class="header-text">
+            <h1>甲魚的求學大補帖 🌻</h1>
             <p>
-                我是甲魚。在大學這幾年，我嘗試了資安與資訊社群、挑戰數據競賽、也跑去日本交換、做過校園大使。
-                點擊卡片下方的「點我看故事」黃色小按鈕，它就會翻到背面秀出<b>小故事與心得</b>囉！
-        </section>
+                不用怕迷茫、不用怕踩坑，甲魚在這裡！
+                歡迎大膽敲門找我聊聊 💬
+            </p>
 
-        <!-- ================= 💻 資訊與資安相關經歷 ================= -->
-        <h2 class="section-title">💻 資訊與資安相關經歷 🌿</h2>
-        <div class="grid">
-            
-            <!-- 1. PyCon TW -->
-            <div class="flip-card" onclick="toggleCard(this)">
-                <div class="flip-card-inner">
-                    <div class="card-front">
-                        <div>
-                            <div class="badge-container">
-                                <span class="badge">🐍 技術社群</span>
-                                <span class="ability-badge">💡 Python 開發</span>
-                            </div>
-                            <h3>PyCon TW 台灣 Python 2024年會</h3>
-                            <p><b>角色：</b> 開發組成員 (Development Team)</p>
-                            <ul>
-                                <li><b>硬實力：</b> Git/GitHub 團隊協作、實戰開源專案開發、Python 技術應用。</li>
-                                <li><b>軟實力：</b> 跨團隊溝通、遠端協作。</li>
-                            </ul>
-                        </div>
-                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
-                    </div>
-                    <div class="card-back">
-                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
-                            <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">‹</button>
-                            <button class="carousel-btn next" onclick="moveCarousel(this, 1)">›</button>
-                            <div class="carousel-track" onscroll="handleCarouselScroll(this)">
-                                <div class="carousel-slide">
-                                    <img src="pycon.png" alt="PyCon照片1" class="pic-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">🐍</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="pyconhoster.JPG" alt="PyCon照片2" class="pic-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">🎤</div>
-                                </div>
-                            </div>
-                            <div class="carousel-dots">
-                                <span class="carousel-dot active"></span>
-                                <span class="carousel-dot"></span>
-                            </div>
-                        </div>
-                        <div class="back-text">
-                            <h3>📢 甲魚的小故事：</h3>
-                            <ul>
-                                <li>首次挑戰開發組＋講者接待。</li>
-                                <li>拿著麥克風主持前...可是要做好充足的功課！</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. AIS3好厲駭 -->
-            <div class="flip-card" onclick="toggleCard(this)">
-                <div class="flip-card-inner">
-                    <div class="card-front">
-                        <div>
-                            <div class="badge-container">
-                                <span class="badge">🛡️ 資安培育</span>
-                                <span class="ability-badge">🔒 系統資安防禦</span>
-                            </div>
-                            <h3>AIS3 好厲駭資安人才培育</h3>
-                            <p><b>經歷：</b> 第 8、9、10 屆 導師培訓成員</p>
-                            <ul>
-                                <li><b>學到什麼：</b> 系統防禦思維、治安實戰知識、連續三屆跟隨業界導師學習。</li>
-                            </ul>
-                        </div>
-                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
-                    </div>
-                    <div class="card-back">
-                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
-                            <div class="carousel-track">
-                                <div class="carousel-slide">
-                                    <img src="Taiwanholy.JPG" alt="資安照片" class="pic-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">🔒</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="back-text">
-                            <h3>📢 甲魚的小故事：</h3>
-                            <ul>
-                                <li>深入 Web、逆向工程與惡意程式分析，實戰累積資安分析實力！</li>
-                                <li>遇到兩位超讚的導師，給予滿滿資源並鼓勵我們勇敢挑戰各種活動。</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. 資訊學院專題 -->
-            <div class="flip-card" onclick="toggleCard(this)">
-                <div class="flip-card-inner">
-                    <div class="card-front">
-                        <div>
-                            <div class="badge-container">
-                                <span class="badge">🎖️ 專題佳作</span>
-                                <span class="ability-badge">🛠️ 系統整合開發</span>
-                            </div>
-                            <h3>2025年資訊學院專題競賽</h3>
-                            <ul>
-                                <li><b>收穫技能：</b> 如何將教育結合資訊專長 </li>
-                            </ul>
-                        </div>
-                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
-                    </div>
-                    <div class="card-back">
-                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
-                            <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">‹</button>
-                            <button class="carousel-btn next" onclick="moveCarousel(this, 1)">›</button>
-                            <div class="carousel-track" onscroll="handleCarouselScroll(this)">
-                                <div class="carousel-slide">
-                                    <img src="IMG_0871 (1).jpg" alt="專題照片1" class="pic-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">💻</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="IMG_0829.jpg" alt="專題照片2" class="pic-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">🛠️</div>
-                                </div>
-                            </div>
-                            <div class="carousel-dots">
-                                <span class="carousel-dot active"></span>
-                                <span class="carousel-dot"></span>
-                            </div>
-                        </div>
-                        <div class="back-text">
-                            <h3>📢 甲魚的小故事：</h3>
-                            <ul>
-                                <li>開發 Kicad 焊接教材實作，針對教育現場的焊接痛點進行改良。</li>
-                                <li>結合硬體與教育，從使用者需求出發</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="info-tags">
+                <span class="info-tag">
+                    🎓 成大｜創意產業設計研究所
+                </span>
+                <span class="info-tag">
+                    💻 屏大｜電腦科學與人工智慧學系
+                </span>
             </div>
         </div>
 
+        <img src="DSC05279.PNG" 
+             alt="甲魚學姐" 
+             class="profile-pic">
+    </div>
+</header>
 
-        <!-- ================= 📊 數據競賽類成果 ================= -->
-        <h2 class="section-title">📊 數據競賽類成果 ✨</h2>
-        <div class="grid">
-            
-            <!-- 4. 教育大數據 -->
-            <div class="flip-card" onclick="toggleCard(this)">
-                <div class="flip-card-inner">
-                    <div class="card-front">
-                        <div>
-                            <div class="badge-container">
-                                <span class="badge">📈 全國銅獎</span>
-                                <span class="ability-badge">📊 大數據分析</span>
-                            </div>
-                            <h3>2025教育大數據微學程競賽</h3>
-                            <ul>
-                                <li><b>收穫技能：</b> 大數據清洗與分析邏輯、團隊協作。</li>
-                            </ul>
+<div class="container">
+
+    <!-- 🌻 關於我 -->
+    <section class="about-section">
+        <h2>👋 嗨！學弟妹看過來 🍯</h2>
+
+        <p>
+            我是甲魚！一個喜歡探索不同領域的
+            ENFP 快樂小太陽 🌻
+        </p>
+
+        <p>
+            從國立屏東大學電腦科學與人工智慧學系出發，
+            在大學這幾年，我嘗試了資安與資訊社群、
+            挑戰數據競賽、參與教育公益、前往日本交換，
+            也逐漸發現自己對跨領域創新與人文社會議題的熱情。
+        </p>
+
+        <p>
+            2026 年，我成功錄取
+            <b>國立成功大學創意產業設計研究所（ICID）</b>，
+            即將開啟碩士生涯的新篇章！
+        </p>
+
+        <p>
+            未來希望結合資訊科技與創意設計，
+            探索教育創新、地方創生、文化傳承
+            及社會創新的更多可能性。
+        </p>
+
+        <p>
+            如果你也正在探索自己的方向，
+            不管是研究所推甄、跨領域學習、競賽或交換，
+            都歡迎來找甲魚聊聊！💛
+        </p>
+
+        <p>
+            點擊卡片下方的「點我看故事」黃色小按鈕，
+            就能看到更多<b>小故事與心得</b>囉！
+        </p>
+    </section>
+
+
+    <!-- ================= 🎓 研究所升學與跨領域探索 ================= -->
+
+    <h2 class="section-title">
+        🎓 研究所升學與跨領域探索 🌱
+    </h2>
+
+    <div class="grid">
+
+        <!-- 國立成功大學創意產業設計研究所 -->
+        <div class="flip-card" onclick="toggleCard(this)">
+            <div class="flip-card-inner">
+
+                <!-- 卡片正面 -->
+                <div class="card-front">
+                    <div>
+
+                        <div class="badge-container">
+                            <span class="badge">
+                                🎓 正取第三名
+                            </span>
+                            <span class="ability-badge">
+                                🎨 跨領域創新
+                            </span>
                         </div>
-                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+
+                        <h3>國立成功大學創意產業設計研究所</h3>
+
+                        <p>
+                            <small>
+                                Institute of Creative Industries Design
+                                (ICID)
+                            </small>
+                        </p>
+
+                        <p>
+                            <b>錄取資訊：</b>
+                            116 學年度碩士班甄試丙組
+                        </p>
+
+                        <ul>
+                            <li>報名人數：17 人</li>
+                            <li>面試人數：6 人</li>
+                            <li>錄取結果：正取第三名</li>
+                            <li>面試方式：全英文面試</li>
+                        </ul>
+
+                        <p>
+                            <b>探索方向：</b>
+                            教育創新、地方創生、文化傳承、
+                            資訊科技與創意設計。
+                        </p>
+
                     </div>
-                    <div class="card-back">
-                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
-                            <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">‹</button>
-                            <button class="carousel-btn next" onclick="moveCarousel(this, 1)">›</button>
-                            <div class="carousel-track" onscroll="handleCarouselScroll(this)">
-                                <div class="carousel-slide">
-                                    <img src="DSC00369.JPEG" alt="教育大數據照片1" class="pic-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">📊</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="DSC00803.JPEG" alt="教育大數據照片2" class="pic-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">🏆</div>
-                                </div>
-                            </div>
-                            <div class="carousel-dots">
-                                <span class="carousel-dot active"></span>
-                                <span class="carousel-dot"></span>
-                            </div>
-                        </div>
-                        <div class="back-text">
-                            <h3>📢 甲魚的小故事：</h3>
-                            <ul>
-                                <li>實戰經歷完整數據分析流程：資料清洗、整理到餵入資料庫進行 AI 深度學習與回歸分析。</li>
-                                <li>用數據說話、解決真實問題</li>
-                            </ul>
-                        </div>
+
+                    <div class="story-arrow-btn">
+                        點我看推甄故事 ⬇️
                     </div>
                 </div>
-            </div>
 
-            <!-- 5. 愛貓一生 -->
-            <div class="flip-card" onclick="toggleCard(this)">
-                <div class="flip-card-inner">
-                    <div class="card-front">
-                        <div>
-                            <div class="badge-container">
-                                <span class="badge">🐱 佳作 🏅</span>
-                                <span class="ability-badge">💡 商業數據思考</span>
-                            </div>
-                            <h3>愛貓一生大數據競賽</h3>
-                            <ul>
-                                <li><b>收穫技能：</b> 商業與實用性思維結合大數據分析、限定主題下的創意發想。</li>
-                            </ul>
-                        </div>
-                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
-                    </div>
-                    <div class="card-back">
-                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
-                            <div class="carousel-track">
-                                <div class="carousel-slide">
-                                    <img src="IMG_1250.jpg" alt="愛貓一生照片" class="pic-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">🐱</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="back-text">
-                            <h3>📢 甲魚的小故事：</h3>
-                            <ul>
-                                <li>將數據清洗與整理邏輯應用於特定主題，把乾淨資料餵給模型跑深度分析。</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <!-- 6. 黑客松合併版 -->
-            <div class="flip-card" onclick="toggleCard(this)">
-                <div class="flip-card-inner">
-                    <div class="card-front">
-                        <div>
-                            <div class="badge-container">
-                                <span class="badge">🚀 社會創新 🥉</span>
-                                <span class="ability-badge">📱 數位與教育提案</span>
-                            </div>
-                            <h3>屏東縣政府黑客松 (數位松與教育松)</h3>
-                            <p><small style="opacity:0.8;">(2025屏東青年社會創新競賽)</small></p>
-                            <ul>
-                                <li><b>專案成果：</b> 結合在地農產與教育科技議題，在 36HR 高壓下完成數位原型與提案。</li>
-                            </ul>
-                        </div>
-                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
+                <!-- 卡片背面 -->
+                <div class="card-back">
+
+                    <div class="back-text">
+
+                        <h3>📢 甲魚的推甄小故事：</h3>
+
+                        <ul>
+                            <li>
+                                從資訊領域跨足創意產業設計，
+                                希望探索科技、人文與設計之間
+                                的更多可能性。
+                            </li>
+
+                            <li>
+                                面試前準備了五分鐘的全英文
+                                自我介紹簡報，整合自己的學習經歷、
+                                競賽成果與未來研究方向。
+                            </li>
+
+                            <li>
+                                面試當天共有五位教授，
+                                教授們都很親切，
+                                也很專注地聆聽我的分享。
+                            </li>
+
+                            <li>
+                                雖然英文口說還不夠流利，
+                                但教授也鼓勵我持續精進英文能力！
+                            </li>
+
+                            <li>
+                                最後成功獲得正取第三名，
+                                開啟人生新的旅程！🌻
+                            </li>
+                        </ul>
+
                     </div>
-                    <div class="card-back">
-                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
-                            <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">‹</button>
-                            <button class="carousel-btn next" onclick="moveCarousel(this, 1)">›</button>
-                            <div class="carousel-track" onscroll="handleCarouselScroll(this)">
-                                <div class="carousel-slide">
-                                    <img src="IMG_9542.JPG" alt="黑客松照片1" class="pic-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">📱</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="IMG_2978.JPG" alt="黑客松照片2" class="pic-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">✏️</div>
-                                </div>
-                            </div>
-                            <div class="carousel-dots">
-                                <span class="carousel-dot active"></span>
-                                <span class="carousel-dot"></span>
-                            </div>
-                        </div>
-                        <div class="back-text">
-                            <h3>📢 甲魚的小故事：</h3>
-                            <ul>
-                                <li>探索鮮乳產業數位串聯，並深入反思教育推廣議題中的「創新亮點與差異化」。</li>
-                                <li>高壓發想過程帶來了對數位科技、在地農產與教育提案定位的深刻洞察！</li>
-                            </ul>
-                        </div>
+
+                    <div class="back-text">
+
+                        <h3>💡 歡迎找甲魚聊聊！</h3>
+
+                        <ul>
+                            <li>研究所推甄準備</li>
+                            <li>備審資料與個人作品集</li>
+                            <li>全英文面試經驗</li>
+                            <li>跨領域研究所申請</li>
+                            <li>創意產業設計研究所申請經驗</li>
+                        </ul>
+
                     </div>
+
+                    <div class="story-arrow-btn">
+                        返回卡片正面 ↩️
+                    </div>
+
                 </div>
+
             </div>
         </div>
-
-
-        <!-- ================= 🤝 教育創新與社會參與 ================= -->
-        <h2 class="section-title">🤝 教育創新與社會參與 🧸</h2>
-        <div class="grid">
-            
-            <!-- 7. TFT -->
-            <div class="flip-card" onclick="toggleCard(this)">
-                <div class="flip-card-inner">
-                    <div class="card-front">
-                        <div>
-                            <div class="badge-container">
-                                <span class="badge">🎒 校園大使</span>
-                                <span class="ability-badge">📣 專案倡議企劃</span>
-                            </div>
-                            <h3>TFT (Teach For Taiwan)</h3>
-                            <p><b>經歷：</b> 兩學期校園大使 & 明日學校暑期營隊志工</p>
-                            <ul>
-                                <li><b>核心能力：</b> 企劃撰寫、公眾表達、深度溝通與同理心。</li>
-                            </ul>
-                        </div>
-                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
-                    </div>
-                    <div class="card-back">
-                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
-                            <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">‹</button>
-                            <button class="carousel-btn next" onclick="moveCarousel(this, 1)">›</button>
-                            <div class="carousel-track" onscroll="handleCarouselScroll(this)">
-                                <div class="carousel-slide">
-                                    <img src="TFT2607.JPG" alt="TFT照片1" class="pic-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">🎒</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="IMG_8560.JPG" alt="TFT照片2" class="pic-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">🏫</div>
-                                </div>
-                            </div>
-                            <div class="carousel-dots">
-                                <span class="carousel-dot active"></span>
-                                <span class="carousel-dot"></span>
-                            </div>
-                        </div>
-                        <div class="back-text">
-                            <h3>📢 甲魚的小故事：</h3>
-                            <ul>
-                                <li>深刻影響我生命軌跡的旅程，體會到發自內心付出與回饋的感動。</li>
-                                <li>在營隊與倡議中與夥伴、孩子深度交流，收穫了滿滿的溫暖與同理心。</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 8. 青澀芷蘭 -->
-            <div class="flip-card" onclick="toggleCard(this)">
-                <div class="flip-card-inner">
-                    <div class="card-front">
-                        <div>
-                            <div class="badge-container">
-                                <span class="badge">🕊️ 公益志工</span>
-                                <span class="ability-badge">📅 跨部門專案管理</span>
-                            </div>
-                            <h3>青澀芷蘭協會</h3>
-                            <p><b>經歷：</b> 年會籌辦與活動組組員</p>
-                            <ul>
-                                <li><b>核心能力：</b> 從零到有生出大型年會及多工處理。</li>
-                            </ul>
-                        </div>
-                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
-                    </div>
-                    <div class="card-back">
-                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
-                            <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">‹</button>
-                            <button class="carousel-btn next" onclick="moveCarousel(this, 1)">›</button>
-                            <div class="carousel-track" onscroll="handleCarouselScroll(this)">
-                                <div class="carousel-slide">
-                                    <img src="FD53A37C-70D5-45C7-95AF-063E3A7C461D.JPG" alt="青澀芷蘭照片1" class="pic-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">🕊️</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="IMG_9577.JPG" alt="青澀芷蘭照片2" class="pic-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">🌸</div>
-                                </div>
-                            </div>
-                            <div class="carousel-dots">
-                                <span class="carousel-dot active"></span>
-                                <span class="carousel-dot"></span>
-                            </div>
-                        </div>
-                        <div class="back-text">
-                            <h3>📢 甲魚的小故事：</h3>
-                            <ul>
-                                <li>一直以來持續投入的志工服務，從籌辦大型年會中鍛鍊跨部門協調力。</li>
-                                <li>在陪伴與服務中學習專案管理，將善的循環轉化為實際的行動力！</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 9. LFT 營隊 -->
-            <div class="flip-card" onclick="toggleCard(this)">
-                <div class="flip-card-inner">
-                    <div class="card-front">
-                        <div>
-                            <div class="badge-container">
-                                <span class="badge">⛺ 🌟 營隊</span>
-                                <span class="ability-badge">🧠 跨領域思維</span>
-                            </div>
-                            <h3>LFT 營隊參與</h3>
-                            <ul>
-                                <li><b>收穫：</b> 認識不同背景的夥伴、跨領域思維激盪、自我心態引導。</li>
-                            </ul>
-                        </div>
-                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
-                    </div>
-                    <div class="card-back">
-                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
-                            <button class="carousel-btn prev" onclick="moveCarousel(this, -1)">‹</button>
-                            <button class="carousel-btn next" onclick="moveCarousel(this, 1)">›</button>
-                            <div class="carousel-track" onscroll="handleCarouselScroll(this)">
-                                <div class="carousel-slide">
-                                    <img src="IMG_1328.jpg" alt="LFT照片1" class="pic-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">⛺</div>
-                                </div>
-                                <div class="carousel-slide">
-                                    <img src="IMG_1272.jpg" alt="LFT照片2" class="pic-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">🌟</div>
-                                </div>
-                            </div>
-                            <div class="carousel-dots">
-                                <span class="carousel-dot active"></span>
-                                <span class="carousel-dot"></span>
-                            </div>
-                        </div>
-                        <div class="back-text">
-                            <h3>📢 甲魚的小故事：</h3>
-                            <ul>
-                                <li>沉浸在跨領域夥伴的腦力激盪中，體驗思維碰撞與自我探索的樂趣！</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- ================= ✈️ 國際移動與校園領導 ================= -->
-        <h2 class="section-title">✈️ 國際移動與校園領導 🗺️</h2>
-        <div class="grid">
-            
-            <!-- 10. 日本交換 -->
-            <div class="flip-card" onclick="toggleCard(this)">
-                <div class="flip-card-inner">
-                    <div class="card-front">
-                        <div>
-                            <div class="badge-container">
-                                <span class="badge">❄️ 交換學生</span>
-                                <span class="ability-badge">🌍 國際跨文化溝通</span>
-                            </div>
-                            <h3>日本北海道室蘭工業大學</h3>
-                            <p><b>經歷：</b> 短期交換16天</p>
-                            <ul>
-                                <li><b>核心收穫：</b> 國際移動力、外語環境適應力、獨立生活能力。</li>
-                            </ul>
-                        </div>
-                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
-                    </div>
-                    <div class="card-back">
-                        <div class="carousel-wrapper" onclick="event.stopPropagation();">
-                            <div class="carousel-track">
-                                <div class="carousel-slide">
-                                    <img src="IMG_2981.jpg" alt="日本照片" class="pic-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-                                    <div class="back-placeholder" style="display:none;">🇯🇵</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="back-text">
-                            <h3>📢 甲魚的小故事：</h3>
-                            <ul>
-                                <li>體驗異國文化與不同的學術環境（可以詢問出國交換的相關事情）。</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 11. 系學會 -->
-            <div class="flip-card" onclick="toggleCard(this)">
-                <div class="flip-card-inner">
-                    <div class="card-front">
-                        <div>
-                            <div class="badge-container">
-                                <span class="badge">📢 校園核心</span>
-                                <span class="ability-badge">👑 團隊領導力</span>
-                            </div>
-                            <h3>系學會 - 文書長</h3>
-                            <p><b>經歷：</b> 辦理為期三天的暑期營隊</p>
-                            <ul>
-                                <li><b>核心能力：</b> 行政文書處理與進度時程掌控。</li>
-                            </ul>
-                        </div>
-                        <div class="story-arrow-btn">點我看故事 ⬇️</div>
-                    </div>
-                    <div class="card-back">
-                        <div class="back-text">
-                            <h3>📢 甲魚的小故事：</h3>
-                            <ul>
-                                <li>負責營隊與系上的行政文書處理，學習預算控管與時程進度掌握。</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-       <!-- 🌻 聯絡區塊 -->
-        <section class="contact-section">
-            <h2>🌻 遇到困難了嗎？</h2>
-            <p>不要害羞！不管你是想問某個比賽怎麼準備、交換怎麼申請，或者只是大學生活好迷茫，訊息看到我都會回！</p>
-            <div class="btn-container">
-                <a href="https://www.instagram.com/jia.yuuuuuuu?igsh=NDhnb2RtamZmMGRn&utm_source=qr" target="_blank" class="contact-btn">💬 私訊我的 Instagram</a>
-                <a href="mailto:rinu.0929w@gmail.com" class="contact-btn">✉️ 寄信給甲魚</a>
-            </div>
-        </section>
 
     </div>
 
-    <footer>
-        <p>© 2026 甲魚的求學大補帖. Built with 🌻 and GitHub Pages.</p>
-    </footer>
 
-    <!-- 🌸 控制翻牌、滑動相簿與飄落特效的核心 JavaScript -->
-    <script>
-        function toggleCard(clickedCard) {
-            const isFlipped = clickedCard.classList.contains('is-flipped');
-            const allCards = document.querySelectorAll('.flip-card');
-            allCards.forEach(card => {
-                const inner = card.querySelector('.flip-card-inner');
-                inner.style.transition = 'transform 0s'; 
-                card.classList.remove('is-flipped');
-            });
-            if (!isFlipped) {
-                setTimeout(() => {
-                    const inner = clickedCard.querySelector('.flip-card-inner');
-                    inner.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)'; 
-                    clickedCard.classList.add('is-flipped');
-                }, 20);
-            }
-        }
-
-        function moveCarousel(button, direction) {
-            const wrapper = button.parentElement;
-            const track = wrapper.querySelector('.carousel-track');
-            const slides = track.querySelectorAll('.carousel-slide');
-            const slideWidth = track.clientWidth;
-            
-            let currentIndex = Math.round(track.scrollLeft / slideWidth);
-            let nextIndex = currentIndex + direction;
-            
-            if (nextIndex < 0) nextIndex = slides.length - 1;
-            if (nextIndex >= slides.length) nextIndex = 0;
-            
-            track.scrollTo({
-                left: nextIndex * slideWidth,
-                behavior: 'smooth'
-            });
-        }
-
-        function handleCarouselScroll(track) {
-            const wrapper = track.parentElement;
-            const dots = wrapper.querySelectorAll('.carousel-dot');
-            const slideWidth = track.clientWidth;
-            if (slideWidth === 0) return;
-            
-            const currentIndex = Math.round(track.scrollLeft / slideWidth);
-            
-            dots.forEach((dot, index) => {
-                if (index === currentIndex) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-        }
-
-        function createFlower() {
-            const flowerEmojis = ['🌻', '✨', '☀️', '🌸', '🎈'];
-            const flower = document.createElement('div');
-            flower.classList.add('flower');
-            flower.innerText = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
-            flower.style.left = Math.random() * 100 + 'vw';
-            flower.style.animationDuration = Math.random() * 3 + 4 + 's'; 
-            flower.style.opacity = Math.random() * 0.3 + 0.2; 
-            flower.style.fontSize = Math.random() * 15 + 15 + 'px'; 
-            document.body.appendChild(flower);
-            setTimeout(() => { flower.remove(); }, 7000);
-        }
-        setInterval(createFlower, 800);
-    </script>
-
-</body>
-</html>
+    <!-- ================= 💻 資訊與資安相關經歷 ================= -->
