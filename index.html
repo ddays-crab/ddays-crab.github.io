@@ -2,1937 +2,2102 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>甲魚的求學大補帖 🌻</title>
-
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌻</text></svg>">
-
-    <style>
-        :root {
-            --primary-yellow: #FFC107;
-            --light-yellow: #FFFDE7;
-            --dark-yellow: #FFA000;
-            --leaf-green: #4CAF50;
-            --text-color: #3E2723;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
-            color: var(--text-color);
-            margin: 0;
-            line-height: 1.7;
-            overflow-x: hidden;
-            background-color: var(--light-yellow);
-            background-image:
-                radial-gradient(#fff9c4 20%, transparent 20%),
-                radial-gradient(#fff9c4 20%, transparent 20%);
-            background-size: 30px 30px;
-            background-position: 0 0, 15px 15px;
-        }
-
-        /* ================= 🌻 首頁 ================= */
-
-        header {
-            background: linear-gradient(135deg, #FFE082, #FFD54F);
-            border-bottom: 5px solid var(--primary-yellow);
-            padding: 2.5rem 2rem;
-            position: relative;
-        }
-
-        .header-container {
-            max-width: 1050px;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .header-text {
-            flex: 1;
-            min-width: 0;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.6rem;
-            color: #5D4037;
-            text-shadow: 2px 2px 0 white;
-        }
-
-        header p {
-            font-size: 1.15rem;
-            margin: 0.8rem 0 0;
-            color: #795548;
-        }
-
-        .info-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 1rem;
-        }
-
-        .info-tag {
-            background: rgba(255,255,255,0.7);
-            color: #5D4037;
-            padding: 0.4rem 0.9rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            border: 1px solid rgba(255,255,255,0.9);
-        }
-
-        .profile-pic {
-            width: 172px;
-            height: 212px;
-            border-radius: 16px;
-            border: 6px solid white;
-            box-shadow: 0 8px 25px rgba(213,142,0,0.35);
-            object-fit: cover;
-            transition: transform 0.4s;
-        }
-
-        .profile-pic:hover {
-            transform: scale(1.06) rotate(-3deg);
-        }
-
-        /* ================= 🌻 主要內容 ================= */
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 2rem 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .about-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 24px;
-            box-shadow: 0 6px 18px rgba(255,193,7,0.12);
-            margin-bottom: 3rem;
-            border-left: 8px solid var(--primary-yellow);
-            border-right: 8px solid var(--primary-yellow);
-        }
-
-        .about-section h2 {
-            margin-top: 0;
-            color: var(--dark-yellow);
-        }
-
-        .about-section p:last-child {
-            margin-bottom: 0;
-        }
-
-        .section-title {
-            text-align: center;
-            color: var(--leaf-green);
-            font-size: 1.8rem;
-            margin: 3rem 0 1.5rem;
-            text-shadow: 1px 1px 0 white;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(min(320px, 100%), 1fr));
-            gap: 1.5rem;
-            align-items: start;
-            margin-bottom: 2rem;
-        }
-
-        /* ================= 🌻 正面卡片 ================= */
-
-        .experience-card {
-            background: white;
-            border-radius: 22px;
-            border-top: 6px solid var(--primary-yellow);
-            padding: 1.3rem;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.05);
-            min-width: 0;
-            height: auto;
-            transition: box-shadow 0.25s;
-        }
-
-        .experience-card:hover {
-            box-shadow: 0 8px 24px rgba(255,193,7,0.2);
-        }
-
-        .experience-card h3 {
-            margin: 0.8rem 0;
-            font-size: 1.3rem;
-            line-height: 1.5;
-            color: #5D4037;
-            overflow-wrap: anywhere;
-        }
-
-        .experience-card p {
-            margin: 0.8rem 0;
-        }
-
-        .experience-card ul {
-            padding-left: 1.4rem;
-            margin: 0.8rem 0;
-        }
-
-        .experience-card li {
-            list-style-type: "🌻 ";
-            margin-bottom: 0.5rem;
-        }
-
-        .badge-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .badge {
-            background: #E8F5E9;
-            color: var(--leaf-green);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-
-        .ability-badge {
-            background: #FFF3E0;
-            color: #E65100;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            border: 1px dashed #FFB74D;
-        }
-
-        /* ================= 📸 正面照片輪播 ================= */
-
-        .carousel-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            overflow: hidden;
-            border-radius: 14px;
-            background: #FFF9C4;
-            margin: 1rem 0;
-        }
-
-        .carousel-track {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            overflow-x: auto;
-            overflow-y: hidden;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-            touch-action: pan-x pan-y;
-        }
-
-        .carousel-track::-webkit-scrollbar {
-            display: none;
-        }
-
-        .carousel-slide {
-            flex: 0 0 100%;
-            width: 100%;
-            height: 100%;
-            scroll-snap-align: start;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .pic-cover {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .pic-contain {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
-        }
-
-        .back-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            background: #FFF9C4;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.9);
-            color: #5D4037;
-            border: none;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            font-size: 1.4rem;
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-btn.prev {
-            left: 8px;
-        }
-
-        .carousel-btn.next {
-            right: 8px;
-        }
-
-        .carousel-dots {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 6px;
-            background: rgba(0,0,0,0.2);
-            padding: 6px 9px;
-            border-radius: 20px;
-            pointer-events: none;
-        }
-
-        .carousel-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.7);
-        }
-
-        .carousel-dot.active {
-            background: var(--primary-yellow);
-        }
-
-        .photo-hint {
-            text-align: center;
-            font-size: 0.75rem;
-            color: #8D6E63;
-            margin-top: -0.6rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .photo-caption {
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: #795548;
-            margin-top: -0.5rem;
-            margin-bottom: 0.8rem;
-        }
-
-        /* ================= 💡 技能標籤 ================= */
-
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin: 1rem 0;
-        }
-
-        .skill-tag {
-            background: #F5F5F0;
-            color: #795548;
-            font-size: 0.78rem;
-            padding: 0.3rem 0.7rem;
-            border-radius: 8px;
-        }
-
-        /* ================= 📖 展開故事 ================= */
-
-        .story-details {
-            margin-top: 1rem;
-        }
-
-        .story-arrow-btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            font-size: 0.95rem;
-            color: #5D4037;
-            font-weight: bold;
-            background: #FFF59D;
-            padding: 0.7rem;
-            border-radius: 30px;
-            border: 2px solid #FFE082;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
-            cursor: pointer;
-            list-style: none;
-            transition: background 0.2s;
-        }
-
-        .story-arrow-btn::-webkit-details-marker {
-            display: none;
-        }
-
-        .story-arrow-btn::marker {
-            content: "";
-        }
-
-        .story-arrow-btn:hover {
-            background: #FFE082;
-        }
-
-        .story-arrow-btn::after {
-            content: " ⬇️";
-        }
-
-        .story-details[open] .story-arrow-btn::after {
-            content: " ⬆️";
-        }
-
-        .story-details .close-label {
-            display: none;
-        }
-
-        .story-details[open] .open-label {
-            display: none;
-        }
-
-        .story-details[open] .close-label {
-            display: inline;
-        }
-
-        .story-content {
-            padding-top: 1rem;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .back-text {
-            background: #FFFDE7;
-            padding: 1rem;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            border-left: 5px solid var(--leaf-green);
-            margin-bottom: 0.8rem;
-            overflow-wrap: anywhere;
-        }
-
-        .back-text:last-child {
-            margin-bottom: 0;
-        }
-
-        .back-text h3 {
-            margin: 0 0 0.6rem;
-            font-size: 1.1rem;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-5px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ================= 🎓 成大研究所 ================= */
-
-        .graduate-card {
-            border-top-color: var(--leaf-green);
-            padding: 1.8rem;
-        }
-
-        .graduate-school {
-            font-size: 1.6rem !important;
-        }
-
-        .english-name {
-            color: #8D6E63;
-            font-size: 0.9rem;
-        }
-
-        .graduate-banner {
-            background: linear-gradient(135deg, #FFF9C4, #E8F5E9);
-            border-radius: 16px;
-            text-align: center;
-            padding: 1.5rem 1rem;
-            margin: 1rem 0;
-        }
-
-        .graduate-banner .graduate-icon {
-            font-size: 2.5rem;
-        }
-
-        .graduate-banner h3 {
-            margin: 0.3rem 0;
-            font-size: 1.5rem;
-            color: #388E3C;
-        }
-
-        .graduate-banner p {
-            color: #795548;
-            margin: 0.3rem 0;
-            font-size: 0.9rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 0.8rem;
-            margin: 1rem 0;
-        }
-
-        .stat-box {
-            background: #FFFDE7;
-            padding: 0.9rem 0.3rem;
-            text-align: center;
-            border-radius: 12px;
-            border: 1px solid #FFF0B2;
-        }
-
-        .stat-number {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #E69A00;
-            line-height: 1.3;
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: #795548;
-        }
-
-        .graduate-highlight {
-            background: #F1F8E9;
-            border-left: 5px solid var(--leaf-green);
-            padding: 1rem;
-            border-radius: 12px;
-            margin-top: 1rem;
-        }
-
-        .graduate-highlight p {
-            margin: 0.3rem 0;
-        }
-
-        /* ================= 🎵 合唱團 ================= */
-
-        .choir-grid {
-            grid-template-columns: minmax(0, 1fr);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .choir-card {
-            border-top-color: #FFB74D;
-        }
-
-        .choir-card .carousel-wrapper {
-            aspect-ratio: 16 / 9;
-        }
-
-        .choir-card .pic-cover,
-        .choir-card .pic-contain {
-            object-fit: contain;
-        }
-
-        /* ================= 💬 聯絡方式 ================= */
-
-        .contact-section {
-            text-align: center;
-            background: linear-gradient(135deg, #A5D6A7, #81C784);
-            padding: 3rem 2rem;
-            border-radius: 24px;
-            color: #254D28;
-            margin-top: 4rem;
-            box-shadow: 0 6px 20px rgba(76,175,80,0.25);
-        }
-
-        .contact-btn {
-            background: var(--primary-yellow);
-            color: #5D4037;
-            padding: 0.9rem 2rem;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 30px;
-            font-size: 1.05rem;
-            transition: all 0.2s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            display: inline-block;
-            margin: 0.5rem;
-        }
-
-        .contact-btn:hover {
-            background: var(--dark-yellow);
-            transform: scale(1.05);
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem 1rem;
-            color: #8D6E63;
-            font-size: 0.9rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* ================= 🌻 向日葵動畫 ================= */
-
-        .flower {
-            position: fixed;
-            top: -40px;
-            z-index: 1;
-            user-select: none;
-            pointer-events: none;
-            animation: fall linear forwards;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(110vh) rotate(360deg);
-            }
-        }
-
-        /* ================= 📱 手機版 ================= */
-
-        @media (max-width: 600px) {
-
-            header {
-                padding: 2rem 1rem;
-            }
-
-            .header-container {
-                flex-direction: column-reverse;
-                gap: 1.2rem;
-            }
-
-            .header-text {
-                text-align: center;
-                width: 100%;
-            }
-
-            header h1 {
-                font-size: 1.9rem;
-            }
-
-            header p {
-                font-size: 1rem;
-            }
-
-            .info-tags {
-                justify-content: center;
-            }
-
-            .info-tag {
-                font-size: 0.82rem;
-            }
-
-            .profile-pic {
-                width: 140px;
-                height: 175px;
-            }
-
-            .container {
-                padding: 1.5rem 0.9rem;
-            }
-
-            .about-section {
-                padding: 1.2rem;
-                margin-bottom: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.35rem;
-                margin-top: 2.5rem;
-            }
-
-            .grid {
-                grid-template-columns: minmax(0, 1fr);
-                gap: 1.3rem;
-            }
-
-            .experience-card {
-                padding: 1rem;
-            }
-
-            .experience-card h3 {
-                font-size: 1.2rem;
-            }
-
-            .graduate-school {
-                font-size: 1.3rem !important;
-            }
-
-            .graduate-card {
-                padding: 1rem;
-            }
-
-            .carousel-wrapper {
-                aspect-ratio: 16 / 10;
-            }
-
-            .stats-grid {
-                gap: 0.4rem;
-            }
-
-            .stat-number {
-                font-size: 1.5rem;
-            }
-
-            .stat-label {
-                font-size: 0.75rem;
-            }
-
-            .contact-section {
-                padding: 2rem 1rem;
-            }
-
-            .contact-btn {
-                font-size: 0.95rem;
-                padding: 0.8rem 1.4rem;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            html {
-                scroll-behavior: auto;
-            }
-
-            .flower {
-                display: none;
-            }
-
-            .story-content {
-                animation: none;
-            }
-
-            * {
-                transition: none !important;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>甲魚的求學大補帖 🌻</title>
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌻</text></svg>">
+
+<style>
+
+/* ================= 基礎設定 ================= */
+
+:root {
+    --primary-yellow: #FFC107;
+    --light-yellow: #FFFDE7;
+    --dark-yellow: #FFA000;
+    --leaf-green: #4CAF50;
+    --text-color: #3E2723;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    color: var(--text-color);
+    margin: 0;
+    line-height: 1.7;
+    overflow-x: hidden;
+    background-color: var(--light-yellow);
+    background-image:
+        radial-gradient(#FFF9C4 20%, transparent 20%),
+        radial-gradient(#FFF9C4 20%, transparent 20%);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+}
+
+/* ================= 首頁 ================= */
+
+header {
+    background: linear-gradient(135deg, #FFE082, #FFD54F);
+    border-bottom: 5px solid var(--primary-yellow);
+    padding: 2.5rem 2rem;
+    position: relative;
+}
+
+.header-container {
+    max-width: 1050px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.header-text {
+    flex: 1;
+    min-width: 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.6rem;
+    color: #5D4037;
+    text-shadow: 2px 2px 0 white;
+}
+
+header p {
+    font-size: 1.15rem;
+    margin: 0.8rem 0 0;
+    color: #795548;
+}
+
+.profile-pic {
+    width: 172px;
+    height: 212px;
+    border-radius: 16px;
+    border: 6px solid white;
+    box-shadow: 0 8px 25px rgba(213,142,0,0.35);
+    object-fit: cover;
+    transition: transform 0.4s;
+}
+
+.profile-pic:hover {
+    transform: scale(1.06) rotate(-3deg);
+}
+
+.info-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.info-tag {
+    background: rgba(255,255,255,0.75);
+    color: #5D4037;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 1px solid white;
+}
+
+/* ================= 主要內容 ================= */
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 2rem 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.about-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 6px 18px rgba(255,193,7,0.12);
+    margin-bottom: 3rem;
+    border-left: 8px solid var(--primary-yellow);
+    border-right: 8px solid var(--primary-yellow);
+}
+
+.about-section h2 {
+    margin-top: 0;
+    color: var(--dark-yellow);
+}
+
+.about-section p:last-child {
+    margin-bottom: 0;
+}
+
+.section-title {
+    text-align: center;
+    color: var(--leaf-green);
+    font-size: 1.8rem;
+    margin: 3rem 0 1.5rem;
+    text-shadow: 1px 1px 0 white;
+}
+
+/* ================= 甲魚的學習歷程 ================= */
+
+.journey-section {
+    max-width: 850px;
+    margin: 0 auto 3rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 24px;
+    border-top: 6px solid var(--primary-yellow);
+    box-shadow: 0 6px 18px rgba(255,193,7,0.15);
+}
+
+.journey-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #5D4037;
+    margin: 0 0 2rem;
+}
+
+.timeline {
+    position: relative;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    bottom: 22px;
+    left: 22px;
+    width: 3px;
+    background: #E8DDAF;
+    border-radius: 3px;
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-icon {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    border: 3px solid white;
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-content {
+    flex: 1;
+    min-width: 0;
+    padding: 1.3rem 1.5rem;
+    border-radius: 16px;
+}
+
+.timeline-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.7rem;
+}
+
+.timeline-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 0.25rem 0.9rem;
+    border-radius: 6px;
+}
+
+.timeline-date {
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+
+.timeline-content h3 {
+    margin: 0.2rem 0;
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.timeline-role {
+    font-size: 1.05rem;
+    font-weight: bold;
+    margin: 0.3rem 0;
+}
+
+.timeline-description {
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0;
+}
+
+/* PRESENT：向日葵黃 */
+
+.present .timeline-icon {
+    background: #F8D778;
+}
+
+.present .timeline-content {
+    background: #FFF0C2;
+    color: #594321;
+}
+
+.present .timeline-label {
+    background: #E9B949;
+    color: #624600;
+}
+
+.present .timeline-description {
+    color: #92784D;
+}
+
+/* FUTURE：向日葵葉片綠 */
+
+.future .timeline-icon {
+    background: #C5DAB6;
+}
+
+.future .timeline-content {
+    background: #EAF2E3;
+    color: #3D5835;
+}
+
+.future .timeline-label {
+    background: #64865A;
+    color: white;
+}
+
+.future .timeline-description {
+    color: #506B47;
+}
+
+/* PAST：暖灰米色 */
+
+.past .timeline-icon {
+    background: #DED7CB;
+}
+
+.past .timeline-content {
+    background: #F0ECE5;
+    color: #62574C;
+}
+
+.past .timeline-label {
+    background: #948678;
+    color: white;
+}
+
+/* ================= 經歷卡片 ================= */
+
+.grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    gap: 1.5rem;
+    align-items: start;
+    margin-bottom: 2rem;
+}
+
+.single-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.experience-card {
+    background: white;
+    border-radius: 22px;
+    border-top: 6px solid var(--primary-yellow);
+    padding: 1.3rem;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.05);
+    min-width: 0;
+    height: auto;
+    transition: box-shadow 0.25s;
+}
+
+.experience-card:hover {
+    box-shadow: 0 8px 24px rgba(255,193,7,0.2);
+}
+
+.experience-card h3 {
+    margin: 0.8rem 0;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: #5D4037;
+    overflow-wrap: anywhere;
+}
+
+.experience-card p {
+    margin: 0.8rem 0;
+}
+
+.experience-card ul {
+    padding-left: 1.4rem;
+    margin: 0.8rem 0;
+}
+
+.experience-card li {
+    list-style-type: "🌻 ";
+    margin-bottom: 0.5rem;
+}
+
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.badge {
+    background: #E8F5E9;
+    color: #388E3C;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.ability-badge {
+    background: #FFF3E0;
+    color: #E65100;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.skill-tag {
+    background: #FFF8E1;
+    color: #8D6E63;
+    padding: 0.3rem 0.7rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+/* ================= 成大簡約卡片 ================= */
+
+.graduate-card {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.6rem;
+}
+
+.graduate-heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.graduate-icon {
+    width: 68px;
+    height: 68px;
+    flex-shrink: 0;
+    background: #EAF2E3;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.graduate-heading-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.graduate-year {
+    color: #689F38;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.graduate-heading h3 {
+    margin: 0.2rem 0;
+    font-size: 1.5rem;
+}
+
+.graduate-department {
+    color: #795548;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.graduate-divider {
+    border: 0;
+    border-top: 1px solid #EEE9D9;
+    margin: 1.2rem 0;
+}
+
+.graduate-result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.graduate-rank {
+    color: #388E3C;
+    font-weight: bold;
+}
+
+.graduate-interview {
+    color: #8D6E63;
+    font-size: 0.85rem;
+}
+
+.graduate-directions {
+    color: #8D6E63;
+    font-size: 0.9rem;
+}
+
+/* ================= 照片輪播 ================= */
+
+.carousel-wrapper {
+    position: relative;
+    margin: 1rem 0 0;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #FFF8E1;
+}
+
+.carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    aspect-ratio: 4 / 3;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFF8E1;
+    overflow: hidden;
+}
+
+.carousel-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.pic-cover {
+    object-fit: cover;
+}
+
+.pic-contain {
+    object-fit: contain;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.92);
+    color: #795548;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    z-index: 3;
+}
+
+.carousel-btn:hover {
+    background: #FFF59D;
+}
+
+.carousel-btn.prev {
+    left: 8px;
+}
+
+.carousel-btn.next {
+    right: 8px;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 0.7rem 0 0.3rem;
+}
+
+.carousel-dot {
+    display: block;
+    padding: 0;
+    border: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #E0D6C6;
+    cursor: pointer;
+}
+
+.carousel-dot.active {
+    background: var(--dark-yellow);
+    width: 18px;
+    border-radius: 10px;
+}
+
+.photo-hint {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #A1887F;
+    margin: 0.3rem 0 !important;
+}
+
+.photo-caption {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #795548;
+    margin: 0.5rem 0 !important;
+}
+
+.back-placeholder {
+    font-size: 3.5rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* ================= 故事展開 ================= */
+
+.story-details {
+    margin-top: 1rem;
+}
+
+.story-details summary {
+    list-style: none;
+}
+
+.story-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.story-arrow-btn {
+    background: #FFF59D;
+    color: #5D4037;
+    padding: 0.7rem 1rem;
+    border-radius: 24px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.story-arrow-btn:hover {
+    background: #FFE082;
+}
+
+.close-label {
+    display: none;
+}
+
+.story-details[open] .open-label {
+    display: none;
+}
+
+.story-details[open] .close-label {
+    display: inline;
+}
+
+.story-content {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background: #FFFDF2;
+    border-left: 4px solid var(--primary-yellow);
+}
+
+.back-text {
+    color: #795548;
+    font-size: 0.95rem;
+    margin: 0.5rem 0 !important;
+}
+
+/* ================= 合唱團 ================= */
+
+.choir-grid {
+    max-width: 800px;
+    grid-template-columns: minmax(0, 1fr);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.choir-card {
+    border-top-color: #FFB74D;
+}
+
+.choir-card .carousel-slide {
+    aspect-ratio: 16 / 9;
+}
+
+/* ================= 聯絡方式 ================= */
+
+.contact-section {
+    background: white;
+    padding: 2.5rem 1.5rem;
+    border-radius: 24px;
+    text-align: center;
+    margin: 3rem 0 1rem;
+    border: 3px dashed #FFD54F;
+    box-shadow: 0 6px 18px rgba(255,193,7,0.12);
+}
+
+.contact-section h2 {
+    color: var(--leaf-green);
+    margin-top: 0;
+}
+
+.contact-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.contact-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #FFC107;
+    color: #5D4037;
+    font-weight: bold;
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.contact-btn:hover {
+    background: #FFD54F;
+    transform: translateY(-3px);
+}
+
+footer {
+    text-align: center;
+    background: #FFE082;
+    padding: 1.2rem;
+    color: #795548;
+    font-size: 0.85rem;
+    border-top: 4px solid var(--primary-yellow);
+}
+
+/* ================= 向日葵飄落動畫 ================= */
+
+.flower {
+    position: fixed;
+    top: -60px;
+    pointer-events: none;
+    z-index: 1;
+    animation: flowerFall linear forwards;
+    opacity: 0.65;
+}
+
+@keyframes flowerFall {
+    0% {
+        transform: translateY(-60px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.65;
+    }
+
+    90% {
+        opacity: 0.65;
+    }
+
+    100% {
+        transform: translateY(115vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ================= 手機版 ================= */
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 2rem 1rem;
+    }
+
+    .header-container {
+        flex-direction: column;
+        gap: 1.2rem;
+        text-align: center;
+    }
+
+    .profile-pic {
+        width: 140px;
+        height: 170px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .info-tags {
+        justify-content: center;
+    }
+
+    .info-tag {
+        font-size: 0.8rem;
+    }
+
+    .container {
+        padding: 1.5rem 0.85rem;
+    }
+
+    .about-section {
+        padding: 1.2rem;
+    }
+
+    .section-title {
+        font-size: 1.45rem;
+    }
+
+    .journey-section {
+        padding: 1.2rem 0.9rem;
+    }
+
+    .journey-title {
+        font-size: 1.5rem;
+    }
+
+    .timeline-item {
+        gap: 0.6rem;
+    }
+
+    .timeline-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .timeline::before {
+        left: 17px;
+    }
+
+    .timeline-content {
+        padding: 1rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.15rem;
+    }
+
+    .timeline-role {
+        font-size: 0.95rem;
+    }
+
+    .timeline-description {
+        font-size: 0.85rem;
+    }
+
+    .timeline-date {
+        font-size: 0.75rem;
+    }
+
+    .grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .experience-card {
+        padding: 1.1rem;
+    }
+
+    .graduate-heading h3 {
+        font-size: 1.2rem;
+    }
+
+    .graduate-icon {
+        width: 54px;
+        height: 54px;
+        font-size: 1.5rem;
+    }
+
+    .graduate-department {
+        font-size: 0.9rem;
+    }
+
+    .graduate-card {
+        padding: 1.2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .flower {
+        display: none;
+    }
+
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- ================= 🌻 首頁 ================= -->
+<!-- ================= 首頁 ================= -->
 
-    <header>
+<header>
 
-        <div class="header-container">
+    <div class="header-container">
 
-            <div class="header-text">
+        <img
+            src="DSC05279.PNG"
+            class="profile-pic"
+            alt="甲魚的個人照片"
+        >
 
-                <h1>甲魚的求學大補帖 🌻</h1>
+        <div class="header-text">
 
-                <p>
-                    不用怕迷茫、不用怕踩坑，甲魚在這裡！
-                    歡迎大膽敲門找我聊聊 💬
-                </p>
+            <h1>甲魚的求學大補帖 🌻</h1>
 
-                <div class="info-tags">
+            <p>
+                不用怕迷茫、不用怕踩坑，甲魚在這裡！
+                歡迎大膽敲門找我聊聊 💬
+            </p>
 
-                    <span class="info-tag">
-                        🎓 成大｜創意產業設計研究所
-                    </span>
+            <div class="info-tags">
 
-                    <span class="info-tag">
-                        💻 屏大｜電腦科學與人工智慧學系
-                    </span>
+                <span class="info-tag">
+                    💼 現職｜臻鼎科技集團產品設計工程師
+                </span>
 
-                    <span class="info-tag">
-                        💼 現職｜臻鼎科技集團產品設計工程師
-                    </span>
+                <span class="info-tag">
+                    🎓 成大｜創意產業設計研究所
+                </span>
 
-                </div>
+                <span class="info-tag">
+                    💻 屏大｜電腦科學與人工智慧學系
+                </span>
 
             </div>
-
-            <img
-                src="DSC05279.PNG"
-                alt="甲魚學姐"
-                class="profile-pic"
-            >
 
         </div>
 
-    </header>
+    </div>
 
-    <main class="container">
+</header>
 
-        <!-- ================= 🌻 關於我 ================= -->
+<main class="container">
 
-        <section class="about-section">
+<!-- ================= 關於甲魚 ================= -->
 
-            <h2>👋 嗨！學弟妹看過來 🍯</h2>
+<section class="about-section">
 
-            <p>
-                我是甲魚！一個喜歡探索不同領域的
-                ENFP 快樂小太陽 🌻
-            </p>
+    <h2>🌻 關於甲魚</h2>
 
-            <p>
-                從國立屏東大學電腦科學與人工智慧學系出發，
-                在大學這幾年，我嘗試了資安與資訊社群、
-                挑戰數據競賽、參與教育公益、前往日本交換，
-                也逐漸發現自己對跨領域創新與人文社會議題的熱情。
-            </p>
+    <p>
+        嗨！我是甲魚，一個喜歡探索不同領域的 ENFP！
+        畢業於國立屏東大學電腦科學與人工智慧學系，
+        目前任職於臻鼎科技集團，擔任產品設計工程師。
+    </p>
 
-            <p>
-                目前任職於
-                <b>臻鼎科技集團，擔任產品設計工程師</b>，
-                持續累積產業實務經驗。
-            </p>
+    <p>
+        大學期間參與過資訊與資安相關活動、
+        數據分析競賽、教育公益服務及日本交換學生計畫，
+        也在 2026 年成功錄取國立成功大學創意產業設計研究所。
+    </p>
 
-            <p>
-                2026 年，我成功錄取
-                <b>國立成功大學創意產業設計研究所（ICID）</b>，
-                即將開啟碩士生涯的新篇章！
-            </p>
+    <p>
+        我對教育創新、地方創生、文化傳承與社會創新等議題
+        都非常有興趣。除了學習與工作之外，
+        從國中開始參與的合唱團，也是我一直非常熱愛的事情！
+    </p>
 
-            <p>
-                未來希望結合資訊科技與創意設計，
-                探索教育創新、地方創生、文化傳承
-                及社會創新的更多可能性。
-            </p>
+    <p>
+        希望透過這個小小的網站，分享自己的求學經驗與探索過程。
+        如果你對這些經歷有興趣，或正在思考自己的未來方向，
+        都歡迎來找我聊聊！💛
+    </p>
 
-            <p>
-                除了求學與工作之外，我也非常喜歡唱歌！
-                從國中開始參與合唱團，
-                音樂一直是我生活中很重要的一部分。🎵
-            </p>
+</section>
 
-            <p>
-                如果你也正在探索自己的方向，
-                不管是研究所推甄、跨領域學習、
-                競賽或交換，都歡迎來找甲魚聊聊！💛
-            </p>
+<!-- ================= 甲魚的學習歷程 ================= -->
 
-            <p>
-                每張卡片都有我的經歷與小故事，
-                照片可以左右滑動，
-                點擊黃色按鈕就能閱讀更多心得囉！
-            </p>
+<section class="journey-section">
 
-        </section>
+    <h2 class="journey-title">
+        🌻 甲魚的學習歷程
+    </h2>
 
-        <!-- ================= 🎓 研究所升學 ================= -->
+    <div class="timeline">
 
-        <section>
+        <!-- PRESENT -->
 
-            <h2 class="section-title">
-                🎓 研究所升學與跨領域探索 🌱
-            </h2>
+        <div class="timeline-item present">
 
-            <article class="experience-card graduate-card">
+            <div class="timeline-icon">💼</div>
 
-                <div class="badge-container">
+            <div class="timeline-content">
 
-                    <span class="badge">
-                        🎓 正取第三名
+                <div class="timeline-top">
+
+                    <span class="timeline-label">
+                        PRESENT
                     </span>
 
-                    <span class="ability-badge">
-                        🎨 跨領域創新
+                    <span class="timeline-date">
+                        2026.08 — 至今
                     </span>
 
                 </div>
 
-                <h3 class="graduate-school">
-                    國立成功大學創意產業設計研究所
-                </h3>
+                <h3>臻鼎科技集團</h3>
 
-                <p class="english-name">
-                    Institute of Creative Industries Design (ICID)
+                <p class="timeline-role">
+                    產品設計工程師
                 </p>
 
-                <div class="graduate-banner">
-
-                    <div class="graduate-icon">
-                        🎓
-                    </div>
-
-                    <h3>成功大學・碩士班錄取</h3>
-
-                    <p>
-                        116 學年度碩士班甄試｜丙組
-                    </p>
-
-                </div>
-
-                <div class="stats-grid">
-
-                    <div class="stat-box">
-                        <div class="stat-number">17</div>
-                        <div class="stat-label">報名人數</div>
-                    </div>
-
-                    <div class="stat-box">
-                        <div class="stat-number">6</div>
-                        <div class="stat-label">面試人數</div>
-                    </div>
-
-                    <div class="stat-box">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">正取名次</div>
-                    </div>
-
-                </div>
-
-                <p>
-                    <b>面試方式：</b>全英文面試
+                <p class="timeline-description">
+                    PCB 產品設計、工程製圖與製程技術
                 </p>
-
-                <div class="graduate-highlight">
-
-                    <p>
-                        <b>🌱 未來探索方向</b>
-                    </p>
-
-                    <div class="skill-tags">
-                        <span class="skill-tag">教育創新</span>
-                        <span class="skill-tag">資訊科技</span>
-                        <span class="skill-tag">創意設計</span>
-                        <span class="skill-tag">地方創生</span>
-                        <span class="skill-tag">文化傳承</span>
-                        <span class="skill-tag">社會創新</span>
-                    </div>
-
-                </div>
-
-                <details class="story-details">
-
-                    <summary class="story-arrow-btn">
-
-                        <span class="open-label">
-                            點我看推甄故事
-                        </span>
-
-                        <span class="close-label">
-                            收起推甄故事
-                        </span>
-
-                    </summary>
-
-                    <div class="story-content">
-
-                        <div class="back-text">
-
-                            <h3>📢 甲魚的推甄小故事：</h3>
-
-                            <ul>
-
-                                <li>
-                                    從資訊領域跨足創意產業設計，
-                                    希望探索科技、人文與設計之間的更多可能性。
-                                </li>
-
-                                <li>
-                                    面試前準備了五分鐘的全英文自我介紹簡報，
-                                    整合自己的學習經歷、競賽成果與未來研究方向。
-                                </li>
-
-                                <li>
-                                    面試當天共有五位教授，
-                                    教授們都很親切，
-                                    也很專注地聆聽我的分享。
-                                </li>
-
-                                <li>
-                                    雖然英文口說還不夠流利，
-                                    但教授也鼓勵我持續精進英文能力！
-                                </li>
-
-                                <li>
-                                    最後成功獲得正取第三名！🌻
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                        <div class="back-text">
-
-                            <h3>💡 歡迎找甲魚聊聊！</h3>
-
-                            <ul>
-                                <li>研究所推甄準備</li>
-                                <li>備審資料與個人作品集</li>
-                                <li>全英文面試經驗</li>
-                                <li>跨領域研究所申請</li>
-                                <li>創意產業設計研究所申請經驗</li>
-                            </ul>
-
-                        </div>
-
-                    </div>
-
-                </details>
-
-            </article>
-
-        </section>
-
-        <!-- ================= 🌻 所有經歷 ================= -->
-
-        <div id="experience-sections"></div>
-
-        <!-- ================= 💬 聯絡方式 ================= -->
-
-        <section class="contact-section">
-
-            <h2>🌻 遇到困難了嗎？</h2>
-
-            <p>
-                不要害羞！不管你是想問研究所推甄、
-                某個比賽怎麼準備、交換怎麼申請，
-                或者只是大學生活好迷茫，
-                訊息看到我都會回！
-            </p>
-
-            <div class="btn-container">
-
-                <a
-                    href="https://www.instagram.com/jia.yuuuuuuu?igsh=NDhnb2RtamZmMGRn&utm_source=qr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="contact-btn"
-                >
-                    💬 私訊我的 Instagram
-                </a>
-
-                <a
-                    href="mailto:rinu.0929w@gmail.com"
-                    class="contact-btn"
-                >
-                    ✉️ 寄信給甲魚
-                </a>
 
             </div>
 
-        </section>
+        </div>
 
-    </main>
+        <!-- FUTURE -->
 
-    <footer>
+        <div class="timeline-item future">
 
-        <p>
-            © 2026 甲魚的求學大補帖.
-            Built with 🌻 and GitHub Pages.
-        </p>
+            <div class="timeline-icon">🎓</div>
 
-    </footer>
+            <div class="timeline-content">
 
-    <script>
+                <div class="timeline-top">
 
-        /* =================================================
-           🌻 所有個人經歷資料
-        ================================================= */
+                    <span class="timeline-label">
+                        FUTURE
+                    </span>
 
-        const sections = [
+                    <span class="timeline-date">
+                        2027
+                    </span>
 
-            /* ================= 💻 資訊與資安 ================= */
+                </div>
 
-            {
-                title: "💻 資訊與資安相關經歷 🌿",
+                <h3>國立成功大學</h3>
 
-                cards: [
+                <p class="timeline-role">
+                    創意產業設計研究所
+                </p>
 
-                    {
-                        title: "PyCon TW 台灣 Python 2024年會",
-
-                        badge: "🐍 技術社群",
-
-                        ability: "💡 Python 開發",
-
-                        description:
-                            "<b>角色：</b> 開發組成員 (Development Team)",
-
-                        skills: [
-                            "<b>硬實力：</b> Git/GitHub 團隊協作、實戰開源專案開發、Python 技術應用。",
-                            "<b>軟實力：</b> 跨團隊溝通、遠端協作。"
-                        ],
-
-                        tags: [
-                            "Python",
-                            "Git",
-                            "GitHub",
-                            "團隊協作",
-                            "活動主持"
-                        ],
-
-                        images: [
-                            {
-                                src: "pycon.png",
-                                alt: "PyCon照片1",
-                                emoji: "🐍"
-                            },
-                            {
-                                src: "pyconhoster.JPG",
-                                alt: "PyCon照片2",
-                                emoji: "🎤"
-                            }
-                        ],
+                <p class="timeline-description">
+                    116 學年度碩士班甄試｜丙組正取第三名
+                </p>
 
-                        stories: [
-                            "首次挑戰開發組＋講者接待。",
-                            "拿著麥克風主持前...可是要做好充足的功課！"
-                        ]
-                    },
-
-                    {
-                        title: "AIS3 好厲駭資安人才培育",
+            </div>
 
-                        badge: "🛡️ 資安培育",
-
-                        ability: "🔒 系統資安防禦",
-
-                        description:
-                            "<b>經歷：</b> 第 8、9、10 屆導師培訓成員",
-
-                        skills: [
-                            "<b>學到什麼：</b> 系統防禦思維、資安實戰知識、連續三屆跟隨業界導師學習。"
-                        ],
-
-                        tags: [
-                            "Web Security",
-                            "逆向工程",
-                            "惡意程式分析",
-                            "系統防禦"
-                        ],
-
-                        images: [
-                            {
-                                src: "Taiwanholy.JPG",
-                                alt: "資安活動照片",
-                                emoji: "🔒"
-                            }
-                        ],
-
-                        stories: [
-                            "深入 Web、逆向工程與惡意程式分析，實戰累積資安分析實力！",
-                            "遇到兩位超讚的導師，給予滿滿資源並鼓勵我們勇敢挑戰各種活動。"
-                        ]
-                    },
-
-                    {
-                        title: "2025年資訊學院專題競賽",
-
-                        badge: "🎖️ 專題佳作",
-
-                        ability: "🛠️ 系統整合開發",
-
-                        skills: [
-                            "<b>收穫技能：</b> 如何將教育結合資訊專長。"
-                        ],
-
-                        tags: [
-                            "KiCad",
-                            "硬體設計",
-                            "教育科技",
-                            "使用者需求"
-                        ],
-
-                        images: [
-                            {
-                                src: "IMG_0871 (1).jpg",
-                                alt: "專題照片1",
-                                emoji: "💻"
-                            },
-                            {
-                                src: "IMG_0829.jpg",
-                                alt: "專題照片2",
-                                emoji: "🛠️"
-                            }
-                        ],
-
-                        stories: [
-                            "開發 KiCad 焊接教材實作，針對教育現場的焊接痛點進行改良。",
-                            "結合硬體與教育，從使用者需求出發。"
-                        ]
-                    }
-
-                ]
-            },
-
-            /* ================= 📊 數據競賽 ================= */
-
-            {
-                title: "📊 數據競賽類成果 ✨",
-
-                cards: [
-
-                    {
-                        title: "2025教育大數據微學程競賽",
-
-                        badge: "📈 全國銅獎",
-
-                        ability: "📊 大數據分析",
-
-                        skills: [
-                            "<b>收穫技能：</b> 大數據清洗與分析邏輯、團隊協作。"
-                        ],
-
-                        tags: [
-                            "資料清洗",
-                            "數據分析",
-                            "深度學習",
-                            "回歸分析"
-                        ],
-
-                        images: [
-                            {
-                                src: "DSC00369.JPEG",
-                                alt: "教育大數據照片1",
-                                emoji: "📊"
-                            },
-                            {
-                                src: "DSC00803.JPEG",
-                                alt: "教育大數據照片2",
-                                emoji: "🏆"
-                            }
-                        ],
-
-                        stories: [
-                            "實戰經歷完整數據分析流程：資料清洗、整理到餵入資料庫進行 AI 深度學習與回歸分析。",
-                            "用數據說話、解決真實問題。"
-                        ]
-                    },
-
-                    {
-                        title: "愛貓一生大數據競賽",
-
-                        badge: "🐱 佳作 🏅",
-
-                        ability: "💡 商業數據思考",
-
-                        skills: [
-                            "<b>收穫技能：</b> 商業與實用性思維結合大數據分析、限定主題下的創意發想。"
-                        ],
-
-                        tags: [
-                            "商業分析",
-                            "資料處理",
-                            "創意發想",
-                            "模型分析"
-                        ],
-
-                        images: [
-                            {
-                                src: "IMG_1250.jpg",
-                                alt: "愛貓一生照片",
-                                emoji: "🐱"
-                            }
-                        ],
-
-                        stories: [
-                            "將數據清洗與整理邏輯應用於特定主題，把乾淨資料餵給模型跑深度分析。"
-                        ]
-                    },
-
-                    {
-                        title: "屏東縣政府黑客松（數位松與教育松）",
-
-                        badge: "🚀 社會創新 🥉",
-
-                        ability: "📱 數位與教育提案",
-
-                        description:
-                            "<small>（2025屏東青年社會創新競賽）</small>",
-
-                        skills: [
-                            "<b>專案成果：</b> 結合在地農產與教育科技議題，在 36HR 高壓下完成數位原型與提案。"
-                        ],
-
-                        tags: [
-                            "地方創生",
-                            "社會創新",
-                            "數位原型",
-                            "創意提案"
-                        ],
-
-                        images: [
-                            {
-                                src: "IMG_9542.JPG",
-                                alt: "黑客松照片1",
-                                emoji: "📱"
-                            },
-                            {
-                                src: "IMG_2978.JPG",
-                                alt: "黑客松照片2",
-                                emoji: "✏️"
-                            }
-                        ],
-
-                        stories: [
-                            "探索鮮乳產業數位串聯，並深入反思教育推廣議題中的「創新亮點與差異化」。",
-                            "高壓發想過程帶來了對數位科技、在地農產與教育提案定位的深刻洞察！"
-                        ]
-                    }
-
-                ]
-            },
-
-            /* ================= 🤝 教育與社會參與 ================= */
-
-            {
-                title: "🤝 教育創新與社會參與 🧸",
-
-                cards: [
-
-                    {
-                        title: "TFT (Teach For Taiwan)",
-
-                        badge: "🎒 校園大使",
-
-                        ability: "📣 專案倡議企劃",
-
-                        description:
-                            "<b>經歷：</b> 兩學期校園大使 &amp; 明日學校暑期營隊志工",
-
-                        skills: [
-                            "<b>核心能力：</b> 企劃撰寫、公眾表達、深度溝通與同理心。"
-                        ],
-
-                        tags: [
-                            "教育倡議",
-                            "教育平權",
-                            "活動企劃",
-                            "公眾表達"
-                        ],
-
-                        images: [
-                            {
-                                src: "TFT2607.JPG",
-                                alt: "TFT照片1",
-                                emoji: "🎒"
-                            },
-                            {
-                                src: "IMG_8560.JPG",
-                                alt: "TFT照片2",
-                                emoji: "🏫"
-                            }
-                        ],
-
-                        stories: [
-                            "深刻影響我生命軌跡的旅程，體會到發自內心付出與回饋的感動。",
-                            "在營隊與倡議中與夥伴、孩子深度交流，收穫了滿滿的溫暖與同理心。"
-                        ]
-                    },
-
-                    {
-                        title: "青澀芷蘭協會",
-
-                        badge: "🕊️ 公益志工",
-
-                        ability: "📅 跨部門專案管理",
-
-                        description:
-                            "<b>經歷：</b> 年會籌辦與活動組組員",
-
-                        skills: [
-                            "<b>核心能力：</b> 從零到有生出大型年會及多工處理。"
-                        ],
-
-                        tags: [
-                            "公益服務",
-                            "活動籌辦",
-                            "專案管理",
-                            "跨部門協作"
-                        ],
-
-                        images: [
-                            {
-                                src: "FD53A37C-70D5-45C7-95AF-063E3A7C461D.JPG",
-                                alt: "青澀芷蘭照片1",
-                                emoji: "🕊️"
-                            },
-                            {
-                                src: "IMG_9577.JPG",
-                                alt: "青澀芷蘭照片2",
-                                emoji: "🌸"
-                            }
-                        ],
-
-                        stories: [
-                            "一直以來持續投入的志工服務，從籌辦大型年會中鍛鍊跨部門協調力。",
-                            "在陪伴與服務中學習專案管理，將善的循環轉化為實際的行動力！"
-                        ]
-                    },
-
-                    {
-                        title: "LFT 營隊參與",
-
-                        badge: "⛺ 🌟 營隊",
-
-                        ability: "🧠 跨領域思維",
-
-                        skills: [
-                            "<b>收穫：</b> 認識不同背景的夥伴、跨領域思維激盪、自我心態引導。"
-                        ],
-
-                        tags: [
-                            "跨領域交流",
-                            "自我探索",
-                            "團隊合作"
-                        ],
-
-                        images: [
-                            {
-                                src: "IMG_1328.jpg",
-                                alt: "LFT照片1",
-                                emoji: "⛺"
-                            },
-                            {
-                                src: "IMG_1272.jpg",
-                                alt: "LFT照片2",
-                                emoji: "🌟"
-                            }
-                        ],
-
-                        stories: [
-                            "沉浸在跨領域夥伴的腦力激盪中，體驗思維碰撞與自我探索的樂趣！"
-                        ]
-                    }
-
-                ]
-            },
-
-            /* ================= ✈️ 國際與校園 ================= */
-
-            {
-                title: "✈️ 國際移動與校園領導 🗺️",
-
-                cards: [
-
-                    {
-                        title: "日本北海道室蘭工業大學",
-
-                        badge: "❄️ 交換學生",
-
-                        ability: "🌍 國際跨文化溝通",
-
-                        description:
-                            "<b>經歷：</b> 短期交換16天",
-
-                        skills: [
-                            "<b>核心收穫：</b> 國際移動力、外語環境適應力、獨立生活能力。"
-                        ],
-
-                        tags: [
-                            "日本交換",
-                            "國際交流",
-                            "跨文化溝通",
-                            "獨立生活"
-                        ],
-
-                        images: [
-                            {
-                                src: "IMG_2981.jpg",
-                                alt: "日本交換照片",
-                                emoji: "🇯🇵"
-                            }
-                        ],
-
-                        stories: [
-                            "體驗異國文化與不同的學術環境（可以詢問出國交換的相關事情）。"
-                        ]
-                    },
-
-                    {
-                        title: "系學會 - 文書長",
-
-                        badge: "📢 校園核心",
-
-                        ability: "👑 團隊領導力",
-
-                        description:
-                            "<b>經歷：</b> 辦理為期三天的暑期營隊",
-
-                        skills: [
-                            "<b>核心能力：</b> 行政文書處理與進度時程掌控。"
-                        ],
-
-                        tags: [
-                            "行政管理",
-                            "預算控管",
-                            "活動籌辦",
-                            "時程管理"
-                        ],
-
-                        images: [],
-
-                        stories: [
-                            "負責營隊與系上的行政文書處理，學習預算控管與時程進度掌握。"
-                        ]
-                    }
-
-                ]
-            },
-
-            /* ================= 🎵 合唱團經歷 ================= */
-
-            {
-                title: "🎵 合唱團經歷 🎶",
-
-                gridClass: "choir-grid",
-
-                cards: [
-
-                    {
-                        title: "我的合唱團經歷",
-
-                        cardClass: "choir-card",
-
-                        badge: "🎵 合唱團",
-
-                        ability: "🎼 Alto / Tenor",
-
-                        description:
-                            "<b>經歷：</b> 自國中開始參與合唱團，主要擔任 Alto（女低音），偶爾也會跨唱 Tenor（男高音）聲部。",
-
-                        skills: [
-                            "2026 年台灣青年合唱團",
-                            "屏東室內合唱團",
-                            "日本札幌演出經歷",
-                            "<b>核心收穫：</b> 團隊默契、音準與音高訓練、歌詞記憶，以及享受合唱的樂趣。"
-                        ],
-
-                        tags: [
-                            "Alto",
-                            "Tenor",
-                            "合唱",
-                            "舞台演出"
-                        ],
-
-                        images: [
-                            {
-                                src: "IMG_1025.JPG",
-                                alt: "2026年台灣青年合唱團",
-                                caption: "2026 年台灣青年合唱團",
-                                emoji: "🎵"
-                            },
-                            {
-                                src: "IMG_2257.JPG",
-                                alt: "屏東室內合唱團",
-                                caption: "屏東室內合唱團",
-                                emoji: "🎶"
-                            }
-                        ],
-
-                        stories: [
-                            "從國中開始，合唱就是我非常熱愛的一件事情！",
-                            "喜歡和不同聲部的夥伴一起練習，從反覆調整音準、掌握音高、記憶歌詞，到最後一起唱出美麗的和聲。",
-                            "除了 Alto 聲部之外，偶爾也會挑戰 Tenor，享受不同聲部帶來的音樂體驗。",
-                            "曾經參與台灣青年合唱團、屏東室內合唱團，也有前往日本札幌演出的經歷。",
-                            "對我而言，合唱不只是興趣，更是生活中很重要的一部分。即使求學與工作再忙碌，也希望能一直唱下去！💛"
-                        ]
-                    }
-
-                ]
-            }
-
-        ];
-
-        /* =================================================
-           📸 自動建立正面照片輪播
-        ================================================= */
-
-        function createCarousel(images) {
-
-            if (!images || images.length === 0) {
-                return "";
-            }
-
-            const slides = images.map((img, index) => `
-
-                <div
-                    class="carousel-slide"
-                    data-caption="${img.caption || ''}"
-                >
-
-                    <img
-                        src="${img.src}"
-                        alt="${img.alt}"
-                        class="${index === 0 ? 'pic-cover' : 'pic-contain'}"
-                        loading="lazy"
-                        decoding="async"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                    >
-
-                    <div
-                        class="back-placeholder"
-                        style="display:none;"
-                    >
-                        ${img.emoji}
+        </div>
+
+        <!-- PAST -->
+
+        <div class="timeline-item past">
+
+            <div class="timeline-icon">🏫</div>
+
+            <div class="timeline-content">
+
+                <div class="timeline-top">
+
+                    <span class="timeline-label">
+                        PAST
+                    </span>
+
+                </div>
+
+                <h3>畢業於國立屏東大學</h3>
+
+                <p class="timeline-role">
+                    電腦科學與人工智慧學系
+                </p>
+
+                <p class="timeline-description">
+                    學士學位
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= 研究所升學 ================= -->
+
+<section>
+
+    <h2 class="section-title">
+        🎓 研究所升學經歷 🌻
+    </h2>
+
+    <div class="grid single-grid">
+
+        <article class="experience-card graduate-card">
+
+            <div class="graduate-heading">
+
+                <div class="graduate-icon">🎓</div>
+
+                <div class="graduate-heading-text">
+
+                    <div class="graduate-year">
+                        2026 · 碩士班甄試
+                    </div>
+
+                    <h3>國立成功大學</h3>
+
+                    <div class="graduate-department">
+                        創意產業設計研究所 ICID
                     </div>
 
                 </div>
 
-            `).join("");
+            </div>
 
-            const dots = images.map((img, index) => `
+            <hr class="graduate-divider">
 
-                <span class="carousel-dot ${index === 0 ? 'active' : ''}">
+            <div class="graduate-result">
+
+                <span class="graduate-rank">
+                    🌱 丙組正取第三名
                 </span>
 
-            `).join("");
+                <span class="graduate-interview">
+                    全英文面試
+                </span>
 
-            return `
+            </div>
 
-                <div class="carousel-wrapper">
+            <p class="graduate-directions">
+                教育創新・地方創生・文化傳承
+            </p>
 
-                    ${images.length > 1 ? `
+            <details class="story-details">
 
-                        <button
-                            type="button"
-                            class="carousel-btn prev"
-                            aria-label="上一張照片"
-                            onclick="moveCarousel(this, -1)"
-                        >
-                            ‹
-                        </button>
+                <summary class="story-arrow-btn">
 
-                        <button
-                            type="button"
-                            class="carousel-btn next"
-                            aria-label="下一張照片"
-                            onclick="moveCarousel(this, 1)"
-                        >
-                            ›
-                        </button>
+                    <span class="open-label">
+                        閱讀我的推甄故事 ↓
+                    </span>
 
-                    ` : ""}
+                    <span class="close-label">
+                        收起推甄故事 ↑
+                    </span>
 
-                    <div
-                        class="carousel-track"
-                        onscroll="handleCarouselScroll(this)"
-                    >
-                        ${slides}
-                    </div>
+                </summary>
 
-                    ${images.length > 1 ? `
+                <div class="story-content">
 
-                        <div class="carousel-dots">
-                            ${dots}
-                        </div>
+                    <p class="back-text">
+                        🌻 116 學年度成大創意產業設計研究所丙組，
+                        共有 17 人報名，6 人進入面試，
+                        最後獲得正取第三名！
+                    </p>
 
-                    ` : ""}
+                    <p class="back-text">
+                        面試採全英文進行，事前準備五分鐘的
+                        英文自我介紹簡報，面試當天有五位教授。
+                    </p>
+
+                    <p class="back-text">
+                        教授們都非常親切，也會很專注地聽你分享。
+                        雖然我的英文講得不是非常流利，
+                        但其中一位教授也鼓勵我要繼續加強英文能力！
+                    </p>
+
+                    <p class="back-text">
+                        如果你想了解研究所推甄、備審資料準備、
+                        全英文面試或跨領域申請的相關經驗，
+                        都歡迎來找甲魚聊聊！💛
+                    </p>
 
                 </div>
 
-                ${images.some(img => img.caption) ? `
+            </details>
 
-                    <div class="photo-caption">
-                        ${images[0].caption || ''}
-                    </div>
+        </article>
 
-                ` : ""}
+    </div>
 
-                ${images.length > 1 ? `
+</section>
 
-                    <div class="photo-hint">
-                        ↔ 左右滑動查看更多照片
-                    </div>
+<!-- ================= 經歷卡片生成區 ================= -->
 
-                ` : ""}
+<div id="experience-sections"></div>
 
-            `;
-        }
+<!-- ================= 聯絡方式 ================= -->
 
-        /* =================================================
-           🌻 自動建立正面卡片
-        ================================================= */
+<section class="contact-section">
 
-        function createCard(card) {
+    <h2>💬 歡迎找甲魚聊聊！</h2>
 
-            return `
+    <p>
+        不管是研究所推甄、資訊資安、數據競賽、
+        教育公益、國際交換，還是其他求學上的疑問，
+        都歡迎來找我聊聊！
+    </p>
 
-                <article class="experience-card ${card.cardClass || ''}">
+    <p>
+        🌻 不用怕迷茫，也不用怕踩坑！
+    </p>
 
-                    <div class="badge-container">
+    <div class="contact-buttons">
 
-                        <span class="badge">
-                            ${card.badge}
-                        </span>
+        <a
+            class="contact-btn"
+            href="https://www.instagram.com/jia.yuuuuuuu?igsh=NDhnb2RtamZmMGRn&utm_source=qr"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            📷 Instagram
+        </a>
 
-                        <span class="ability-badge">
-                            ${card.ability}
-                        </span>
+        <a
+            class="contact-btn"
+            href="mailto:rinu.0929w@gmail.com"
+        >
+            ✉️ Email
+        </a>
 
-                    </div>
+    </div>
 
-                    <h3>${card.title}</h3>
+</section>
 
-                    ${createCarousel(card.images)}
+</main>
 
-                    ${card.description
-                        ? `<p>${card.description}</p>`
-                        : ""
+<footer>
+
+    © 2026 甲魚的求學大補帖 🌻
+
+</footer>
+
+<script>
+
+/* ================= 所有經歷資料 ================= */
+
+const sections = [
+
+    {
+        title: "💻 資訊與資安相關經歷 🌿",
+
+        cards: [
+
+            {
+                title: "PyCon TW 台灣 Python 2024年會",
+
+                badge: "🐍 技術社群",
+
+                ability: "💡 Python 開發",
+
+                role: "開發組成員（Development Team）",
+
+                skills: [
+                    "Git / GitHub 團隊協作",
+                    "開源社群參與",
+                    "Python 開發",
+                    "跨團隊遠端溝通"
+                ],
+
+                tags: [
+                    "Python",
+                    "Git",
+                    "GitHub",
+                    "團隊協作",
+                    "活動主持"
+                ],
+
+                photos: [
+                    {
+                        src: "pycon.png",
+                        caption: "PyCon TW 2024"
+                    },
+                    {
+                        src: "pyconhoster.JPG",
+                        caption: "活動主持經歷"
                     }
+                ],
 
-                    <ul>
+                story: [
+                    "首次挑戰開發組＋講者接待！",
+                    "拿著麥克風主持前，可是要做好充足的功課！"
+                ]
+            },
 
-                        ${card.skills.map(
-                            item => `<li>${item}</li>`
-                        ).join("")}
+            {
+                title: "AIS3 好厲駭資安人才培育",
 
-                    </ul>
+                badge: "🛡️ 資安培育",
 
-                    ${card.tags && card.tags.length ? `
+                ability: "🔒 系統資安防禦",
 
-                        <div class="skill-tags">
+                role: "第8、9、10屆導師培訓成員",
 
-                            ${card.tags.map(
-                                tag => `
-                                    <span class="skill-tag">
-                                        ${tag}
-                                    </span>
-                                `
-                            ).join("")}
+                skills: [
+                    "系統防禦思維",
+                    "資安實戰知識",
+                    "連續三屆跟隨業界導師學習"
+                ],
 
-                        </div>
+                tags: [
+                    "Web Security",
+                    "逆向工程",
+                    "惡意程式分析",
+                    "系統防禦"
+                ],
 
-                    ` : ""}
+                photos: [
+                    {
+                        src: "Taiwanholy.JPG",
+                        caption: "AIS3 好厲駭資安人才培育"
+                    }
+                ],
 
-                    <details class="story-details">
+                story: [
+                    "深入 Web、逆向工程與惡意程式分析，實戰累積資安分析實力！",
+                    "遇到兩位超讚的導師，給予滿滿資源並鼓勵我們勇敢挑戰各種活動。"
+                ]
+            },
 
-                        <summary class="story-arrow-btn">
+            {
+                title: "2025年資訊學院專題競賽",
 
-                            <span class="open-label">
-                                點我看故事
-                            </span>
+                badge: "🎖️ 專題佳作",
 
-                            <span class="close-label">
-                                收起小故事
-                            </span>
+                ability: "🛠️ 系統整合開發",
 
-                        </summary>
+                role: "如何將教育結合資訊專長",
 
-                        <div class="story-content">
+                skills: [
+                    "硬體與教育結合",
+                    "教育現場需求分析",
+                    "焊接教材設計與實作"
+                ],
 
-                            <div class="back-text">
+                tags: [
+                    "KiCad",
+                    "硬體設計",
+                    "教育科技",
+                    "使用者需求"
+                ],
 
-                                <h3>📢 甲魚的小故事：</h3>
+                photos: [
+                    {
+                        src: "IMG_0871 (1).jpg",
+                        caption: "資訊學院專題競賽"
+                    },
+                    {
+                        src: "IMG_0829.jpg",
+                        caption: "專題成果展示"
+                    }
+                ],
 
-                                <ul>
+                story: [
+                    "開發 KiCad 焊接教材實作，針對教育現場的焊接痛點進行改良。",
+                    "結合硬體與教育，從使用者需求出發。"
+                ]
+            }
 
-                                    ${card.stories.map(
-                                        story => `<li>${story}</li>`
-                                    ).join("")}
+        ]
+    },
 
-                                </ul>
+    {
+        title: "📊 數據競賽類成果 ✨",
 
-                            </div>
+        cards: [
 
-                        </div>
+            {
+                title: "2025教育大數據微學程競賽",
 
-                    </details>
+                badge: "📈 全國銅獎",
 
-                </article>
+                ability: "📊 大數據分析",
 
-            `;
-        }
+                role: "教育大數據分析競賽",
 
-        /* =================================================
-           🌻 將所有經歷顯示於網頁
-        ================================================= */
+                skills: [
+                    "大數據清洗與分析邏輯",
+                    "資料處理",
+                    "團隊協作"
+                ],
 
-        const experienceContainer =
-            document.getElementById("experience-sections");
+                tags: [
+                    "資料清洗",
+                    "數據分析",
+                    "深度學習",
+                    "回歸分析"
+                ],
 
-        experienceContainer.innerHTML = sections.map(section => `
+                photos: [
+                    {
+                        src: "DSC00369.JPEG",
+                        caption: "教育大數據競賽"
+                    },
+                    {
+                        src: "DSC00803.JPEG",
+                        caption: "全國銅獎"
+                    }
+                ],
 
-            <section>
+                story: [
+                    "實戰經歷完整數據分析流程：資料清洗、整理到餵入資料庫進行 AI 深度學習與回歸分析。",
+                    "用數據說話、解決真實問題。"
+                ]
+            },
 
-                <h2 class="section-title">
-                    ${section.title}
-                </h2>
+            {
+                title: "愛貓一生大數據競賽",
 
-                <div class="grid ${section.gridClass || ''}">
+                badge: "🐱 佳作 🏅",
 
-                    ${section.cards.map(
-                        card => createCard(card)
-                    ).join("")}
+                ability: "💡 商業數據思考",
+
+                role: "商業與實用性思維結合大數據分析",
+
+                skills: [
+                    "商業數據分析",
+                    "限定主題下的創意發想",
+                    "資料清洗與模型分析"
+                ],
+
+                tags: [
+                    "商業分析",
+                    "資料處理",
+                    "創意發想",
+                    "模型分析"
+                ],
+
+                photos: [
+                    {
+                        src: "IMG_1250.jpg",
+                        caption: "愛貓一生大數據競賽"
+                    }
+                ],
+
+                story: [
+                    "將數據清洗與整理邏輯應用於特定主題，把乾淨資料餵給模型跑深度分析。"
+                ]
+            },
+
+            {
+                title: "屏東縣政府黑客松（數位松與教育松）",
+
+                badge: "🚀 社會創新 🥉",
+
+                ability: "📱 數位與教育提案",
+
+                role: "2025屏東青年社會創新競賽",
+
+                skills: [
+                    "結合在地農產與教育科技議題",
+                    "36HR 高壓發想",
+                    "數位原型與創新提案"
+                ],
+
+                tags: [
+                    "地方創生",
+                    "社會創新",
+                    "數位原型",
+                    "創意提案"
+                ],
+
+                photos: [
+                    {
+                        src: "IMG_9542.JPG",
+                        caption: "屏東數位松"
+                    },
+                    {
+                        src: "IMG_2978.JPG",
+                        caption: "教育創新提案"
+                    }
+                ],
+
+                story: [
+                    "探索鮮乳產業數位串聯，並深入反思教育推廣議題中的「創新亮點與差異化」。",
+                    "高壓發想過程帶來了對數位科技、在地農產與教育提案定位的深刻洞察！"
+                ]
+            }
+
+        ]
+    },
+
+    {
+        title: "🤝 教育創新與社會參與 🧸",
+
+        cards: [
+
+            {
+                title: "TFT（Teach For Taiwan）",
+
+                badge: "🎒 校園大使",
+
+                ability: "📣 專案倡議企劃",
+
+                role: "兩學期校園大使＆明日學校暑期營隊志工",
+
+                skills: [
+                    "企劃撰寫",
+                    "公眾表達",
+                    "深度溝通與同理心"
+                ],
+
+                tags: [
+                    "教育倡議",
+                    "教育平權",
+                    "活動企劃",
+                    "公眾表達"
+                ],
+
+                photos: [
+                    {
+                        src: "TFT2607.JPG",
+                        caption: "TFT 校園大使"
+                    },
+                    {
+                        src: "IMG_8560.JPG",
+                        caption: "明日學校暑期營隊"
+                    }
+                ],
+
+                story: [
+                    "深刻影響我生命軌跡的旅程，體會到發自內心付出與回饋的感動。",
+                    "在營隊與倡議中與夥伴、孩子深度交流，收穫了滿滿的溫暖與同理心。"
+                ]
+            },
+
+            {
+                title: "青澀芷蘭協會",
+
+                badge: "🕊️ 公益志工",
+
+                ability: "📅 跨部門專案管理",
+
+                role: "年會籌辦與活動組組員",
+
+                skills: [
+                    "從零到有籌辦大型年會",
+                    "跨部門協調",
+                    "多工處理"
+                ],
+
+                tags: [
+                    "公益服務",
+                    "活動籌辦",
+                    "專案管理",
+                    "跨部門協作"
+                ],
+
+                photos: [
+                    {
+                        src: "FD53A37C-70D5-45C7-95AF-063E3A7C461D.JPG",
+                        caption: "青澀芷蘭協會"
+                    },
+                    {
+                        src: "IMG_9577.JPG",
+                        caption: "活動籌辦與志工服務"
+                    }
+                ],
+
+                story: [
+                    "一直以來持續投入的志工服務，從籌辦大型年會中鍛鍊跨部門協調力。",
+                    "在陪伴與服務中學習專案管理，將善的循環轉化為實際的行動力！"
+                ]
+            },
+
+            {
+                title: "LFT 營隊參與",
+
+                badge: "⛺ 🌟 營隊",
+
+                ability: "🧠 跨領域思維",
+
+                role: "跨領域交流與自我探索",
+
+                skills: [
+                    "認識不同背景的夥伴",
+                    "跨領域思維激盪",
+                    "自我心態引導"
+                ],
+
+                tags: [
+                    "跨領域交流",
+                    "自我探索",
+                    "團隊合作"
+                ],
+
+                photos: [
+                    {
+                        src: "IMG_1328.jpg",
+                        caption: "LFT 營隊"
+                    },
+                    {
+                        src: "IMG_1272.jpg",
+                        caption: "跨領域夥伴交流"
+                    }
+                ],
+
+                story: [
+                    "沉浸在跨領域夥伴的腦力激盪中，體驗思維碰撞與自我探索的樂趣！"
+                ]
+            }
+
+        ]
+    },
+
+    {
+        title: "✈️ 國際移動與校園領導 🗺️",
+
+        cards: [
+
+            {
+                title: "日本北海道室蘭工業大學",
+
+                badge: "❄️ 交換學生",
+
+                ability: "🌍 國際跨文化溝通",
+
+                role: "短期交換16天",
+
+                skills: [
+                    "國際移動力",
+                    "外語環境適應力",
+                    "獨立生活能力"
+                ],
+
+                tags: [
+                    "日本交換",
+                    "國際交流",
+                    "跨文化溝通",
+                    "獨立生活"
+                ],
+
+                photos: [
+                    {
+                        src: "IMG_2981.jpg",
+                        caption: "日本北海道室蘭工業大學"
+                    }
+                ],
+
+                story: [
+                    "體驗異國文化與不同的學術環境。",
+                    "如果你對出國交換有興趣，也可以來詢問相關事情！"
+                ]
+            },
+
+            {
+                title: "系學會－文書長",
+
+                badge: "📢 校園核心",
+
+                ability: "👑 團隊領導力",
+
+                role: "辦理為期三天的暑期營隊",
+
+                skills: [
+                    "行政文書處理",
+                    "預算控管",
+                    "進度時程掌控"
+                ],
+
+                tags: [
+                    "行政管理",
+                    "預算控管",
+                    "活動籌辦",
+                    "時程管理"
+                ],
+
+                photos: [],
+
+                story: [
+                    "負責營隊與系上的行政文書處理，學習預算控管與時程進度掌握。"
+                ]
+            }
+
+        ]
+    },
+
+    {
+        title: "🎵 合唱團經歷 🎶",
+
+        gridClass: "choir-grid",
+
+        cards: [
+
+            {
+                title: "我的合唱團經歷",
+
+                badge: "🎵 合唱團",
+
+                ability: "🎼 Alto / Tenor",
+
+                cardClass: "choir-card",
+
+                role: "自國中開始參與合唱團，主要擔任 Alto（女低音），偶爾也會跨唱 Tenor（男高音）聲部。",
+
+                skills: [
+                    "2026 年台灣青年合唱團",
+                    "屏東室內合唱團",
+                    "日本札幌演出經歷",
+                    "團隊默契、音準與音高訓練、歌詞記憶，以及享受合唱的樂趣"
+                ],
+
+                tags: [
+                    "Alto",
+                    "Tenor",
+                    "合唱",
+                    "舞台演出"
+                ],
+
+                photos: [
+                    {
+                        src: "IMG_1025.JPG",
+                        caption: "2026 年台灣青年合唱團"
+                    },
+                    {
+                        src: "IMG_2257.JPG",
+                        caption: "屏東室內合唱團"
+                    }
+                ],
+
+                story: [
+                    "從國中開始，合唱就是我非常熱愛的一件事情！",
+                    "喜歡和不同聲部的夥伴一起練習，從反覆調整音準、掌握音高、記憶歌詞，到最後一起唱出美麗的和聲。",
+                    "除了 Alto 聲部之外，偶爾也會挑戰 Tenor，享受不同聲部帶來的音樂體驗。",
+                    "曾經參與台灣青年合唱團、屏東室內合唱團，也有前往日本札幌演出的經歷。",
+                    "對我而言，合唱不只是興趣，更是生活中很重要的一部分。即使求學與工作再忙碌，也希望能一直唱下去！💛"
+                ]
+            }
+
+        ]
+    }
+
+];
+
+/* ================= HTML 安全處理 ================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+/* ================= 建立照片輪播 ================= */
+
+function createCarousel(photos, cardClass = "") {
+
+    if (!photos || photos.length === 0) {
+        return "";
+    }
+
+    const multiple = photos.length > 1;
+
+    const slides = photos.map((photo, index) => {
+
+        const imageClass =
+            cardClass === "choir-card"
+                ? "pic-contain"
+                : index === 0
+                    ? "pic-cover"
+                    : "pic-contain";
+
+        return `
+            <div
+                class="carousel-slide"
+                data-caption="${escapeHTML(photo.caption)}"
+            >
+                <img
+                    src="${escapeHTML(photo.src)}"
+                    alt="${escapeHTML(photo.caption)}"
+                    class="${imageClass}"
+                    loading="lazy"
+                    onerror="this.style.display='none';this.nextElementSibling.hidden=false;"
+                >
+                <div class="back-placeholder" hidden>
+                    🌻
+                </div>
+            </div>
+        `;
+
+    }).join("");
+
+    const buttons = multiple ? `
+        <button
+            type="button"
+            class="carousel-btn prev"
+            aria-label="上一張照片"
+            onclick="moveCarousel(this, -1)"
+        >
+            ❮
+        </button>
+
+        <button
+            type="button"
+            class="carousel-btn next"
+            aria-label="下一張照片"
+            onclick="moveCarousel(this, 1)"
+        >
+            ❯
+        </button>
+    ` : "";
+
+    const dots = multiple ? `
+        <div class="carousel-dots">
+
+            ${photos.map((photo, index) => `
+                <button
+                    type="button"
+                    class="carousel-dot ${index === 0 ? "active" : ""}"
+                    aria-label="第 ${index + 1} 張照片"
+                    onclick="goToSlide(this, ${index})"
+                ></button>
+            `).join("")}
+
+        </div>
+
+        <p class="photo-hint">
+            👆 左右滑動查看更多照片
+        </p>
+    ` : "";
+
+    return `
+        <div class="photo-gallery">
+
+            <div class="carousel-wrapper">
+
+                <div
+                    class="carousel-track"
+                    onscroll="handleCarouselScroll(this)"
+                >
+                    ${slides}
+                </div>
+
+                ${buttons}
+
+            </div>
+
+            ${dots}
+
+            <p class="photo-caption">
+                ${escapeHTML(photos[0].caption)}
+            </p>
+
+        </div>
+    `;
+}
+
+/* ================= 建立經歷卡片 ================= */
+
+function createCard(card) {
+
+    return `
+        <article class="experience-card ${card.cardClass || ""}">
+
+            <div class="badge-container">
+
+                <span class="badge">
+                    ${escapeHTML(card.badge)}
+                </span>
+
+                <span class="ability-badge">
+                    ${escapeHTML(card.ability)}
+                </span>
+
+            </div>
+
+            <h3>${escapeHTML(card.title)}</h3>
+
+            ${createCarousel(card.photos, card.cardClass)}
+
+            <p>
+                <strong>${escapeHTML(card.role)}</strong>
+            </p>
+
+            <ul>
+
+                ${card.skills.map(skill => `
+                    <li>${escapeHTML(skill)}</li>
+                `).join("")}
+
+            </ul>
+
+            <div class="skill-tags">
+
+                ${card.tags.map(tag => `
+                    <span class="skill-tag">
+                        ${escapeHTML(tag)}
+                    </span>
+                `).join("")}
+
+            </div>
+
+            <details class="story-details">
+
+                <summary class="story-arrow-btn">
+
+                    <span class="open-label">
+                        點我看故事 ↓
+                    </span>
+
+                    <span class="close-label">
+                        收起故事 ↑
+                    </span>
+
+                </summary>
+
+                <div class="story-content">
+
+                    ${card.story.map(text => `
+                        <p class="back-text">
+                            ${escapeHTML(text)}
+                        </p>
+                    `).join("")}
 
                 </div>
 
-            </section>
+            </details>
 
-        `).join("");
+        </article>
+    `;
+}
 
-        /* =================================================
-           📸 左右切換照片
-        ================================================= */
+/* ================= 生成所有區塊 ================= */
 
-        function moveCarousel(button, direction) {
+const sectionContainer =
+    document.getElementById("experience-sections");
 
-            const wrapper =
-                button.closest(".carousel-wrapper");
+sectionContainer.innerHTML = sections.map(section => `
 
-            const track =
-                wrapper.querySelector(".carousel-track");
+    <section>
 
-            const slides =
-                track.querySelectorAll(".carousel-slide");
+        <h2 class="section-title">
+            ${escapeHTML(section.title)}
+        </h2>
 
-            const slideWidth = track.clientWidth;
+        <div class="grid ${section.gridClass || ""}">
 
-            if (!slideWidth || !slides.length) {
-                return;
-            }
+            ${section.cards.map(createCard).join("")}
 
-            const currentIndex =
-                Math.round(track.scrollLeft / slideWidth);
+        </div>
 
-            const nextIndex =
-                (currentIndex + direction + slides.length)
-                % slides.length;
+    </section>
 
-            track.scrollTo({
-                left: nextIndex * slideWidth,
-                behavior: window.matchMedia(
-                    "(prefers-reduced-motion: reduce)"
-                ).matches ? "auto" : "smooth"
-            });
-        }
+`).join("");
 
-        /* =================================================
-           📸 更新輪播圓點及照片名稱
-        ================================================= */
+/* ================= 輪播左右切換 ================= */
 
-        function handleCarouselScroll(track) {
+function moveCarousel(button, direction) {
 
-            const wrapper =
-                track.closest(".carousel-wrapper");
+    const wrapper =
+        button.closest(".carousel-wrapper");
 
-            const dots =
-                wrapper.querySelectorAll(".carousel-dot");
+    const track =
+        wrapper.querySelector(".carousel-track");
 
-            const slides =
-                track.querySelectorAll(".carousel-slide");
+    const slides =
+        track.querySelectorAll(".carousel-slide");
 
-            const slideWidth = track.clientWidth;
+    if (!track.clientWidth || !slides.length) {
+        return;
+    }
 
-            if (!slideWidth || !slides.length) {
-                return;
-            }
+    const currentIndex =
+        Math.round(track.scrollLeft / track.clientWidth);
 
-            const currentIndex = Math.max(
-                0,
-                Math.min(
-                    slides.length - 1,
-                    Math.round(track.scrollLeft / slideWidth)
-                )
-            );
+    const nextIndex =
+        (currentIndex + direction + slides.length)
+        % slides.length;
 
-            dots.forEach((dot, index) => {
+    track.scrollTo({
+        left: nextIndex * track.clientWidth,
+        behavior: "smooth"
+    });
+}
 
-                dot.classList.toggle(
-                    "active",
-                    index === currentIndex
-                );
+/* ================= 點擊輪播圓點 ================= */
 
-            });
+function goToSlide(button, index) {
 
-            const card =
-                wrapper.closest(".experience-card");
+    const gallery =
+        button.closest(".photo-gallery");
 
-            const caption =
-                card.querySelector(".photo-caption");
+    const track =
+        gallery.querySelector(".carousel-track");
 
-            if (caption && slides[currentIndex]) {
+    track.scrollTo({
+        left: index * track.clientWidth,
+        behavior: "smooth"
+    });
+}
 
-                caption.textContent =
-                    slides[currentIndex].dataset.caption || "";
+/* ================= 更新輪播說明 ================= */
 
-            }
-        }
+function handleCarouselScroll(track) {
 
-        /* =================================================
-           🌻 向日葵飄落動畫
-        ================================================= */
+    if (!track.clientWidth) {
+        return;
+    }
 
-        function createFlower() {
+    const gallery =
+        track.closest(".photo-gallery");
 
-            if (document.hidden) {
-                return;
-            }
+    const slides =
+        track.querySelectorAll(".carousel-slide");
 
-            const flowerEmojis = [
-                "🌻",
-                "✨",
-                "☀️",
-                "🌸",
-                "🎈"
-            ];
+    const dots =
+        gallery.querySelectorAll(".carousel-dot");
 
-            const flower =
-                document.createElement("div");
+    const caption =
+        gallery.querySelector(".photo-caption");
 
-            flower.classList.add("flower");
+    const currentIndex = Math.max(
+        0,
+        Math.min(
+            slides.length - 1,
+            Math.round(track.scrollLeft / track.clientWidth)
+        )
+    );
 
-            flower.setAttribute("aria-hidden", "true");
+    dots.forEach((dot, index) => {
 
-            flower.textContent =
-                flowerEmojis[
-                    Math.floor(
-                        Math.random() * flowerEmojis.length
-                    )
-                ];
+        dot.classList.toggle(
+            "active",
+            index === currentIndex
+        );
 
-            flower.style.left =
-                Math.random() * 100 + "vw";
+    });
 
-            flower.style.animationDuration =
-                Math.random() * 3 + 4 + "s";
+    if (caption && slides[currentIndex]) {
 
-            flower.style.opacity =
-                Math.random() * 0.3 + 0.2;
+        caption.textContent =
+            slides[currentIndex].dataset.caption || "";
 
-            flower.style.fontSize =
-                Math.random() * 15 + 15 + "px";
+    }
+}
 
-            document.body.appendChild(flower);
+/* ================= 向日葵飄落 ================= */
 
-            setTimeout(() => {
-                flower.remove();
-            }, 7500);
-        }
+function createFlower() {
 
-        if (
-            !window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            ).matches
-        ) {
-            setInterval(createFlower, 800);
-        }
+    if (document.hidden) {
+        return;
+    }
 
-    </script>
+    if (
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches
+    ) {
+        return;
+    }
+
+    const flower =
+        document.createElement("span");
+
+    const flowers = [
+        "🌻",
+        "🌻",
+        "🌻",
+        "🌼",
+        "🍃"
+    ];
+
+    flower.className = "flower";
+
+    flower.setAttribute("aria-hidden", "true");
+
+    flower.textContent =
+        flowers[
+            Math.floor(Math.random() * flowers.length)
+        ];
+
+    flower.style.left =
+        Math.random() * 100 + "vw";
+
+    flower.style.fontSize =
+        (Math.random() * 14 + 16) + "px";
+
+    flower.style.animationDuration =
+        (Math.random() * 2 + 5) + "s";
+
+    document.body.appendChild(flower);
+
+    setTimeout(() => {
+
+        flower.remove();
+
+    }, 7500);
+}
+
+setInterval(createFlower, 800);
+
+</script>
 
 </body>
 </html>
